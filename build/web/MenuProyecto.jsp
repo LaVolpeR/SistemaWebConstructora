@@ -23,13 +23,13 @@
             String user;
             String puesto;
             String codigo;
-            String proyecto;
+            String proyecto = "0";
             String ID_Proyecto = "null";
-            if (sesion.getAttribute("user") != null && sesion.getAttribute("puesto") != null && sesion.getAttribute("puesto").equals("1")) {
+            if (sesion.getAttribute("user") != null && sesion.getAttribute("puesto") != null && sesion.getAttribute("puesto").equals("1") && !sesion.getAttribute("proyecto").equals("0")) {
                 user = sesion.getAttribute("user").toString();
                 puesto = sesion.getAttribute("puesto").toString();
                 codigo = sesion.getAttribute("codigo").toString();
-                
+                proyecto = sesion.getAttribute("proyecto").toString();
                 lPro.ListarProyectos(codigo);
             } else {
                 if (sesion.getAttribute("user") != null && sesion.getAttribute("puesto") != null && sesion.getAttribute("puesto").equals("2")) {
@@ -43,7 +43,7 @@
             
 
         %>
-        <input name="InputProyecto"  type="hidden" value="<%=ID_Proyecto%>">
+        
         <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -81,7 +81,7 @@
         </nav>
         <div class="Contenedor">
             <div class="items">
-                <h1 class="text-center">Bienvenido al <%=lPro.TituloProyecto(Integer.parseInt(ID_Proyecto))%></h1>
+                <h1 class="text-center">Bienvenido al <%=lPro.TituloProyecto(Integer.parseInt(proyecto))%></h1>
             </div>
             <div class="items">
                 <a type="button" class="btn btn-outline-primary">Registrar Nuevo Gasto</a>

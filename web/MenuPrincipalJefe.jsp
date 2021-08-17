@@ -23,7 +23,7 @@
             String user;
             String puesto;
             String codigo;
-            String proyecto;
+           
             if (sesion.getAttribute("user") != null && sesion.getAttribute("puesto") != null && sesion.getAttribute("puesto").equals("1")) {
                 user = sesion.getAttribute("user").toString();
                 puesto = sesion.getAttribute("puesto").toString();
@@ -38,6 +38,12 @@
                     response.sendRedirect("index.jsp");
                     out.print("<script>location.replace('index.jsp');<script>");
                 }
+            }if(request.getParameter("IngresarProyecto")!=null){
+                sesion.setAttribute("proyecto",request.getParameter("InputProyecto"));
+                user = sesion.getAttribute("user").toString();
+                puesto = sesion.getAttribute("puesto").toString();
+                codigo = sesion.getAttribute("codigo").toString();
+                response.sendRedirect("MenuProyecto.jsp");
             }
             
         %>
@@ -74,7 +80,7 @@
             <%            for (int i = 0; i < lProyecto.lPro.size(); i++) {
                     pro = (Proyecto) lProyecto.lPro.get(i);
             %>
-            <form action="MenuProyecto.jsp" method="POST">
+            <form action="MenuPrincipalJefe.jsp" method="POST">
 
                 <input name="InputProyecto"  type="hidden" value="<%=pro.getID()%>">  
                 <!-- Proyectos -->
