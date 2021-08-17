@@ -23,10 +23,12 @@
             String user;
             String puesto;
             String codigo;
+            String proyecto;
             if (sesion.getAttribute("user") != null && sesion.getAttribute("puesto") != null && sesion.getAttribute("puesto").equals("1")) {
                 user = sesion.getAttribute("user").toString();
                 puesto = sesion.getAttribute("puesto").toString();
                 codigo = sesion.getAttribute("codigo").toString();
+                sesion.setAttribute("proyecto","0");
                 lPro.ListarProyectos(codigo);
             } else {
                 if (sesion.getAttribute("user") != null && sesion.getAttribute("puesto") != null && sesion.getAttribute("puesto").equals("2")) {
@@ -37,7 +39,7 @@
                     out.print("<script>location.replace('index.jsp');<script>");
                 }
             }
-
+            
         %>
         <!-- Navbar -->
 
@@ -72,20 +74,23 @@
             <%            for (int i = 0; i < lProyecto.lPro.size(); i++) {
                     pro = (Proyecto) lProyecto.lPro.get(i);
             %>
+            <form action="MenuProyecto.jsp" method="POST">
 
-            <!-- Proyectos -->
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title">Proyecto #<%=pro.getID()%></h4>
-                    <p class="card-text"> <%=pro.getDescripcion()%></p>
+                <input name="InputProyecto"  type="hidden" value="<%=pro.getID()%>">  
+                <!-- Proyectos -->
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Proyecto #<%=pro.getID()%></h4>
+                        <p class="card-text"> <%=pro.getDescripcion()%></p>
+                    </div>
+                    <div class="card-body">
+                        <button type="button" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#staticBackdrop<%=pro.getID()%>" ><!-- Identificador -->
+                            Informacion de Proyecto #<%=pro.getID()%>
+                        </button>
+                        <button type="submit" class="btn btn-outline-primary" name="IngresarProyecto">Ingresar</button>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <button type="button" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#staticBackdrop<%=pro.getID()%>" ><!-- Identificador -->
-                        Informacion de Proyecto #<%=pro.getID()%>
-                    </button>
-                    <button type="button" class="btn btn-outline-primary">Ingresar</button>
-                </div>
-            </div>
+            </form>
             <%
                 }
             %>
@@ -94,8 +99,8 @@
         <%            for (int i = 0; i < lProyecto.lPro.size(); i++) {
                 pro = (Proyecto) lProyecto.lPro.get(i);
         %>
-        <div class="modal fade" id="staticBackdrop<%=pro.getID()%>"<!-- Identificador --> data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-             <div class="modal-dialog">
+        <div class="modal fade" id="staticBackdrop<%=pro.getID()%>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="staticBackdropLabel"><%=pro.getTitulo()%></h5>
@@ -110,7 +115,6 @@
                         Fecha de Inicio : <%=pro.getFechaInicio()%>
                         <br>
                         Fecha de fin : <%=pro.getFechaFin()%>
-
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

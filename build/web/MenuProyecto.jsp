@@ -4,6 +4,8 @@
     Author     : ramir
 --%>
 
+<%@page import="logico.lProyecto"%>
+<%@page import="datos.Proyecto"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -14,6 +16,34 @@
         <title>Menu Proyecto</title>
     </head>
     <body>
+        <%
+            Proyecto pro = new Proyecto();
+            lProyecto lPro = new lProyecto();
+            HttpSession sesion = request.getSession();
+            String user;
+            String puesto;
+            String codigo;
+            String proyecto;
+            String ID_Proyecto = "null";
+            if (sesion.getAttribute("user") != null && sesion.getAttribute("puesto") != null && sesion.getAttribute("puesto").equals("1")) {
+                user = sesion.getAttribute("user").toString();
+                puesto = sesion.getAttribute("puesto").toString();
+                codigo = sesion.getAttribute("codigo").toString();
+                
+                lPro.ListarProyectos(codigo);
+            } else {
+                if (sesion.getAttribute("user") != null && sesion.getAttribute("puesto") != null && sesion.getAttribute("puesto").equals("2")) {
+                    response.sendRedirect("MenuPrincipalPersonal.jsp");
+                    out.print("<script>location.replace('MenuPrincipalPersonal.jsp');<script>");
+                } else {
+                    response.sendRedirect("index.jsp");
+                    out.print("<script>location.replace('index.jsp');<script>");
+                }
+            }
+            
+
+        %>
+        <input name="InputProyecto"  type="hidden" value="<%=ID_Proyecto%>">
         <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,7 +58,7 @@
                             <a class="nav-link active" aria-current="page" href="Cotizacion.jsp">Cotizacion</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="Planilla.jsp">Planilla</a>
+                            <a class="nav-link active" aria-current="page" href="">Planilla</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="Cronograma.jsp">Cronograma</a>
@@ -44,16 +74,19 @@
                         </li>
                     </ul>
                     <form class="d-flex">
-                        <a class="nav-link active" aria-current="page" href="#">Cerrar sesion</a>
+                        <a class="nav-link active" aria-current="page" href="index.jsp?cerrar=true">Cerrar sesion</a>
                     </form>
                 </div>
             </div>
         </nav>
         <div class="Contenedor">
             <div class="items">
+                <h1 class="text-center">Bienvenido al <%=lPro.TituloProyecto(Integer.parseInt(ID_Proyecto))%></h1>
+            </div>
+            <div class="items">
                 <a type="button" class="btn btn-outline-primary">Registrar Nuevo Gasto</a>
             </div>
-            
+
         </div>
 
         <!-- Bootstrap Bundle with Popper -->

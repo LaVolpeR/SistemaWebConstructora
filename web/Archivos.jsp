@@ -28,6 +28,7 @@
                 user = sesion.getAttribute("user").toString();
                 puesto = sesion.getAttribute("puesto").toString();
                 codigo = sesion.getAttribute("codigo").toString();
+                sesion.setAttribute("proyecto","0");
             } else {
                 if (sesion.getAttribute("user") != null && sesion.getAttribute("puesto") != null && sesion.getAttribute("puesto").equals("2")) {
                     response.sendRedirect("MenuPrincipalPersonal.jsp");
@@ -67,9 +68,7 @@
         <br><br><br>
         <input name="InputDNI"  type="hidden" value="<%=codigo%>">
         <div class="container">
-
             <div class="d-grid gap-2">
-
                 <a id="mostrar" class="btn btn-outline-primary" href="ControllerPdf?action=insert&id=">Subir PDF</a>
             </div>
             <br>
@@ -87,7 +86,6 @@
                             <th>PDF</th>
                         </tr>
                     </thead>
-
                     <tbody>
                         <%
                             lProyecto lPro = new lProyecto();

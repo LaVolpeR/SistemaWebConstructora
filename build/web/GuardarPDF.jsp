@@ -34,6 +34,7 @@
                 puesto = sesion.getAttribute("puesto").toString();
                 codigo = sesion.getAttribute("codigo").toString();
                 lPro.ListarProyectos(codigo);
+                sesion.setAttribute("proyecto","0");
             } else {
                 if (sesion.getAttribute("user") != null && sesion.getAttribute("puesto") != null && sesion.getAttribute("puesto").equals("2")) {
                     response.sendRedirect("MenuPrincipalPersonal.jsp");

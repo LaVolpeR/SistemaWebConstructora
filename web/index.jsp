@@ -50,6 +50,7 @@
                 sesion.setAttribute("user", email);
                 sesion.setAttribute("puesto", "1");
                 sesion.setAttribute("codigo", Codigo);
+                sesion.setAttribute("Proeyecto", "0");
                 response.sendRedirect("MenuPrincipalJefe.jsp");
             } else if (lTra.Login(email, password) >= 2 && lTra.Login(email, password) <= 11) {
                 String Codigo = lTra.Codigo(email, password);
@@ -57,6 +58,7 @@
                 sesion.setAttribute("user", email);
                 sesion.setAttribute("puesto", "2");
                 sesion.setAttribute("codigo", Codigo);
+                sesion.setAttribute("proyecto", "0");
                 response.sendRedirect("MenuPrincipalPersonal.jsp");
             } else {
     %>
