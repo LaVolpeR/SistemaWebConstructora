@@ -1,0 +1,39 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 24/07/2021, 02:12:00 AM
+    Author     : ramir
+*/
+
+div.card{
+    width: 20rem;
+    display: inline-block;
+    font-size: 20px;
+    padding: 10px;
+    margin: 10px;
+}
+div.Contenedor{
+    list-style-type: none;
+    text-align: center;
+    margin: 10px;
+    margin-top: 10px;
+    width: 100wh;
+    padding: 0;
+}
+p{
+    height: 150px;
+    overflow: auto;
+    margin-bottom: 10px;
+}
+.BotonAgregar{
+    margin: 10px;
+    margin-top: 65px;
+}
+
+.btn{
+    width: 100%;
+    margin: 5px;
+}
