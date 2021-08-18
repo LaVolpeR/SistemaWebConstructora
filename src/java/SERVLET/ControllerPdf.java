@@ -1,6 +1,7 @@
 package SERVLET;
 
 import datos.Archivo;
+import datos.Gasto;
 import java.io.IOException;
 import java.io.InputStream;
 import javax.servlet.RequestDispatcher;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import logico.lArchivos;
+import logico.lGasto;
 
 @WebServlet(name = "ControllerPdf", urlPatterns = {"/ControllerPdf"})
 @MultipartConfig(maxFileSize = 161772150)    // upload file's size up to 16MB
@@ -21,7 +23,7 @@ public class ControllerPdf extends HttpServlet {
 
     public static final String lIST_STUDENT = "/Archivos.jsp";
     public static final String INSERT_OR_EDIT = "/GuardarPDF.jsp";
-
+    public static final String INSERT_GASTO = "/RegistroGasto.jsp";
     String estado = null;
     lArchivos lArc;
     int id_pdf = -1;
@@ -61,6 +63,9 @@ public class ControllerPdf extends HttpServlet {
         } else if (action.equalsIgnoreCase("insert")) {
             forward = INSERT_OR_EDIT;
             estado = "insert";
+        } else if (action.equalsIgnoreCase("insertGasto")) {
+            forward = INSERT_GASTO;
+            estado = "insertGasto";
         }
 
         RequestDispatcher view = request.getRequestDispatcher(forward);
@@ -108,6 +113,29 @@ public class ControllerPdf extends HttpServlet {
                     Arc.setData(inputStream);
                 }
                 lArc.InsertarArchivo(Arc, DNI, ID);
+            } else if (estado.equalsIgnoreCase("insertGasto")) {
+                Arc.setID(0);
+                String IDArchivo = "null";
+                ID = Integer.parseInt(request.getParameter("InputID"));
+                DNI = request.getParameter("InputDNI");
+                lGasto lGas = new lGasto();
+                Gasto gas = new Gasto("0",
+                        request.getParameter("InputTitulo"),
+                        request.getParameter("InputDescripcion"),
+                        Float.parseFloat(request.getParameter("InputMoney")),
+                        request.getParameter("InputRuc"),
+                        request.getParameter("InputRazonSocial"),
+                        "0/0/0");
+
+                if (inputStream != null) {
+                    Arc.setData(inputStream);
+                    lArc.InsertarArchivo(Arc, DNI, ID);
+                    IDArchivo = lArc.UltimoArchivo();
+                }
+
+                lGas.GenerarGasto(gas, ID, IDArchivo);
+                RequestDispatcher view = request.getRequestDispatcher("/MenuProyecto.jsp");
+                view.forward(request, response);
             } else {
                 Arc.setID(id_pdf);
                 if (inputStream != null) {

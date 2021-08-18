@@ -7,6 +7,7 @@
 <%@page import="logico.lProyecto"%>
 <%@page import="datos.Proyecto"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page session="true"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -40,8 +41,6 @@
                     out.print("<script>location.replace('index.jsp');<script>");
                 }
             }
-            
-
         %>
         
         <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
@@ -84,9 +83,8 @@
                 <h1 class="text-center">Bienvenido al <%=lPro.TituloProyecto(Integer.parseInt(proyecto))%></h1>
             </div>
             <div class="items">
-                <a type="button" class="btn btn-outline-primary">Registrar Nuevo Gasto</a>
+                <a id="mostrar" class="btn btn-outline-primary" href="ControllerPdf?action=insertGasto&id=">Registrar Nuevo Gasto</a>
             </div>
-
         </div>
 
         <!-- Bootstrap Bundle with Popper -->

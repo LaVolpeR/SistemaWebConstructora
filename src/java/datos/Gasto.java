@@ -11,19 +11,28 @@ package datos;
  */
 public class Gasto {
 
-    private String ID, Descripcion;
+    private String ID,Titulo, Descripcion;
     private float money;
-    private String RUC, RazonSocial;
+    private String RUC, RazonSocial , Fecha;
 
     public Gasto() {
+        this.ID = "NN";
+        this.Titulo = "NN";
+        this.Descripcion = "NN";
+        this.money = 0;
+        this.RUC = "NN";
+        this.RazonSocial = "NN";
+        this.Fecha = "NN";
     }
 
-    public Gasto(String ID, String Descripcion, float money, String RUC, String RazonSocial) {
+    public Gasto(String ID, String Titulo, String Descripcion, float money, String RUC, String RazonSocial, String Fecha) {
         this.ID = ID;
+        this.Titulo = Titulo;
         this.Descripcion = Descripcion;
         this.money = money;
         this.RUC = RUC;
         this.RazonSocial = RazonSocial;
+        this.Fecha = Fecha;
     }
 
     public String getID() {
@@ -32,6 +41,14 @@ public class Gasto {
 
     public void setID(String ID) {
         this.ID = ID;
+    }
+
+    public String getTitulo() {
+        return Titulo;
+    }
+
+    public void setTitulo(String Titulo) {
+        this.Titulo = Titulo;
     }
 
     public String getDescripcion() {
@@ -66,10 +83,18 @@ public class Gasto {
         this.RazonSocial = RazonSocial;
     }
 
+    public String getFecha() {
+        return Fecha;
+    }
+
+    public void setFecha(String Fecha) {
+        this.Fecha = Fecha;
+    }
+
     @Override
     public String toString() {
-        return "Gasto{" + "ID=" + ID + ", Descripcion=" + Descripcion + ", money=" + money + ", RUC=" + RUC + ", RazonSocial=" + RazonSocial + '}';
+        return "Gasto{" + "ID=" + ID + ", Titulo=" + Titulo + ", Descripcion=" + Descripcion + ", money=" + money + ", RUC=" + RUC + ", RazonSocial=" + RazonSocial + ", Fecha=" + Fecha + '}';
     }
-    
+
     
 }

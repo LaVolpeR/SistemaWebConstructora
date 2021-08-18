@@ -62,6 +62,18 @@ public class lArchivos {
             System.out.print(e);
         }
     }
+    public String UltimoArchivo(){
+        String ID = "null";
+        try {
+            con.consulta("select * from ARCHIVO order by ARCHIVO_id DESC");
+            con.getRs().next();
+            ID = con.getRs().getString(1);
+            System.out.print("ultimo archivo "+ ID);
+        } catch (Exception e) {
+            System.out.print("ultimo archivo "+e);
+        }
+        return ID;
+    }
 
     public void ModificarPDF(Archivo arc) {
         String sql = "update ARCHIVO SET Archivo_titulo = ?, Archivo_data = ? where Archivo_id = ?";
