@@ -15,7 +15,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">        
 
-        <title>Registro de Gastos</title>
+        <title>Registro de Movimiento</title>
     </head>
     <body>
         <%
@@ -96,7 +96,7 @@
             <input name="InputDNI"  type="hidden" value="<%=codigo %>">
             <input name="InputID"  type="hidden" value="<%=proyecto%>">
             <div class="container"> 
-                <h1 class="text-center">Registro de Gasto</h1>
+                <h1 class="text-center">Registro de Movimiento</h1>
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" name="InputTitulo" placeholder="Titulo">
                     <label for="floatingInput" >Ingresar Titulo</label>
@@ -122,10 +122,19 @@
                     <label for="formFile" class="form-label">Ingresar Archivo (opcional)</label>
                     <input class="form-control" type="file" name="formFile">
                 </div>
+                <div class="form-floating">
+                    <select class="form-select" id="floatingSelect" name="InputTipo" aria-label="Floating label select example">
+                        <option value="1">Ingreso</option>
+                        <option value="2">Gasto</option>
+                    </select>
+                    <label for="floatingSelect">Ingresar el tipo de Movimiento</label>
+                </div>
+                <br>
                 <div class="d-grid gap-2">
                     <input class="btn btn-primary" type="submit" name="btnGuardar" value="Guardar"/>
                     <a class="btn btn-primary" type="submit" href="MenuProyecto.jsp">Regresar</a>
                 </div>
+                
             </div>
         </form>
         <!-- Bootstrap Bundle with Popper -->

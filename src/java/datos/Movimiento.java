@@ -9,13 +9,13 @@ package datos;
  *
  * @author ramir
  */
-public class Gasto {
+public class Movimiento {
 
     private String ID,Titulo, Descripcion;
     private float money;
     private String RUC, RazonSocial , Fecha;
 
-    public Gasto() {
+    public Movimiento() {
         this.ID = "NN";
         this.Titulo = "NN";
         this.Descripcion = "NN";
@@ -25,7 +25,7 @@ public class Gasto {
         this.Fecha = "NN";
     }
 
-    public Gasto(String ID, String Titulo, String Descripcion, float money, String RUC, String RazonSocial, String Fecha) {
+    public Movimiento(String ID, String Titulo, String Descripcion, float money, String RUC, String RazonSocial, String Fecha) {
         this.ID = ID;
         this.Titulo = Titulo;
         this.Descripcion = Descripcion;

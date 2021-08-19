@@ -5,31 +5,32 @@
  */
 package logico;
 
-import datos.Gasto;
+import datos.Movimiento;
 import java.util.ArrayList;
 
 /**
  *
  * @author ramir
  */
-public class lGasto {
+public class lMovimiento {
 
     public static ArrayList lGas = new ArrayList();
     conexion con = new conexion();
 
-    public void GenerarGasto(Gasto gas, int ID_proyecto, String ID_Archivo) {
+    public void GenerarGasto(Movimiento gas, int ID_proyecto, String ID_Archivo, String ID_tipo) {
         try {
-           
-            con.getSt().executeUpdate("exec sp_Gasto '"
+
+            con.getSt().executeUpdate("exec sp_MoviemientoInsert '"
                     + gas.getTitulo() + "','"
                     + gas.getDescripcion() + "',"
                     + gas.getMoney() + ",'"
                     + gas.getRUC() + "','"
                     + gas.getRazonSocial() + "',"
                     + ID_proyecto + ","
-                    + ID_Archivo);
+                    + ID_Archivo + ","
+                    + ID_tipo);
         } catch (Exception e) {
-            System.out.print("lGasto = "+e);
+            System.out.print("lGasto = " + e);
         }
     }
 }

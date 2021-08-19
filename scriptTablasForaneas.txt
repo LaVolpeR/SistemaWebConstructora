@@ -1,0 +1,12 @@
+insert into Tipo values('INGRESO');
+insert into Tipo values('Gasto');
+NSERT INTO PUESTO VALUES('capataz');
+INSERT INTO PUESTO VALUES('operario');
+INSERT INTO PUESTO VALUES('oficial');
+INSERT INTO PUESTO VALUES('peon'); 
+INSERT INTO PUESTO VALUES('acomodador');
+INSERT INTO PUESTO VALUES('operador equipo');
+INSERT INTO PUESTO VALUES('operador equipo pesado');
+INSERT INTO PUESTO VALUES('operador equipo mediano');
+INSERT INTO PUESTO VALUES('operador electromecanico');
+INSERT INTO PUESTO VALUES('topografo');

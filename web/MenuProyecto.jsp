@@ -83,7 +83,7 @@
                 <h1 class="text-center">Bienvenido al <%=lPro.TituloProyecto(Integer.parseInt(proyecto))%></h1>
             </div>
             <div class="items">
-                <a id="mostrar" class="btn btn-outline-primary" href="ControllerPdf?action=insertGasto&id=">Registrar Nuevo Gasto</a>
+                <a id="mostrar" class="btn btn-outline-primary" href="ControllerPdf?action=insertMovimiento&id=">Registrar Movimiento</a>
             </div>
         </div>
 
