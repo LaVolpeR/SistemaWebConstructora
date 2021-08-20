@@ -4,6 +4,11 @@
     Author     : ramir
 --%>
 
+<%@page import="datos.Chart"%>
+<%@page import="java.util.Calendar"%>
+<%@page import="logico.lChart"%>
+<%@page import="logico.lProyecto"%>
+<%@page import="datos.Proyecto"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -15,6 +20,42 @@
         <title>Cotizacion</title>
     </head>
     <body>
+        <%
+            Proyecto pro = new Proyecto();
+            lProyecto lPro = new lProyecto();
+            HttpSession sesion = request.getSession();
+            String user;
+            String puesto;
+            String codigo;
+            String proyecto = "0";
+            String ID_Proyecto = "null";
+            if (sesion.getAttribute("user") != null && sesion.getAttribute("puesto") != null && sesion.getAttribute("puesto").equals("1") && !sesion.getAttribute("proyecto").equals("0")) {
+                user = sesion.getAttribute("user").toString();
+                puesto = sesion.getAttribute("puesto").toString();
+                codigo = sesion.getAttribute("codigo").toString();
+                proyecto = sesion.getAttribute("proyecto").toString();
+                lPro.ListarProyectos(codigo);
+            } else {
+                if (sesion.getAttribute("user") != null && sesion.getAttribute("puesto") != null && sesion.getAttribute("puesto").equals("2")) {
+                    response.sendRedirect("MenuPrincipalPersonal.jsp");
+                    out.print("<script>location.replace('MenuPrincipalPersonal.jsp');<script>");
+                } else {
+                    response.sendRedirect("index.jsp");
+                    out.print("<script>location.replace('index.jsp');<script>");
+                }
+            }
+            lChart lCha = new lChart();
+            Calendar c = Calendar.getInstance();
+            int dia = Integer.parseInt(Integer.toString(c.get(Calendar.DATE)));
+            int mes = Integer.parseInt(Integer.toString(c.get(Calendar.MONTH)));
+            int annio = Integer.parseInt(Integer.toString(c.get(Calendar.YEAR)));
+            mes++;
+            lCha.ListarGastoSemana(annio, mes, dia);
+            int DiasMes = lCha.DiasTotalMes(mes, annio);
+            Chart Cha = new Chart();
+            lCha.ListarGastoSemana(annio, mes, dia);
+            int b = lChart.lCha.size() - 1;
+        %>
         <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -59,6 +100,7 @@
                 </div>
             </div>
         </nav>
+
         <div class="Gastos">
             <section id="seccion-1">
                 <div class="GastosMensuales">
@@ -242,12 +284,37 @@
                     data: {
                     labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
                             datasets: [{
-                            label: 'Gasto Mensual',
-                                    data: [12, 19, 13, 10, 12, 13],
+                            label: 'Gasto Mensual del Mes',
+                                    data: [
+            <%
+                for (int i = 1; i <= 12; i++) {
+            %>
+            <%=lCha.SumaMesMovimiento("2", proyecto, i)%>,
+            <%
+                }
+            %>
+
+                                    ],
+                                    borderColor: [
+                                            'rgb(255, 99, 132)'
+                                    ]
+                            }, {
+                            label: 'Ingreso total del Mes',
+                                    data: [
+            <%
+                for (int i = 1; i <= 12; i++) {
+            %>
+            <%=lCha.SumaMesMovimiento("1", proyecto, i)%>,
+            <%
+                }
+            %>
+
+                                    ],
                                     borderColor: [
                                             'rgb(59, 131, 189)'
                                     ]
-                            }]
+                            }
+                            ]
                     },
                     options: {
                     maintainAspectRatio: true,
@@ -270,14 +337,44 @@
             var ChartGastoSemanal = new Chart(ctx2, {
             type: 'line',
                     data: {
-                    labels: ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo',],
+                    labels: ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo', ],
                             datasets: [{
                             label: 'Gasto Semanal',
-                                    data: [13, 42, 13, 31, 17, 53],
+                                    data: [
+            <%
+                for (int i = b; i >= 0; i--) {
+                    Cha = (Chart) lChart.lCha.get(i);
+            %>
+            <%=lCha.SumDiaSemanaMovimiento(Cha.getDia(), Cha.getMes(), Cha.getAnnio(), 2, Integer.parseInt(proyecto))%>,
+            <%
+
+                }
+            %>
+
+                                    ],
                                     borderColor: [
-                                            'rgb(59, 131, 189)'
+                                            'rgba(255,99,132,0.2)'
                                     ]
-                            }]
+                            },
+                                    {
+                                    label: 'Ingreso Semanal',
+                                            data: [
+            <%
+                for (int i = b; i >= 0; i--) {
+                    Cha = (Chart) lChart.lCha.get(i);
+            %>
+            <%=lCha.SumDiaSemanaMovimiento(Cha.getDia(), Cha.getMes(), Cha.getAnnio(), 1, Integer.parseInt(proyecto))%>,
+            <%
+
+                }
+            %>
+
+                                            ],
+                                            borderColor: [
+                                                    'rgb(59, 131, 189)'
+                                            ]
+                                    }
+                            ]
                     },
                     options: {
                     maintainAspectRatio: true,
@@ -301,33 +398,46 @@
             type: 'line',
                     data: {
                     labels: [
-            <% 
-                            for(int i = 0; i<=30; i++){
+            <%
+                for (int i = 0; i <= DiasMes; i++) {
             %>
-                            
-            '<%=i %>',
-            <% 
-                            }
+
+                    '<%=i%>',
+            <%
+                }
             %>
                     ],
                             datasets: [{
-                            label: 'Gasto Semanal',
+                            label: 'Gasto Diario/Mensual',
                                     data: [
-                                        <% 
-                                           
-                            for(int i = 0; i<=30; i++){
-                                 
+            <%
+                for (int i = 0; i <= DiasMes; i++) {
             %>
-                            
-            <%=i %>,
-            <% 
-                            }
+
+            <%=lCha.SumaDiaMesMovimiento("2", proyecto, mes, i)%>,
+            <%
+                }
+            %>
+                                    ],
+                                    borderColor: [
+                                            'rgb(255, 99, 132)'
+                                    ]
+                            }, {
+                            label: 'Ingreso Diario/Mensual',
+                                    data: [
+            <%
+                for (int i = 0; i <= DiasMes; i++) {
+            %>
+
+            <%=lCha.SumaDiaMesMovimiento("1", proyecto, mes, i)%>,
+            <%
+                }
             %>
                                     ],
                                     borderColor: [
                                             'rgb(59, 131, 189)'
                                     ]
-                            }]
+                            }, ]
                     },
                     options: {
                     maintainAspectRatio: true,
