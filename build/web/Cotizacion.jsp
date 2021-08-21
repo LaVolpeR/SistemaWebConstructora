@@ -10,6 +10,7 @@
 <%@page import="logico.lProyecto"%>
 <%@page import="datos.Proyecto"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page session="true"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -70,7 +71,7 @@
                             <a class="nav-link active" aria-current="page" href="Cotizacion.jsp">Cotizacion</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="Planilla.jsp">Planilla</a>
+                            <a class="nav-link active" aria-current="page" href="PlanillaProyecto.jsp">Planilla</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="Cronograma.jsp">Cronograma</a>

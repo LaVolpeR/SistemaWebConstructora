@@ -76,7 +76,7 @@ public class lChart {
             Chart cha = new Chart();
             switch (con.getRs().getString(1)) {
                 case "Monday":
-                    
+                    cha = new Chart(Annio, Mes, Dia);
                     lCha.add(cha);
                     System.out.println("ListarGastoSemana :" + Annio + "/" + Mes + "/" + Dia);
                     break;

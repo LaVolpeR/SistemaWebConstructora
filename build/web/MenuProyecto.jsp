@@ -57,7 +57,7 @@
                             <a class="nav-link active" aria-current="page" href="Cotizacion.jsp">Cotizacion</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="">Planilla</a>
+                            <a class="nav-link active" aria-current="page" href="PlanillaProyecto.jsp">Planilla</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="Cronograma.jsp">Cronograma</a>
@@ -85,6 +85,9 @@
             <div class="items">
                 <a id="mostrar" class="btn btn-outline-primary" href="ControllerPdf?action=insertMovimiento&id=">Registrar Movimiento</a>
             </div>
+            <div class="items">
+                <a class="btn btn-primary" type="button" href="MenuPrincipalJefe.jsp">Regresar</a>
+</div>
         </div>
 
         <!-- Bootstrap Bundle with Popper -->

@@ -28,6 +28,7 @@ public class conexion {
             System.out.println("Exito al conectar la base de datos");
         } catch (Exception e) {
             System.out.println("Fracaso al conectar la base de datos");
+            System.out.println(e );
         }
     }
     public conexion(String url) {
