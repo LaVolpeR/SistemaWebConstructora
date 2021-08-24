@@ -83,7 +83,7 @@ public class lTrabajador {
     public String Nombre(String DNI) {
         String nombre = "nn";
         try {
-            con.consulta("select TRABAJADOR_nombre from TRABAJADOR where TRABAJADOR_DNI = '" + DNI + "'");
+            con.consulta("select TRABAJADOR_apellido + ', ' + TRABAJADOR_nombre from TRABAJADOR where TRABAJADOR_DNI = '" + DNI + "'");
             while (con.getRs().next()) {
                 nombre = con.getRs().getString(1);
             }

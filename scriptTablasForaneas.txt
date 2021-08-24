@@ -10,3 +10,6 @@ INSERT INTO PUESTO VALUES('operador equipo pesado');
 INSERT INTO PUESTO VALUES('operador equipo mediano');
 INSERT INTO PUESTO VALUES('operador electromecanico');
 INSERT INTO PUESTO VALUES('topografo');
+insert into ESTADO values ('En Proceso');
+insert into ESTADO values ('Completado');
+insert into ESTADO values ('Por Verificar');

@@ -41,6 +41,7 @@
                     out.print("<script>location.replace('index.jsp');<script>");
                 }
             }
+            
         %>
 
         <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
@@ -84,6 +85,8 @@
             </div>
             <div class="items">
                 <a id="mostrar" class="btn btn-outline-primary" href="ControllerPdf?action=insertMovimiento&id=">Registrar Movimiento</a>
+                <br> <br>
+                <a id="Actividad" class="btn btn-outline-primary" href="Actividad.jsp">Ingresar Actividad</a>
             </div>
             <div class="items">
                 <a class="btn btn-primary" type="button" href="MenuPrincipalJefe.jsp">Regresar</a>

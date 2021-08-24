@@ -103,13 +103,12 @@
                     <%
                         lTra.ListarTrabajadores(1);
                         int a = 0;
-                        int b= 0;
+                        int b = 0;
                         for (int i = 0; i < lTrabajador.lTra.size(); i++) {
-                        Tra = (Trabajador) lTrabajador.lTra.get(i);
-                        b = lTra.UltimoProyecto(Tra.getDNI());
-                                    
-                                    if(b == Integer.parseInt(proyecto)){
-                                        a++;
+                            Tra = (Trabajador) lTrabajador.lTra.get(i);
+                            b = lTra.UltimoProyecto(Tra.getDNI());
+                            if (b == Integer.parseInt(proyecto)) {
+                                a++;
                     %>
                     <tr>
                         <th><%=a%></th>
@@ -121,8 +120,8 @@
 
                     </tr>
                     <%
-                                    
-                        }
+
+                            }
                         }
                     %>
                 </tbody>

@@ -85,15 +85,7 @@
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="#">Informes</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" href="#seccion-1">Año</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" href="#seccion-2">Mes</a>
-                        </li>
-                        <li class="nav-item">
-                            <a  class="nav-link active"href="#seccion-3">Semana</a>
-                        </li>
+
                     </ul>
                     <form class="d-flex">
                         <a class="nav-link active" aria-current="page" href="#">Cerrar sesion</a>
@@ -101,177 +93,197 @@
                 </div>
             </div>
         </nav>
-
-        <div class="Gastos">
-            <section id="seccion-1">
-                <div class="GastosMensuales">
-                    <div class="BoxGastosDiario">
-                        <canvas id="ChartGastoMensual"></canvas>
-                    </div>
-                    <div>
-                        <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">Informacion de Gastos de este año</button>
-                        <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
-                            <div class="offcanvas-header">
-                                <h5 class="offcanvas-title" id="offcanvasBottomLabel">Informacion de Gastos de este año</h5>
-                                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        <br><br>
+        <div class="container">
+            <div class="px-lg-4 px-xl-5 container-fluid">
+                <div class="page-header">
+                    <h1 class="page-heading">Graficos Del Proyecto</h1>
+                </div>
+                <section>
+                    <div class="mb-4 row">
+                        <div class="mb-4 mb-lg-0 col-lg-8">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-heading">
+                                        Gasto/Ingresos del Mes actual
+                                    </h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="mb-2">
+                                        <div class="mb-3">
+                                            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom2" aria-controls="offcanvasBottom2">Informacion de Gasto del Mes</button>
+                                            <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom2" aria-labelledby="offcanvasBottomLabel">
+                                                <div class="offcanvas-header">
+                                                    <h5 class="offcanvas-title" id="offcanvasBottomLabel">Informacion de Gasto del Mes</h5>
+                                                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                                                </div>
+                                                <div class="offcanvas-body small">
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th scope="col">#</th>
+                                                                <th scope="col">Descripcion</th>
+                                                                <th scope="col">Gasto</th>
+                                                                <th scope="col">Responsable</th>
+                                                                <th scope="col">Fecha</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <th>1</th>
+                                                                <td>Comida</td>
+                                                                <td>20.00</td>
+                                                                <td>Ramiro</td>
+                                                                <td>15/05/2021</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>2</th>
+                                                                <td>Maquinaria</td>
+                                                                <td>50.00</td>
+                                                                <td>Ramiro</td>
+                                                                <td>17/05/2021</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>3</th>
+                                                                <td>Reparacion</td>
+                                                                <td>25.00</td>
+                                                                <td>Orlando</td>
+                                                                <td>17/05/2021</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mt-5 mb-5">
+                                            <canvas id="ChartGastosMes"  style="display: block; box-sizing: border-box; height: 280.8px; width: 563.2px;"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="offcanvas-body small">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">#</th>
-                                            <th scope="col">Mes</th>
-                                            <th scope="col">Gasto Total</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th>1</th>
-                                            <td>Enero</td>
-                                            <td>12</td>
-                                        </tr>
-                                        <tr>
-                                            <th>2</th>
-                                            <td>Febrero</td>
-                                            <td>19</td>
-                                        </tr>
-                                        <tr>
-                                            <th>3</th>
-                                            <td>Marzo</td>
-                                            <td>13</td>
-                                        </tr>
-                                        <tr>
-                                            <th>4</th>
-                                            <td>Abril</td>
-                                            <td>10</td>
-                                        </tr>
-                                        <tr>
-                                            <th>5</th>
-                                            <td>Mayo</td>
-                                            <td>12</td>
-                                        </tr>
-                                        <tr>
-                                            <th>6</th>
-                                            <td>Junio</td>
-                                            <td>13</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="mb-4 card">
+                                <div class="card-header">
+                                    <h4>Gastos/de todo el Año actual</h4>
+                                </div>
+                                <div class="card-body">
+                                    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">Informacion de Gastos de este año</button>
+                                    <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
+                                        <div class="offcanvas-header">
+                                            <h5 class="offcanvas-title" id="offcanvasBottomLabel">Informacion de Gastos de este año</h5>
+                                            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                                        </div>
+                                        <div class="offcanvas-body small">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">#</th>
+                                                        <th scope="col">Mes</th>
+                                                        <th scope="col">Gasto Total</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <th>1</th>
+                                                        <td>Enero</td>
+                                                        <td>12</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>2</th>
+                                                        <td>Febrero</td>
+                                                        <td>19</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>3</th>
+                                                        <td>Marzo</td>
+                                                        <td>13</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>4</th>
+                                                        <td>Abril</td>
+                                                        <td>10</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>5</th>
+                                                        <td>Mayo</td>
+                                                        <td>12</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>6</th>
+                                                        <td>Junio</td>
+                                                        <td>13</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <canvas id="ChartGastoMensual"></canvas>
+                                </div>
+                            </div>
+                            <div class="mb-4 card">
+                                <div class="card-header">
+                                    <h4>Gasto/Ingreso de la semana</h4>
+                                </div>
+                                <div class="card-body">
+                                    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom3" aria-controls="offcanvasBottom3">Informacion de Gasto de la Semanal</button>
+                                    <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom3" aria-labelledby="offcanvasBottomLabel">
+                                        <div class="offcanvas-header">
+                                            <h5 class="offcanvas-title" id="offcanvasBottomLabel">Informacion de Gasto de la Semanal</h5>
+                                            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                                        </div>
+                                        <div class="offcanvas-body small">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">#</th>
+                                                        <th scope="col">Descripcion</th>
+                                                        <th scope="col">Gasto Total</th>
+                                                        <th scope="col">Responsable</th>
+                                                        <th scope="col">Fecha</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <th>1</th>
+                                                        <td>Comida</td>
+                                                        <td>20.00</td>
+                                                        <td>Ramiro</td>
+                                                        <td>15/05/2021</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>2</th>
+                                                        <td>Maquinaria</td>
+                                                        <td>50.00</td>
+                                                        <td>Ramiro</td>
+                                                        <td>17/05/2021</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>3</th>
+                                                        <td>Reparacion</td>
+                                                        <td>25.00</td>
+                                                        <td>Orlando</td>
+                                                        <td>17/05/2021</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>3</th>
+                                                        <td>Reparacion</td>
+                                                        <td>25.00</td>
+                                                        <td>Orlando</td>
+                                                        <td>17/05/2021</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <canvas id="ChartGastoSemanal"></canvas>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </section>
-            <section id="seccion-2">
-                <div class="GastosDiaros">
-                    <div class="BoxGastosDiario">
-                        <canvas id="ChartGastosMes"></canvas>
-                    </div>
-                    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom2" aria-controls="offcanvasBottom2">Informacion de Gasto del Mes</button>
-                    <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom2" aria-labelledby="offcanvasBottomLabel">
-                        <div class="offcanvas-header">
-                            <h5 class="offcanvas-title" id="offcanvasBottomLabel">Informacion de Gasto del Mes</h5>
-                            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                        </div>
-                        <div class="offcanvas-body small">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Descripcion</th>
-                                        <th scope="col">Gasto</th>
-                                        <th scope="col">Responsable</th>
-                                        <th scope="col">Fecha</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th>1</th>
-                                        <td>Comida</td>
-                                        <td>20.00</td>
-                                        <td>Ramiro</td>
-                                        <td>15/05/2021</td>
-                                    </tr>
-                                    <tr>
-                                        <th>2</th>
-                                        <td>Maquinaria</td>
-                                        <td>50.00</td>
-                                        <td>Ramiro</td>
-                                        <td>17/05/2021</td>
-                                    </tr>
-                                    <tr>
-                                        <th>3</th>
-                                        <td>Reparacion</td>
-                                        <td>25.00</td>
-                                        <td>Orlando</td>
-                                        <td>17/05/2021</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <section id="seccion-3">
-                <div class="GastosSemanal">
-                    <div class="BoxGastosDiario">
-                        <canvas id="ChartGastoSemanal"></canvas>
-                    </div>
-                    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom3" aria-controls="offcanvasBottom3">Informacion de Gasto de la Semanal</button>
-                    <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom3" aria-labelledby="offcanvasBottomLabel">
-                        <div class="offcanvas-header">
-                            <h5 class="offcanvas-title" id="offcanvasBottomLabel">Informacion de Gasto de la Semanal</h5>
-                            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                        </div>
-                        <div class="offcanvas-body small">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Descripcion</th>
-                                        <th scope="col">Gasto Total</th>
-                                        <th scope="col">Responsable</th>
-                                        <th scope="col">Fecha</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th>1</th>
-                                        <td>Comida</td>
-                                        <td>20.00</td>
-                                        <td>Ramiro</td>
-                                        <td>15/05/2021</td>
-                                    </tr>
-                                    <tr>
-                                        <th>2</th>
-                                        <td>Maquinaria</td>
-                                        <td>50.00</td>
-                                        <td>Ramiro</td>
-                                        <td>17/05/2021</td>
-                                    </tr>
-                                    <tr>
-                                        <th>3</th>
-                                        <td>Reparacion</td>
-                                        <td>25.00</td>
-                                        <td>Orlando</td>
-                                        <td>17/05/2021</td>
-                                    </tr>
-                                    <tr>
-                                        <th>3</th>
-                                        <td>Reparacion</td>
-                                        <td>25.00</td>
-                                        <td>Orlando</td>
-                                        <td>17/05/2021</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
+                </section>
+            </div>
         </div>
-
         <!-- Bootstrap Bundle with Popper -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
         <!-- Personal Script -->
@@ -285,7 +297,7 @@
                     data: {
                     labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
                             datasets: [{
-                            label: 'Gasto Mensual del Mes',
+                            label: 'Gasto Mensual',
                                     data: [
             <%
                 for (int i = 1; i <= 12; i++) {
@@ -297,10 +309,10 @@
 
                                     ],
                                     borderColor: [
-                                            'rgb(255, 99, 132)'
+                                            'rgb(255,99,132)'
                                     ]
                             }, {
-                            label: 'Ingreso total del Mes',
+                            label: 'Ingreso total',
                                     data: [
             <%
                 for (int i = 1; i <= 12; i++) {
@@ -312,13 +324,15 @@
 
                                     ],
                                     borderColor: [
-                                            'rgb(59, 131, 189)'
+                                            'rgb(99,210,255)'
                                     ]
                             }
                             ]
                     },
                     options: {
-                    maintainAspectRatio: true,
+                    fill: true,
+                            tension: 0.5,
+                            maintainAspectRatio: true,
                             scales: {
                             yAxes: [{
                             stacked: true,
@@ -340,7 +354,7 @@
                     data: {
                     labels: ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo', ],
                             datasets: [{
-                            label: 'Gasto Semanal',
+                            label: 'Gasto Total',
                                     data: [
             <%
                 for (int i = b; i >= 0; i--) {
@@ -354,12 +368,12 @@
 
                                     ],
                                     borderColor: [
-                                            'rgba(255,99,132,0.2)'
+                                            'rgb(255,99,132)'
                                     ]
                             },
-                                    {
-                                    label: 'Ingreso Semanal',
-                                            data: [
+                            {
+                            label: 'Ingreso Total',
+                                    data: [
             <%
                 for (int i = b; i >= 0; i--) {
                     Cha = (Chart) lChart.lCha.get(i);
@@ -370,15 +384,17 @@
                 }
             %>
 
-                                            ],
-                                            borderColor: [
-                                                    'rgb(59, 131, 189)'
-                                            ]
-                                    }
+                                    ],
+                                    borderColor: [
+                                            'rgb(59, 131, 189)'
+                                    ]
+                            }
                             ]
                     },
                     options: {
-                    maintainAspectRatio: true,
+                    fill: true,
+                            tension: 0.5,
+                            maintainAspectRatio: true,
                             scales: {
                             yAxes: [{
                             stacked: true,
@@ -403,14 +419,14 @@
                 for (int i = 0; i <= DiasMes; i++) {
             %>
 
-                    '<%=i%>',
+                    '<%=i%>/<%=mes%>',
             <%
                 }
             %>
-                    ],
-                            datasets: [{
-                            label: 'Gasto Diario/Mensual',
-                                    data: [
+                                ],
+                                        datasets: [{
+                                        label: 'Gasto Total',
+                                                data: [
             <%
                 for (int i = 0; i <= DiasMes; i++) {
             %>
@@ -419,13 +435,13 @@
             <%
                 }
             %>
-                                    ],
-                                    borderColor: [
-                                            'rgb(255, 99, 132)'
-                                    ]
-                            }, {
-                            label: 'Ingreso Diario/Mensual',
-                                    data: [
+                                                ],
+                                                borderColor: [
+                                                        'rgb(255, 99, 132)'
+                                                ]
+                                        }, {
+                                        label: 'Ingreso Total',
+                                                data: [
             <%
                 for (int i = 0; i <= DiasMes; i++) {
             %>
@@ -434,30 +450,32 @@
             <%
                 }
             %>
-                                    ],
-                                    borderColor: [
-                                            'rgb(59, 131, 189)'
-                                    ]
-                            }, ]
-                    },
-                    options: {
-                    maintainAspectRatio: true,
-                            scales: {
-                            yAxes: [{
-                            stacked: true,
-                                    gridLines: {
-                                    display: true,
-                                            color: "rgba(255,99,132,0.2)"
-                                    }
-                            }],
-                                    xAxes: [{
-                                    gridLines: {
-                                    display: false
-                                    }
-                                    }]
-                            }
-                    }
-            });
+                                                ],
+                                                borderColor: [
+                                                        'rgb(59, 131, 189)'
+                                                ]
+                                        }, ]
+                                },
+                                options: {
+                                fill: true,
+                                        tension: 0.5,
+                                        maintainAspectRatio: true,
+                                        scales: {
+                                        yAxes: [{
+                                        stacked: true,
+                                                gridLines: {
+                                                display: true,
+                                                        color: "rgba(255,99,132,0.2)"
+                                                }
+                                        }],
+                                                xAxes: [{
+                                                gridLines: {
+                                                display: false
+                                                }
+                                                }]
+                                        }
+                                }
+                        });
         </script>
     </body>
 </html>

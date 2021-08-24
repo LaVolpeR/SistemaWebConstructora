@@ -1,4 +1,4 @@
-/*
+ /*
 To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
@@ -7,47 +7,9 @@ and open the template in the editor.
     Created on : 5/08/2021, 07:08:40 PM
     Author     : ramir
 */
-html {
-  scroll-behavior: smooth;
-}
-.Gastos{
-    margin: auto;
-    height: 100vh;
-    width: 90vw;
-    
-}
-.GastosMensuales{
-    
-}
-.BoxGastosMensuales{
-    height: 70vh;
-    width: 100%;
-    
-}
 .offcanvas{
     height: 50vh;
 }
 .btn{
     width: 100%
-}
-.BoxGastosDiario{
-    height: auto;
-    width: 100%;
-}
-.GastosDiaros{
-    
-}
-.GastosSemanal{
-    
-}
-/* Secciones */
-section {
-    margin: 10px;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    text-shadow: 0 0 10px rgba(0, 0, 0, 0.16);
-    border-style: double;
 }
