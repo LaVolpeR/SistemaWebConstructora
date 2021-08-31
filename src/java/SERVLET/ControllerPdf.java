@@ -17,7 +17,7 @@ import logico.lArchivos;
 import logico.lMovimiento;
 
 @WebServlet(name = "ControllerPdf", urlPatterns = {"/ControllerPdf"})
-@MultipartConfig(maxFileSize = 161772150)    // upload file's size up to 16MB
+@MultipartConfig(maxFileSize = 161772150)    // upload file's size up to 16MB 161772150
 
 public class ControllerPdf extends HttpServlet {
 

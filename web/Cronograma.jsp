@@ -15,15 +15,11 @@
 <!DOCTYPE html>
 <html>
     <head>
-
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">        
         <script src="js/mainCalendar.js" type="text/javascript"></script>
         <link href="css/mainCalendar.css" rel="stylesheet" type="text/css"/>
         <link href="css/cronograma.css" rel="stylesheet" type="text/css"/>
-
-
-
         <title>Cronograma</title>
     </head>
     <%
@@ -114,7 +110,6 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
         <!-- Personal Script -->
         <script>
-
             document.addEventListener('DOMContentLoaded', function () {
             var calendarEl = document.getElementById('calendar');
                     var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -146,18 +141,19 @@
                                                             start: '<%=Cro.getFechaInico()%>T<%=Cro.getHoraIncio()%>',
                                                                                         end: '<%=Cro.getFechaFin()%>T<%=Cro.getHoraFin()%>',
             <%
-                                        switch (Integer.parseInt(Cro.getEstadoId())) {
-                                            case 1:%>
-                                 color: '#993366'                               
+                switch (Integer.parseInt(Cro.getEstadoId())) {
+                    case 1:%>
+                                                                                                            color: '#993366'
             <%
                     break;
-                case 2:%>
-                                 color: '#65C0A3'   
+                case 2:
+            %>
+                                                                                                            color: '#65C0A3'
             <%
                         break;
                 }
             %>
-                                                                                                            
+
                                                                                                             },
             <%
                 }
@@ -180,7 +176,7 @@
                                                                                                              title: 'LIJAR PAREDES - CURO',
                                                                                                              start: '2021-08-14',
                                                                                                              end: '2021-08-16'
-                                                                                                             },
+                                                                                                             }                    ,
                                                                                                              {
                                                                                                              
                                                                                                              title: 'Eevento repetitivo 1',
