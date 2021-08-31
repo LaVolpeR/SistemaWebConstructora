@@ -5,11 +5,11 @@
 --%>
 <%@page import="logico.lTrabajador"%>
 <%@page import="datos.Trabajador"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="Windows-1252"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=Windows-1252">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <link href="css/maincss.css" rel="stylesheet" type="text/css"/>
         <title>REGISTRAR</title>
@@ -53,11 +53,11 @@
                 </div>
                 <div class="form-floating">
                     <input type="password" class="form-control" name="inputPassword" placeholder="password" required="">
-                    <label for="inputDNI">ContraseÃ±a</label>
+                    <label for="inputDNI">Contraseña</label>
                 </div>
                 <div class="form-floating">
                     <input type="password" class="form-control" name="inputPasswordRepeat" placeholder="password" required="">
-                    <label for="inputPasswordRepeat">Repetir ContraseÃ±a</label>
+                    <label for="inputPasswordRepeat">Repetir Contraseña</label>
                 </div>
                 <div class="Button">
                     <input class="btn btn-primary" type="submit" value="Crear Usuario"  name="CrearUsuario" />

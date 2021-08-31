@@ -18,6 +18,7 @@ public class lCronograma {
     conexion con = new conexion();
 
     public void InsertActividad(Cronograma cro) {
+        
         try {
             con.getSt().executeUpdate("exec sp_insertCronograma '" + cro.getTitulo() + "','"
                     + cro.getDescripcion() + "','"

@@ -37,9 +37,7 @@ public class conexion {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             con = DriverManager.getConnection(url);
             st = con.createStatement();
-
         } catch (Exception e) {
-
         }
     }
 

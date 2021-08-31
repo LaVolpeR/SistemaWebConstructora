@@ -11,11 +11,11 @@
 <%@page import="logico.lProyecto"%>
 <%@page import="datos.Proyecto"%>
 <%@page import="java.util.Calendar"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="Windows-1252"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=Windows-1252">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">        
         <script src="js/mainCalendar.js" type="text/javascript"></script>
         <link href="css/mainCalendar.css" rel="stylesheet" type="text/css"/>
@@ -88,7 +88,7 @@
                             <a class="nav-link active" aria-current="page" href="#">Informes</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="#seccion-1">AÃ±o</a>
+                            <a class="nav-link active" href="#seccion-1">Año</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active" href="#seccion-2">Mes</a>

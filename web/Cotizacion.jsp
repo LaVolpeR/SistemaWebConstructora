@@ -9,12 +9,12 @@
 <%@page import="logico.lChart"%>
 <%@page import="logico.lProyecto"%>
 <%@page import="datos.Proyecto"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="Windows-1252"%>
 <%@page session="true"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=Windows-1252">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">        
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <link href="css/cotizacionCss.css" rel="stylesheet" type="text/css"/>
@@ -165,13 +165,13 @@
                         <div class="col-lg-4">
                             <div class="mb-4 card">
                                 <div class="card-header">
-                                    <h4>Gastos/de todo el AÃ±o actual</h4>
+                                    <h4>Gastos/de todo el Año actual</h4>
                                 </div>
                                 <div class="card-body">
-                                    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">Informacion de Gastos de este aÃ±o</button>
+                                    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">Informacion de Gastos de este año</button>
                                     <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
                                         <div class="offcanvas-header">
-                                            <h5 class="offcanvas-title" id="offcanvasBottomLabel">Informacion de Gastos de este aÃ±o</h5>
+                                            <h5 class="offcanvas-title" id="offcanvasBottomLabel">Informacion de Gastos de este año</h5>
                                             <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                                         </div>
                                         <div class="offcanvas-body small">
