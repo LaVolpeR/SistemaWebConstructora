@@ -15,21 +15,31 @@ import java.time.LocalTime;
  * @author ramir
  */
 public class Cronograma {
-    private String Titulo, FechaInico,FechaFin, HoraIncio,HoraFin,Descripcion , EstadoId,TrabajadorDNI,ProyectoId;
+    private String ID, Titulo, FechaInico,FechaFin, HoraIncio,HoraFin,FechaMod,Descripcion , EstadoId,TrabajadorDNI,ProyectoId;
 
     public Cronograma() {
     }
 
-    public Cronograma(String Titulo, String FechaInico, String FechaFin, String HoraIncio, String HoraFin, String Descripcion, String EstadoId, String TrabajadorDNI, String ProyectoId) {
+    public Cronograma(String ID, String Titulo, String FechaInico, String FechaFin, String HoraIncio, String HoraFin, String FechaMod, String Descripcion, String EstadoId, String TrabajadorDNI, String ProyectoId) {
+        this.ID = ID;
         this.Titulo = Titulo;
         this.FechaInico = FechaInico;
         this.FechaFin = FechaFin;
         this.HoraIncio = HoraIncio;
         this.HoraFin = HoraFin;
+        this.FechaMod = FechaMod;
         this.Descripcion = Descripcion;
         this.EstadoId = EstadoId;
         this.TrabajadorDNI = TrabajadorDNI;
         this.ProyectoId = ProyectoId;
+    }
+
+    public String getID() {
+        return ID;
+    }
+
+    public void setID(String ID) {
+        this.ID = ID;
     }
 
     public String getTitulo() {
@@ -72,6 +82,14 @@ public class Cronograma {
         this.HoraFin = HoraFin;
     }
 
+    public String getFechaMod() {
+        return FechaMod;
+    }
+
+    public void setFechaMod(String FechaMod) {
+        this.FechaMod = FechaMod;
+    }
+
     public String getDescripcion() {
         return Descripcion;
     }
@@ -106,9 +124,9 @@ public class Cronograma {
 
     @Override
     public String toString() {
-        return "Cronograma{" + "Titulo=" + Titulo + ", FechaInico=" + FechaInico + ", FechaFin=" + FechaFin + ", HoraIncio=" + HoraIncio + ", HoraFin=" + HoraFin + ", Descripcion=" + Descripcion + ", EstadoId=" + EstadoId + ", TrabajadorDNI=" + TrabajadorDNI + ", ProyectoId=" + ProyectoId + '}';
+        return "Cronograma{" + "ID=" + ID + ", Titulo=" + Titulo + ", FechaInico=" + FechaInico + ", FechaFin=" + FechaFin + ", HoraIncio=" + HoraIncio + ", HoraFin=" + HoraFin + ", FechaMod=" + FechaMod + ", Descripcion=" + Descripcion + ", EstadoId=" + EstadoId + ", TrabajadorDNI=" + TrabajadorDNI + ", ProyectoId=" + ProyectoId + '}';
     }
-    
 
+    
     
 }

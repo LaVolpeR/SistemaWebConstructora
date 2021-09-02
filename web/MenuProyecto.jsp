@@ -41,7 +41,7 @@
                     out.print("<script>location.replace('index.jsp');<script>");
                 }
             }
-            
+
         %>
 
         <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
@@ -90,9 +90,12 @@
             </div>
             <div class="items">
                 <a class="btn btn-primary" type="button" href="MenuPrincipalJefe.jsp">Regresar</a>
-</div>
+            </div>
         </div>
-
+        <div class="container">
+            <div id='calendar'></div>
+        </div>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
         <!-- Bootstrap Bundle with Popper -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
         <!-- Personal Script -->

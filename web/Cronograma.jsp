@@ -20,6 +20,7 @@
         <script src="js/mainCalendar.js" type="text/javascript"></script>
         <link href="css/mainCalendar.css" rel="stylesheet" type="text/css"/>
         <link href="css/cronograma.css" rel="stylesheet" type="text/css"/>
+        <link rel="shortcut icon" href="#">
         <title>Cronograma</title>
     </head>
     <%
@@ -55,7 +56,7 @@
         int mes = Integer.parseInt(Integer.toString(c.get(Calendar.MONTH)));
         mes++;
         int annio = Integer.parseInt(Integer.toString(c.get(Calendar.YEAR)));
-
+        int hour = Integer.parseInt(Integer.toString(c.get(Calendar.HOUR)));
 
     %>
     <body>
@@ -87,18 +88,9 @@
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="#">Informes</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" href="#seccion-1">Año</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" href="#seccion-2">Mes</a>
-                        </li>
-                        <li class="nav-item">
-                            <a  class="nav-link active"href="#seccion-3">Semana</a>
-                        </li>
                     </ul>
                     <form class="d-flex">
-                        <a class="nav-link active" aria-current="page" href="#">Cerrar sesion</a>
+                        <a class="nav-link active" aria-current="page" href="index.jsp?cerrar=true">Cerrar sesion</a>
                     </form>
                 </div>
             </div>
@@ -106,6 +98,7 @@
         <div class="container">
             <div id='calendar'></div>
         </div>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
         <!-- Bootstrap Bundle with Popper -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
         <!-- Personal Script -->
@@ -113,18 +106,33 @@
             document.addEventListener('DOMContentLoaded', function () {
             var calendarEl = document.getElementById('calendar');
                     var calendar = new FullCalendar.Calendar(calendarEl, {
+                        locale: 'es',
                     headerToolbar: {
                     left: 'prevYear,prev,next,nextYear today',
                             center: 'title',
                             right: 'dayGridMonth,dayGridWeek,dayGridDay,listMonth'
                     },
                             initialDate: <%                        if (mes <= 9) {
-            %>
+                                if(dia <=9){
+                                    %>
+                    '<%=annio%>-0<%=mes%>-0<%=dia%>'
+            <%
+                                }else{
+                                %>
                     '<%=annio%>-0<%=mes%>-<%=dia%>'
             <%
+                            }
+            
             } else {
-            %>'<%=annio%>-<%=mes%>-<%=dia%>',
+            if(dia <=9){
+                                    %>
+                    '<%=annio%>-<%=mes%>-0<%=dia%>'
             <%
+                                }else{
+                                %>
+                    '<%=annio%>-<%=mes%>-<%=dia%>'
+            <%
+                            }
                 }
             %>,
                                 navLinks: true, // can click day/week names to navigate views
@@ -143,15 +151,19 @@
             <%
                 switch (Integer.parseInt(Cro.getEstadoId())) {
                     case 1:%>
-                                                                                                            color: '#993366'
+                                                                                                            color: '#0d6efd'
             <%
                     break;
                 case 2:
             %>
-                                                                                                            color: '#65C0A3'
+                                                                                                            color: '#198754'
             <%
-                        break;
-                }
+                    break;
+                default:
+            %>
+                                                                                                            color: '#ffc107'
+            <%
+                            }
             %>
 
                                                                                                             },
@@ -195,23 +207,10 @@
                                                                                                             ]
                                                                                                     });
                                                                                                     calendar.render();
+                                                                                                    
                                                                                             });
 
         </script>
-        <style>
-
-            body {
-                margin: 40px 10px;
-                padding: 0;
-                font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
-                font-size: 14px;
-            }
-
-            #calendar {
-                max-width: 1100px;
-                margin: 0 auto;
-            }
-
-        </style>
+        
     </body>
 </html>

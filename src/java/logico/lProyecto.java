@@ -59,9 +59,10 @@ public class lProyecto {
                     + ID);
             con.getRs().next();
             Titulo = con.getRs().getString(1);
+            System.out.print("Se obtuvo el titulo");
         } catch (Exception e) {
 
-            System.out.print(e + "TituloProyectoArchivo");
+            System.out.print("TituloProyectoArchivo "+e);
         }
         return Titulo;
     }

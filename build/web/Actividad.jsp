@@ -212,22 +212,23 @@
                 Date hourI = hf.parse(request.getParameter("InputHoraInicio"));
                 Date hourF = hf.parse(request.getParameter("InputHoraFin"));
                 if (dateF.after(dateI)) {
-                    Cro = new Cronograma(request.getParameter("InputTitulo"),
+                    Cro = new Cronograma("1",request.getParameter("InputTitulo"),
                             request.getParameter("InputFechaInicio"),
                             request.getParameter("InputFechaFIN"),
                             request.getParameter("InputHoraInicio"),
-                            request.getParameter("InputHoraFin"),
+                            request.getParameter("InputHoraFin"),"0",
                             request.getParameter("InputDescripcion"),"1",request.getParameter("InputDniTrabajador"),proyecto);
                     String DNITrabajador = request.getParameter("InputDniTrabajador");
                     lCro.InsertActividad(Cro);
                     response.sendRedirect("Cronograma.jsp");
                 } else if (dateI.equals(dateF)) {
                     if (hourF.after(hourI)) {
-                        Cro = new Cronograma(request.getParameter("InputTitulo"),
+                        Cro = new Cronograma("1",request.getParameter("InputTitulo"),
                                 request.getParameter("InputFechaInicio"),
                                 request.getParameter("InputFechaFIN"),
                                 request.getParameter("InputHoraInicio"),
                                 request.getParameter("InputHoraFin"),
+                                "0",
                                 request.getParameter("InputDescripcion"),"1",request.getParameter("InputDniTrabajador"),proyecto);
                         lCro.InsertActividad(Cro);
                         response.sendRedirect("Cronograma.jsp");

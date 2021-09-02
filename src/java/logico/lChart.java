@@ -27,7 +27,7 @@ public class lChart {
             if (con.getRs().getString(1) != null) {
                 moneyTotal = con.getRs().getString(1);
             }
-            System.out.print("try/SumaMesMovimiento :" + Tipo + "/" + Proyecto + "/" + Mes + "/" + moneyTotal);
+            //System.out.print("try/SumaMesMovimiento :" + Tipo + "/" + Proyecto + "/" + Mes + "/" + moneyTotal);
         } catch (Exception e) {
             System.out.print("catch/SumaMesMovimiento" + e);
         }
@@ -48,7 +48,7 @@ public class lChart {
             }
             con.getRs().next();
             i = con.getRs().getInt(1);
-            System.out.print("try/DiasTotalMes " + annio + "/" + mes + "/" + mes2 + " : " + i);
+            //System.out.print("try/DiasTotalMes " + annio + "/" + mes + "/" + mes2 + " : " + i);
         } catch (Exception e) {
             System.out.print("catch/DiasTotalMes :" + e);
         }
@@ -63,6 +63,7 @@ public class lChart {
             if (con.getRs().getString(1) != null) {
                 Moneytotal = con.getRs().getString(1);
             }
+            System.out.print("try/SumDiaSemanaMovimiento"+"/"+Mes+"/"+Dia+" :"+ Moneytotal);
         } catch (Exception e) {
         }
         return Moneytotal;
@@ -78,7 +79,7 @@ public class lChart {
                 case "Monday":
                     cha = new Chart(Annio, Mes, Dia);
                     lCha.add(cha);
-                    System.out.println("ListarGastoSemana :" + Annio + "/" + Mes + "/" + Dia);
+                    //ystem.out.println("ListarGastoSemana :" + Annio + "/" + Mes + "/" + Dia);
                     break;
                 case "Tuesday":
                     for (int i = 1; i >= 0; i--) {
@@ -94,7 +95,7 @@ public class lChart {
                         }
                         cha = new Chart(Annio, Mes, Dia);
                         lCha.add(cha);
-                        System.out.println("ListarGastoSemana :" + Annio + "/" + Mes + "/" + Dia);
+                        //System.out.println("ListarGastoSemana :" + Annio + "/" + Mes + "/" + Dia);
                         Dia--;
                     }
                     break;
@@ -113,7 +114,7 @@ public class lChart {
                         }
                         cha = new Chart(Annio, Mes, Dia);
                         lCha.add(cha);
-                        System.out.println("ListarGastoSemana :" + Annio + "/" + Mes + "/" + Dia);
+                        //System.out.println("ListarGastoSemana :" + Annio + "/" + Mes + "/" + Dia);
                         Dia--;
                     }
                     break;
@@ -131,7 +132,7 @@ public class lChart {
                         }
                         cha = new Chart(Annio, Mes, Dia);
                         lCha.add(cha);
-                        System.out.println("ListarGastoSemana :" + Annio + "/" + Mes + "/" + Dia);
+                        //System.out.println("ListarGastoSemana :" + Annio + "/" + Mes + "/" + Dia);
                         Dia--;
                     }
                     break;
@@ -149,7 +150,7 @@ public class lChart {
                         }
                         cha = new Chart(Annio, Mes, Dia);
                         lCha.add(cha);
-                        System.out.println("ListarGastoSemana :" + Annio + "/" + Mes + "/" + Dia);
+                        //System.out.println("ListarGastoSemana :" + Annio + "/" + Mes + "/" + Dia);
                         Dia--;
                     }
                     break;
@@ -168,7 +169,7 @@ public class lChart {
                         cha = new Chart(Annio, Mes, Dia);
                         
                         lCha.add(cha);
-                        System.out.println("ListarGastoSemana :" + Annio + "/" + Mes + "/" + Dia);
+                        //System.out.println("ListarGastoSemana :" + Annio + "/" + Mes + "/" + Dia);
                         Dia--;
                     }
                     break;
@@ -187,7 +188,7 @@ public class lChart {
                         }
                         cha = new Chart(Annio, Mes, Dia);
                         lCha.add(cha);
-                        System.out.println("ListarGastoSemana :" + Annio + "/" + Mes + "/" + Dia);
+                        //System.out.println("ListarGastoSemana :" + Annio + "/" + Mes + "/" + Dia);
                         Dia--;
                     }
                     break;
@@ -205,7 +206,7 @@ public class lChart {
             if (con.getRs().getString(1) != null) {
                 MoneyTotal = con.getRs().getString(1);
             }
-            System.out.print("try/SumDiaSemanaMovimiento"+Annio+"/"+Mes+"/"+Dia+" :"+ MoneyTotal);
+            //System.out.print("try/SumDiaSemanaMovimiento"+Annio+"/"+Mes+"/"+Dia+" :"+ MoneyTotal);
         } catch (Exception e) {
             System.out.print("catch/SumDiaSemanaMovimiento :"+ e);
         }

@@ -88,7 +88,7 @@
 
                     </ul>
                     <form class="d-flex">
-                        <a class="nav-link active" aria-current="page" href="#">Cerrar sesion</a>
+                         <a class="nav-link active" aria-current="page" href="index.jsp?cerrar=true">Cerrar sesion</a>
                     </form>
                 </div>
             </div>
@@ -416,12 +416,14 @@
                     data: {
                     labels: [
             <%
-                for (int i = 0; i <= DiasMes; i++) {
+                int a = 0;
+                for (int i = 0; i < DiasMes; i++) {
+                    a++;
             %>
 
-                    '<%=i%>/<%=mes%>',
+                    '<%=a%>/<%=mes%>',
             <%
-                }
+                }a=0;
             %>
                                 ],
                                         datasets: [{
@@ -429,11 +431,12 @@
                                                 data: [
             <%
                 for (int i = 0; i <= DiasMes; i++) {
+                    a++;
             %>
 
-            <%=lCha.SumaDiaMesMovimiento("2", proyecto, mes, i)%>,
+            <%=lCha.SumaDiaMesMovimiento("2", proyecto, mes, a)%>,
             <%
-                }
+                }a=0;
             %>
                                                 ],
                                                 borderColor: [
@@ -444,9 +447,10 @@
                                                 data: [
             <%
                 for (int i = 0; i <= DiasMes; i++) {
+                    a++;
             %>
 
-            <%=lCha.SumaDiaMesMovimiento("1", proyecto, mes, i)%>,
+            <%=lCha.SumaDiaMesMovimiento("1", proyecto, mes, a)%>,
             <%
                 }
             %>
