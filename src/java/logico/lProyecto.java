@@ -69,7 +69,7 @@ public class lProyecto {
     
     public void InsertarPlanilla(String DNI, String ID){
         try {
-            con.getSt().executeUpdate("exec sp_InsertarPlanilla "+DNI+" , "+ ID);
+            con.getSt().executeUpdate("exec sp_InsertarPlanilla '"+DNI+"', "+ ID);
         } catch (Exception e) {
             System.out.println(e + "InsertarPlanilla");
         }

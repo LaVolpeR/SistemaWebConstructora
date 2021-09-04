@@ -216,7 +216,7 @@
                             request.getParameter("InputFechaInicio"),
                             request.getParameter("InputFechaFIN"),
                             request.getParameter("InputHoraInicio"),
-                            request.getParameter("InputHoraFin"),"0",
+                            request.getParameter("InputHoraFin"),"0","0",
                             request.getParameter("InputDescripcion"),"1",request.getParameter("InputDniTrabajador"),proyecto);
                     String DNITrabajador = request.getParameter("InputDniTrabajador");
                     lCro.InsertActividad(Cro);
@@ -228,7 +228,7 @@
                                 request.getParameter("InputFechaFIN"),
                                 request.getParameter("InputHoraInicio"),
                                 request.getParameter("InputHoraFin"),
-                                "0",
+                                "0","0",
                                 request.getParameter("InputDescripcion"),"1",request.getParameter("InputDniTrabajador"),proyecto);
                         lCro.InsertActividad(Cro);
                         response.sendRedirect("Cronograma.jsp");

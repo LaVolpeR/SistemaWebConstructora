@@ -77,7 +77,7 @@
                             <a class="nav-link active" aria-current="page" href="Cronograma.jsp">Cronograma</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Reportes</a>
+                            <a class="nav-link active" aria-current="page" href="Reporte.jsp">Reportes</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="#">Archivos</a>

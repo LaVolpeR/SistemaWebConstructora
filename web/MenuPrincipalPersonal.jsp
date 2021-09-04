@@ -72,8 +72,8 @@
 
         <br><br><br>
         <div class="container">
-            <%if (lCronograma.lCro.size() != 0) { %>
-            <h3 class="text-center">Actividades pendientes por realizar hoy  (<%=lCronograma.lCro.size() %>)</h3>
+            <%if (lCronograma.lCro.size() != 0) {%>
+            <h3 class="text-center">Actividades por realizar hoy  (<%=lCronograma.lCro.size()%>)</h3>
             <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
 
                 <div class="carousel-inner">
@@ -247,8 +247,42 @@
                         </h2>
                         <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                             <div class="accordion-body">
-                                <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                            </div>
+<div class="accordion-body">
+                                <%                                for (int i = 0; i < lCronograma.lCro.size(); i++) {
+                                        Cro = (Cronograma) lCronograma.lCro.get(i);
+
+                                        if (Cro.getEstadoId().equals("2")) {
+                                %>
+                                
+                                <form action="MenuPrincipalPersonal.jsp" method="POST">
+
+                                    <%
+                                        String HoraInicio = Cro.getHoraIncio();
+                                        String[] HoraI = HoraInicio.split(".0000000");
+                                        String part1 = HoraI[0];
+                                        String HoraFin = Cro.getHoraFin();
+                                        String[] HoraF = HoraFin.split(".0000000");
+                                        String part2 = HoraF[0];
+                                        int IDProyecto = Integer.parseInt(Cro.getProyectoId());
+                                    %>
+                                    <div class="card">
+                                        <div class="card-header">
+                                            Actividad #<%=Cro.getID()%> - <%=Cro.getTitulo()%>
+                                        </div>
+                                        <div class="card-body">
+                                            <p><b>Descripcion de la actividad:</b> <%=Cro.getDescripcion()%></p> 
+                                            <p><b>Proyecto:</b> <%=lPro.TituloProyecto(IDProyecto)%></p>
+                                            <p><b>Fecha de inicio de la actividad:</b> <%=Cro.getFechaInico()%> Hora: <%=part1%></p> 
+                                            <p><b>Fecha de culminacion de la actividad:</b><%=Cro.getFechaFin()%> Hora: <%=part2%></p> 
+                                        </div>
+                                    </div>
+                                    <br>
+                                </form>
+                                <%
+                                        }
+                                    }
+                                %>
+                            </div>                            </div>
                         </div>
                     </div>
                 </div>

@@ -15,18 +15,19 @@ import java.time.LocalTime;
  * @author ramir
  */
 public class Cronograma {
-    private String ID, Titulo, FechaInico,FechaFin, HoraIncio,HoraFin,FechaMod,Descripcion , EstadoId,TrabajadorDNI,ProyectoId;
+    private String ID, Titulo, FechaInico,FechaFin, HoraIncio,HoraFin,FechaCre,FechaMod,Descripcion , EstadoId,TrabajadorDNI,ProyectoId;
 
     public Cronograma() {
     }
 
-    public Cronograma(String ID, String Titulo, String FechaInico, String FechaFin, String HoraIncio, String HoraFin, String FechaMod, String Descripcion, String EstadoId, String TrabajadorDNI, String ProyectoId) {
+    public Cronograma(String ID, String Titulo, String FechaInico, String FechaFin, String HoraIncio, String HoraFin, String FechaCre, String FechaMod, String Descripcion, String EstadoId, String TrabajadorDNI, String ProyectoId) {
         this.ID = ID;
         this.Titulo = Titulo;
         this.FechaInico = FechaInico;
         this.FechaFin = FechaFin;
         this.HoraIncio = HoraIncio;
         this.HoraFin = HoraFin;
+        this.FechaCre = FechaCre;
         this.FechaMod = FechaMod;
         this.Descripcion = Descripcion;
         this.EstadoId = EstadoId;
@@ -82,6 +83,14 @@ public class Cronograma {
         this.HoraFin = HoraFin;
     }
 
+    public String getFechaCre() {
+        return FechaCre;
+    }
+
+    public void setFechaCre(String FechaCre) {
+        this.FechaCre = FechaCre;
+    }
+
     public String getFechaMod() {
         return FechaMod;
     }
@@ -124,9 +133,8 @@ public class Cronograma {
 
     @Override
     public String toString() {
-        return "Cronograma{" + "ID=" + ID + ", Titulo=" + Titulo + ", FechaInico=" + FechaInico + ", FechaFin=" + FechaFin + ", HoraIncio=" + HoraIncio + ", HoraFin=" + HoraFin + ", FechaMod=" + FechaMod + ", Descripcion=" + Descripcion + ", EstadoId=" + EstadoId + ", TrabajadorDNI=" + TrabajadorDNI + ", ProyectoId=" + ProyectoId + '}';
+        return "Cronograma{" + "ID=" + ID + ", Titulo=" + Titulo + ", FechaInico=" + FechaInico + ", FechaFin=" + FechaFin + ", HoraIncio=" + HoraIncio + ", HoraFin=" + HoraFin + ", FechaCre=" + FechaCre + ", FechaMod=" + FechaMod + ", Descripcion=" + Descripcion + ", EstadoId=" + EstadoId + ", TrabajadorDNI=" + TrabajadorDNI + ", ProyectoId=" + ProyectoId + '}';
     }
 
-    
     
 }

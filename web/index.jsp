@@ -38,6 +38,7 @@
                     </div>
                 </div>
             </div>
+            
     </form>
     <%
         lTrabajador lTra = new lTrabajador();

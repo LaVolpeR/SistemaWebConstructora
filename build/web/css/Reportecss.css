@@ -4,15 +4,10 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
 /* 
-    Created on : 7/08/2021, 09:10:58 PM
+    Created on : 04-sep-2021, 2:02:42
     Author     : ramir
 */
 
-.container{
-    margin-top: 64px;
-    
-}
-.table-responsive{
-    height: 45vh;
-    overflow: auto;
+.container-md{
+    margin-top: 90px;
 }

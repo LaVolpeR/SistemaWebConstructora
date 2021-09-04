@@ -80,7 +80,7 @@
                             <a class="nav-link active" aria-current="page" href="Cronograma.jsp">Cronograma</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Reportes</a>
+                            <a class="nav-link active" aria-current="page" href="Reporte.jsp">Reportes</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="#">Archivos</a>
@@ -88,6 +88,7 @@
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="#">Informes</a>
                         </li>
+
                     </ul>
                     <form class="d-flex">
                         <a class="nav-link active" aria-current="page" href="index.jsp?cerrar=true">Cerrar sesion</a>

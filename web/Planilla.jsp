@@ -17,6 +17,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=Windows-1252">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <link href="css/Planilla.css" rel="stylesheet" type="text/css"/>
+        <script src="js/html2pdf.bundle.min.js"></script>
         <title>PLANILLA</title>
     </head>
     <body>
@@ -35,7 +36,7 @@
                 user = sesion.getAttribute("user").toString();
                 puesto = sesion.getAttribute("puesto").toString();
                 codigo = sesion.getAttribute("codigo").toString();
-                sesion.setAttribute("proyecto","0");
+                sesion.setAttribute("proyecto", "0");
                 lPro.ListarProyectos(codigo);
             } else {
                 if (sesion.getAttribute("user") != null && sesion.getAttribute("puesto") != null && sesion.getAttribute("puesto").equals("2")) {
@@ -83,8 +84,9 @@
         <form action="Planilla.jsp" method="POST">
 
             <div class="container">
-                <div class="container2">
-                    <table class="table">
+                <div class="table-responsive"id="Exemplo">
+
+                    <table class="table table-sm" >
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
@@ -108,7 +110,7 @@
                             <tr>
                                 <th scope="row"><%=a%></th>
                                 <td><%=tra.getDNI()%></td>
-                                <td><%=tra.getNombre()%></td>
+                                <td><p><%=tra.getNombre()%></p></td>
                                 <td><%=tra.getApellido()%></td>
                                 <td><%=tra.getTelefono()%></td>
                                 <td><%=tra.getCorreo()%></td><td>
@@ -168,7 +170,7 @@
                                         <% }%>
                                     </select>
                                 </div>
-                                <div class="modal-footer">
+                                <div class="modal-footer" >
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                     <button type="submit" class="btn btn-primary" name="UpdateTrabajadorPuesto">Realizar Cambios</button>
                                 </div>
@@ -211,7 +213,7 @@
                                         <% }%>
                                     </select>
                                 </div>
-                                <div class="modal-footer">
+                                <div class="modal-footer" >
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                     <button type="submit" class="btn btn-primary" name="InsertarPlanilla">Realizar Transferencia</button>
                                 </div>
@@ -219,16 +221,50 @@
                         </div>
                     </div>
                     <br>
-                    <div class="row">
+                    <div class="row" >
+                        <button type="button" class="btn btn-outline-secondary" onclick="ConvertirPDF()">Generar PDF</button>
+                    </div>
+                    <br>
+                    <div class="row" >
+
                         <a type="button" class="btn btn-outline-secondary" href="MenuPrincipalJefe.jsp">Regresar</a>
                     </div>
+
                 </div>
             </div>
+
         </form>
 
         <!-- Bootstrap Bundle with Popper -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
         <!-- Personal Script -->
+        <script type="text/javascript">
+                            function ConvertirPDF() {
+                                const $elementoParaConvertir = document.querySelector("#Exemplo"); // <-- Aquí puedes elegir cualquier elemento del DOM
+                                html2pdf()
+                                        .set({
+                                            margin: 1,
+                                            filename: 'Planilla.pdf',
+                                            image: {
+                                                type: 'jpeg',
+                                                quality: 0.98
+                                            },
+                                            html2canvas: {
+                                                scale: 3, // A mayor escala, mejores gráficos, pero más peso
+                                                letterRendering: true,
+                                            },
+                                            jsPDF: {
+                                                unit: "cm",
+                                                format: "a4",
+                                                orientation: 'landscape' // landscape o portrait
+                                            }
+                                        })
+                                        .from($elementoParaConvertir)
+                                        .save()
+                                        .catch(err => console.log(err));
+                            }
+                            ;
+        </script>
     </body>
 </html>

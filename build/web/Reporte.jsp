@@ -1,0 +1,197 @@
+<%-- 
+    Document   : Reporte
+    Created on : 04-sep-2021, 1:33:17
+    Author     : ramir
+--%>
+
+<%@page import="datos.Cronograma"%>
+<%@page import="logico.lCronograma"%>
+<%@page import="logico.lProyecto"%>
+<%@page import="datos.Proyecto"%>
+<%@page contentType="text/html" pageEncoding="Windows-1252"%>
+<%@page session="true"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=Windows-1252">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+        <link href="css/Reportecss.css" rel="stylesheet" type="text/css"/>
+        <title>Reporte</title>
+    </head>
+    <body>
+        <%
+            Proyecto pro = new Proyecto();
+            lProyecto lPro = new lProyecto();
+            HttpSession sesion = request.getSession();
+            lCronograma lCro = new lCronograma();
+            Cronograma Cro = new Cronograma();
+            String user;
+            String puesto;
+            String codigo;
+            String proyecto = "0";
+            String ID_Proyecto = "null";
+            ;
+            if (sesion.getAttribute("user") != null && sesion.getAttribute("puesto") != null && sesion.getAttribute("puesto").equals("1") && !sesion.getAttribute("proyecto").equals("0")) {
+                user = sesion.getAttribute("user").toString();
+                puesto = sesion.getAttribute("puesto").toString();
+                codigo = sesion.getAttribute("codigo").toString();
+                proyecto = sesion.getAttribute("proyecto").toString();
+                lPro.ListarProyectos(codigo);
+            } else {
+                if (sesion.getAttribute("user") != null && sesion.getAttribute("puesto") != null && sesion.getAttribute("puesto").equals("2")) {
+                    response.sendRedirect("MenuPrincipalPersonal.jsp");
+                    out.print("<script>location.replace('MenuPrincipalPersonal.jsp');<script>");
+                } else {
+                    response.sendRedirect("index.jsp");
+                    out.print("<script>location.replace('index.jsp');<script>");
+                }
+            }
+        %>
+        <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="MenuProyecto.jsp" tabindex="-1" aria-disabled="true">MENU PROYECTO</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="Cotizacion.jsp">Cotizacion</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="PlanillaProyecto.jsp">Planilla</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="Cronograma.jsp">Cronograma</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="Reporte.jsp">Reportes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Archivos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Informes</a>
+                        </li>
+
+                    </ul>
+                    <form class="d-flex">
+                        <a class="nav-link active" aria-current="page" href="index.jsp?cerrar=true">Cerrar sesion</a>
+                    </form>
+                </div>
+            </div>
+        </nav>
+        <div class="container-md">
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <div class="d-grid gap-2">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ModalActividad">
+                            Reporte de Actividades
+                        </button>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <div class="col-md-6">
+                    <div class="d-grid gap-2">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ModalMovimiento">
+                            Reporte de Movimientos
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal -->
+        <form action="Reporte.jsp" method="POST">
+
+            <div class="modal fade" id="ModalActividad" tabindex="-1" aria-labelledby="ModalActividad" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Reporte de Actividades</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <h4 class="text-center">Seleccione las Opciones para generar su Reporte </h4>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" name="ReporteMes" id="ReporteMes">
+                                        <label class="form-check-label" for="flexSwitchCheckDefault">Reporte Mes Actual</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" name="ReporteAnnio" id="ReporteAnnio">
+                                        <label class="form-check-label" for="flexSwitchCheckDefault">Reporte año Actual</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" name="ReporteDia" id="ReporteDia">
+                                        <label class="form-check-label" for="flexSwitchCheckDefault">Reporte Dia Actual</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" name="ReporteSemana" id="ReporteSemana">
+                                        <label class="form-check-label" for="flexSwitchCheckDefault">Reporte Semana Actual</label>
+                                    </div>
+                                </div>
+                                <p class="text-center">(opcional)</p>
+                                <div class="col-md-12">
+                                    <input type="text" class="form-control" name="Trabajador" id="Trabajador" placeholder="Ingresar DNI Trabajador">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary"name="btnReporteActividad">Generar Reporte</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="ModalMovimiento" tabindex="-1" aria-labelledby="ModalActividad" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Reporte de Movimientos</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            ...
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary" name="btnReporteMovimiento">Generar Reporte</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <!-- Bootstrap Bundle with Popper -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        <!-- Personal Script -->
+        <%
+            if (request.getParameter("btnReporteActividad") != null) {
+                if (request.getParameter("ReporteMes") != null || request.getParameter("ReporteAnnio") != null || request.getParameter("ReporteDia") != null || request.getParameter("ReporteSemana") != null) {
+               
+                    String ReporteSemana = request.getParameter("ReporteSemana");
+                    String ReporteMes = request.getParameter("ReporteMes");
+                    String ReporteAnnio = request.getParameter("ReporteAnnio");
+                    String ReporteDia = request.getParameter("ReporteDia");
+                    String Trabajador = request.getParameter("Trabajador");
+                    response.sendRedirect("ReporteActividad.jsp");
+                } else {
+        %> 
+        <script type="text/javascript">
+            alert("Por Favor Seleccionar una opcion para el reporte");
+        </script>
+        <%
+                }
+            }
+        %>
+    </body>
+</html>
