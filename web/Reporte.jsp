@@ -4,6 +4,7 @@
     Author     : ramir
 --%>
 
+<%@page import="datos.DatosTemporales"%>
 <%@page import="datos.Cronograma"%>
 <%@page import="logico.lCronograma"%>
 <%@page import="logico.lProyecto"%>
@@ -25,6 +26,8 @@
             HttpSession sesion = request.getSession();
             lCronograma lCro = new lCronograma();
             Cronograma Cro = new Cronograma();
+            DatosTemporales DatTem = new DatosTemporales();
+
             String user;
             String puesto;
             String codigo;
@@ -148,7 +151,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary"name="btnReporteActividad">Generar Reporte</button>
+                            <button type="button" class="btn btn-primary" id="btnReporteActividad">Generar Reporte</button>
                         </div>
                     </div>
                 </div>
@@ -165,7 +168,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary" name="btnReporteMovimiento">Generar Reporte</button>
+                            <a type="button" class="btn btn-primary" name="btnReporteMovimiento" >Generar Reporte</a>
                         </div>
                     </div>
                 </div>
@@ -174,24 +177,43 @@
         <!-- Bootstrap Bundle with Popper -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
         <!-- Personal Script -->
-        <%
-            if (request.getParameter("btnReporteActividad") != null) {
-                if (request.getParameter("ReporteMes") != null || request.getParameter("ReporteAnnio") != null || request.getParameter("ReporteDia") != null || request.getParameter("ReporteSemana") != null) {
-               
-                    String ReporteSemana = request.getParameter("ReporteSemana");
-                    String ReporteMes = request.getParameter("ReporteMes");
-                    String ReporteAnnio = request.getParameter("ReporteAnnio");
-                    String ReporteDia = request.getParameter("ReporteDia");
-                    String Trabajador = request.getParameter("Trabajador");
-                    response.sendRedirect("ReporteActividad.jsp");
-                } else {
-        %> 
         <script type="text/javascript">
-            alert("Por Favor Seleccionar una opcion para el reporte");
-        </script>
-        <%
+            const ReporteMes = document.querySelector('input[id="ReporteMes"]')
+            const ReporteAnnio = document.querySelector('input[id="ReporteAnnio"]')
+            const ReporteDia = document.querySelector('input[id="ReporteDia"]')
+            const ReporteSemana = document.querySelector('input[id="ReporteSemana"]')
+            const DNITrabajador = document.getElementById("Trabajador")
+            const button = document.querySelector('button[id="btnReporteActividad"]')
+
+            console.log(document.querySelector('input[id="ReporteMes"]'));
+            console.log(ReporteAnnio);
+            console.log(ReporteDia);
+            console.log(ReporteSemana);
+            button.addEventListener('click', (e) => {
+                if (ReporteMes.checked || ReporteAnnio.checked || ReporteDia.checked || ReporteSemana.checked) {
+                    const url = new URL(window.location.origin + '/SistemaWebConstructoraTesis1.1/ReporteActividad.jsp');
+                    url.searchParams.append('action', 'btnReporteActividad')
+                    if (ReporteMes.checked) {
+                        url.searchParams.append('Mes', ReporteMes.value)
+                    }
+                    if (DNITrabajador.value) {
+                        url.searchParams.append('DNITrabajador', DNITrabajador.value)
+                    }
+                    if (ReporteAnnio.checked) {
+                        url.searchParams.append('Annio', ReporteAnnio.value)
+                    }
+                    if (ReporteDia.checked) {
+                        url.searchParams.append('Dia', ReporteDia.value)
+                    }
+                    if (ReporteSemana.checked) {
+                        url.searchParams.append('Semana', ReporteSemana.value)
+                    }
+                    window.location.href = url.href;
+                    //window.location.href = "ReporteActividad.jsp?action=btnReporteActividad&Mes=" + ReporteMes.value + "&Annio=" + ReporteAnnio.value + "&Dia=" + ReporteDia.value + "&Semana=" + ReporteSemana.value;
+                } else {
+                    alert("Selecciona alguna opción");
                 }
-            }
-        %>
+            })
+        </script>
     </body>
 </html>

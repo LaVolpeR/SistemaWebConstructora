@@ -99,7 +99,6 @@
                         Convertir PDF
                     </button>
                 </li>
-
             </ul>
             <br>
             <div id="TablaDeTrabajadores">

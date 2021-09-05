@@ -31,6 +31,7 @@
         lTrabajador lTra = new lTrabajador();
         Cronograma Cro = new Cronograma();
         lCronograma lCro = new lCronograma();
+        
         String user;
         String puesto;
         String codigo;
