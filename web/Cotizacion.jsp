@@ -17,6 +17,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=Windows-1252">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">        
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
         <link href="css/cotizacionCss.css" rel="stylesheet" type="text/css"/>
         <title>Cotizacion</title>
     </head>
@@ -56,6 +57,12 @@
             Chart Cha = new Chart();
             lCha.ListarGastoSemana(annio, mes, dia);
             int b = lChart.lCha.size() - 1;
+            float GastoAnnio = 0;
+            float IngresoAnnio = 0;
+            float GastoSemana = 0;
+            float IngresoSemana = 0;
+            float GastoMes = 0;
+            float IngresoMes = 0;
         %>
         <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
@@ -88,13 +95,15 @@
 
                     </ul>
                     <form class="d-flex">
-                         <a class="nav-link active" aria-current="page" href="index.jsp?cerrar=true">Cerrar sesion</a>
+                        <a class="nav-link active" aria-current="page" href="index.jsp?cerrar=true">Cerrar sesion</a>
                     </form>
                 </div>
             </div>
         </nav>
         <br><br>
         <div class="container">
+            
+            
             <div class="px-lg-4 px-xl-5 container-fluid">
                 <div class="page-header">
                     <h1 class="page-heading">Graficos Del Proyecto</h1>
@@ -112,48 +121,6 @@
                                     <div class="mb-2">
                                         <div class="mb-3">
                                             <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom2" aria-controls="offcanvasBottom2">Informacion de Gasto del Mes</button>
-                                            <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom2" aria-labelledby="offcanvasBottomLabel">
-                                                <div class="offcanvas-header">
-                                                    <h5 class="offcanvas-title" id="offcanvasBottomLabel">Informacion de Gasto del Mes</h5>
-                                                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                                                </div>
-                                                <div class="offcanvas-body small">
-                                                    <table class="table">
-                                                        <thead>
-                                                            <tr>
-                                                                <th scope="col">#</th>
-                                                                <th scope="col">Descripcion</th>
-                                                                <th scope="col">Gasto</th>
-                                                                <th scope="col">Responsable</th>
-                                                                <th scope="col">Fecha</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr>
-                                                                <th>1</th>
-                                                                <td>Comida</td>
-                                                                <td>20.00</td>
-                                                                <td>Ramiro</td>
-                                                                <td>15/05/2021</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>2</th>
-                                                                <td>Maquinaria</td>
-                                                                <td>50.00</td>
-                                                                <td>Ramiro</td>
-                                                                <td>17/05/2021</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>3</th>
-                                                                <td>Reparacion</td>
-                                                                <td>25.00</td>
-                                                                <td>Orlando</td>
-                                                                <td>17/05/2021</td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
                                         </div>
                                         <div class="mt-5 mb-5">
                                             <canvas id="ChartGastosMes"  style="display: block; box-sizing: border-box; height: 280.8px; width: 563.2px;"></canvas>
@@ -164,124 +131,241 @@
                         </div>
                         <div class="col-lg-4">
                             <div class="mb-4 card">
-                                <div class="card-header">
-                                    <h4>Gastos/de todo el Año actual</h4>
-                                </div>
+
                                 <div class="card-body">
-                                    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">Informacion de Gastos de este año</button>
-                                    <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
-                                        <div class="offcanvas-header">
-                                            <h5 class="offcanvas-title" id="offcanvasBottomLabel">Informacion de Gastos de este año</h5>
-                                            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                                        </div>
-                                        <div class="offcanvas-body small">
-                                            <table class="table">
-                                                <thead>
-                                                    <tr>
-                                                        <th scope="col">#</th>
-                                                        <th scope="col">Mes</th>
-                                                        <th scope="col">Gasto Total</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <th>1</th>
-                                                        <td>Enero</td>
-                                                        <td>12</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>2</th>
-                                                        <td>Febrero</td>
-                                                        <td>19</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>3</th>
-                                                        <td>Marzo</td>
-                                                        <td>13</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>4</th>
-                                                        <td>Abril</td>
-                                                        <td>10</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>5</th>
-                                                        <td>Mayo</td>
-                                                        <td>12</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>6</th>
-                                                        <td>Junio</td>
-                                                        <td>13</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                    <canvas id="ChartGastoMensual"></canvas>
+                                    <div id="Semi-Donut-Mes"></div>
                                 </div>
                             </div>
                             <div class="mb-4 card">
-                                <div class="card-header">
-                                    <h4>Gasto/Ingreso de la semana</h4>
-                                </div>
+
                                 <div class="card-body">
-                                    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom3" aria-controls="offcanvasBottom3">Informacion de Gasto de la Semanal</button>
-                                    <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom3" aria-labelledby="offcanvasBottomLabel">
-                                        <div class="offcanvas-header">
-                                            <h5 class="offcanvas-title" id="offcanvasBottomLabel">Informacion de Gasto de la Semanal</h5>
-                                            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                                        </div>
-                                        <div class="offcanvas-body small">
-                                            <table class="table">
-                                                <thead>
-                                                    <tr>
-                                                        <th scope="col">#</th>
-                                                        <th scope="col">Descripcion</th>
-                                                        <th scope="col">Gasto Total</th>
-                                                        <th scope="col">Responsable</th>
-                                                        <th scope="col">Fecha</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <th>1</th>
-                                                        <td>Comida</td>
-                                                        <td>20.00</td>
-                                                        <td>Ramiro</td>
-                                                        <td>15/05/2021</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>2</th>
-                                                        <td>Maquinaria</td>
-                                                        <td>50.00</td>
-                                                        <td>Ramiro</td>
-                                                        <td>17/05/2021</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>3</th>
-                                                        <td>Reparacion</td>
-                                                        <td>25.00</td>
-                                                        <td>Orlando</td>
-                                                        <td>17/05/2021</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>3</th>
-                                                        <td>Reparacion</td>
-                                                        <td>25.00</td>
-                                                        <td>Orlando</td>
-                                                        <td>17/05/2021</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                    <canvas id="ChartGastoSemanal"></canvas>
+
+                                    <div id=""></div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </section>
+                <section>
+                    <div class="mb-4 row">
+                        <div class="mb-4 mb-lg-0 col-lg-8">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-heading">
+                                        Gastos/Ingreso de todo el Año actual
+                                    </h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="mb-2">
+                                        <div class="mb-3">
+                                            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">Informacion de Gasto del Año </button>
+                                        </div>
+                                        <div class="mt-5 mb-5">
+                                            <canvas id="ChartGastoAnnio"  style="display: block; box-sizing: border-box; height: 280.8px; width: 563.2px;"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="mb-4 card">
+
+                                <div class="card-body">
+                                    <div id="Semi-Donut-Annio"></div>
+                                </div>
+                            </div>
+                            <div class="mb-4 card">
+
+                                <div class="card-body">
+
+                                    <div id=""></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="mb-4 row">
+                        <div class="mb-4 mb-lg-0 col-lg-8">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-heading">
+                                        Gasto/Ingreso de la semana
+                                    </h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="mb-2">
+                                        <div class="mb-3">
+                                            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom3" aria-controls="offcanvasBottom3">Informacion de Gasto de la semana</button>
+                                        </div>
+                                        <div class="mt-5 mb-5">
+                                            <canvas id="ChartGastoSemanal"  style="display: block; box-sizing: border-box; height: 280.8px; width: 563.2px;"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="mb-4 card">
+
+                                <div class="card-body">
+                                    <div id="Semi-Donut-Semana"></div>
+                                </div>
+                            </div>
+                            <div class="mb-4 card">
+
+                                <div class="card-body">
+
+                                    <canvas id=""></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+                
+        </div>
+        <!-- Tabla de Gasto Mes -->
+        <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom2" aria-labelledby="offcanvasBottomLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasBottomLabel">Informacion de Gasto del Mes</h5>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body small">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Descripcion</th>
+                            <th scope="col">Gasto</th>
+                            <th scope="col">Responsable</th>
+                            <th scope="col">Fecha</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>1</th>
+                            <td>Comida</td>
+                            <td>20.00</td>
+                            <td>Ramiro</td>
+                            <td>15/05/2021</td>
+                        </tr>
+                        <tr>
+                            <th>2</th>
+                            <td>Maquinaria</td>
+                            <td>50.00</td>
+                            <td>Ramiro</td>
+                            <td>17/05/2021</td>
+                        </tr>
+                        <tr>
+                            <th>3</th>
+                            <td>Reparacion</td>
+                            <td>25.00</td>
+                            <td>Orlando</td>
+                            <td>17/05/2021</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- Tabla de Annio -->
+        <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasBottomLabel">Informacion de Gastos de este año</h5>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body small">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Mes</th>
+                            <th scope="col">Gasto Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>1</th>
+                            <td>Enero</td>
+                            <td>12</td>
+                        </tr>
+                        <tr>
+                            <th>2</th>
+                            <td>Febrero</td>
+                            <td>19</td>
+                        </tr>
+                        <tr>
+                            <th>3</th>
+                            <td>Marzo</td>
+                            <td>13</td>
+                        </tr>
+                        <tr>
+                            <th>4</th>
+                            <td>Abril</td>
+                            <td>10</td>
+                        </tr>
+                        <tr>
+                            <th>5</th>
+                            <td>Mayo</td>
+                            <td>12</td>
+                        </tr>
+                        <tr>
+                            <th>6</th>
+                            <td>Junio</td>
+                            <td>13</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- Tabla Semana -->
+        <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom3" aria-labelledby="offcanvasBottomLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasBottomLabel">Informacion de Gasto de la Semanal</h5>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body small">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Descripcion</th>
+                            <th scope="col">Gasto Total</th>
+                            <th scope="col">Responsable</th>
+                            <th scope="col">Fecha</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>1</th>
+                            <td>Comida</td>
+                            <td>20.00</td>
+                            <td>Ramiro</td>
+                            <td>15/05/2021</td>
+                        </tr>
+                        <tr>
+                            <th>2</th>
+                            <td>Maquinaria</td>
+                            <td>50.00</td>
+                            <td>Ramiro</td>
+                            <td>17/05/2021</td>
+                        </tr>
+                        <tr>
+                            <th>3</th>
+                            <td>Reparacion</td>
+                            <td>25.00</td>
+                            <td>Orlando</td>
+                            <td>17/05/2021</td>
+                        </tr>
+                        <tr>
+                            <th>3</th>
+                            <td>Reparacion</td>
+                            <td>25.00</td>
+                            <td>Orlando</td>
+                            <td>17/05/2021</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
         <!-- Bootstrap Bundle with Popper -->
@@ -289,10 +373,11 @@
         <!-- Personal Script -->
         <script>
             //Grafico Gasto Mensual
-            var ctx1 = document.getElementById('ChartGastoMensual').getContext('2d');
-            var ctx2 = document.getElementById('ChartGastoSemanal').getContext('2d');
-            var ctx3 = document.getElementById('ChartGastosMes').getContext('2d');
-            var ChartGastoMensual = new Chart(ctx1, {
+            var ChartGastoAnnio = document.getElementById('ChartGastoAnnio').getContext('2d');
+            var ChartGastoSemanal = document.getElementById('ChartGastoSemanal').getContext('2d');
+            var ChartGastosMes = document.getElementById('ChartGastosMes').getContext('2d');
+            //Graficos de Gasto Annio
+            var ChartGastoAnnio = new Chart(ChartGastoAnnio, {
             type: 'line',
                     data: {
                     labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
@@ -301,6 +386,7 @@
                                     data: [
             <%
                 for (int i = 1; i <= 12; i++) {
+                    GastoAnnio += Float.parseFloat(lCha.SumaMesMovimiento("2", proyecto, i));
             %>
             <%=lCha.SumaMesMovimiento("2", proyecto, i)%>,
             <%
@@ -316,6 +402,7 @@
                                     data: [
             <%
                 for (int i = 1; i <= 12; i++) {
+                    IngresoAnnio += Float.parseFloat(lCha.SumaMesMovimiento("1", proyecto, i));
             %>
             <%=lCha.SumaMesMovimiento("1", proyecto, i)%>,
             <%
@@ -349,7 +436,41 @@
                             }
                     }
             });
-            var ChartGastoSemanal = new Chart(ctx2, {
+            var optionsSemiDonutAnnio = {
+            series: [<%=GastoAnnio%>, <%=IngresoAnnio%>],
+                    chart: {
+                    type: 'donut',
+                    },
+                    labels: ['Gastos', 'Ingreso'],
+                    colors: ['#FF6384', '#3B83BD'],
+                    plotOptions: {
+                    pie: {
+                    startAngle: - 90,
+                            endAngle: 90,
+                            offsetY: 10
+                    }
+                    },
+                    grid: {
+                    padding: {
+                    bottom: - 80
+                    }
+                    },
+                    responsive: [{
+                    breakpoint: 480,
+                            options: {
+                            chart: {
+                            width: 200
+                            },
+                                    legend: {
+                                    position: 'bottom'
+                                    }
+                            }
+                    }]
+            };
+            var chartSemiDonutAnnio = new ApexCharts(document.querySelector("#Semi-Donut-Annio"), optionsSemiDonutAnnio);
+            chartSemiDonutAnnio.render();
+            //Graficos de Gasto Semanal
+            var ChartGastoSemanal = new Chart(ChartGastoSemanal, {
             type: 'line',
                     data: {
                     labels: ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo', ],
@@ -359,6 +480,7 @@
             <%
                 for (int i = b; i >= 0; i--) {
                     Cha = (Chart) lChart.lCha.get(i);
+                    GastoSemana += Float.parseFloat(lCha.SumDiaSemanaMovimiento(Cha.getDia(), Cha.getMes(), Cha.getAnnio(), 2, Integer.parseInt(proyecto)));
             %>
             <%=lCha.SumDiaSemanaMovimiento(Cha.getDia(), Cha.getMes(), Cha.getAnnio(), 2, Integer.parseInt(proyecto))%>,
             <%
@@ -377,6 +499,7 @@
             <%
                 for (int i = b; i >= 0; i--) {
                     Cha = (Chart) lChart.lCha.get(i);
+                    IngresoSemana += Float.parseFloat(lCha.SumDiaSemanaMovimiento(Cha.getDia(), Cha.getMes(), Cha.getAnnio(), 1, Integer.parseInt(proyecto)));
             %>
             <%=lCha.SumDiaSemanaMovimiento(Cha.getDia(), Cha.getMes(), Cha.getAnnio(), 1, Integer.parseInt(proyecto))%>,
             <%
@@ -411,7 +534,41 @@
                             }
                     }
             });
-            var ChartGastosMes = new Chart(ctx3, {
+            var optionsSemiDonutSemana = {
+            series: [<%=GastoSemana%>, <%=IngresoSemana%>],
+                    chart: {
+                    type: 'donut',
+                    },
+                    labels: ['Gastos', 'Ingreso'],
+                    colors: ['#FF6384', '#3B83BD'],
+                    plotOptions: {
+                    pie: {
+                    startAngle: - 90,
+                            endAngle: 90,
+                            offsetY: 10
+                    }
+                    },
+                    grid: {
+                    padding: {
+                    bottom: - 80
+                    }
+                    },
+                    responsive: [{
+                    breakpoint: 480,
+                            options: {
+                            chart: {
+                            width: 200
+                            },
+                                    legend: {
+                                    position: 'bottom'
+                                    }
+                            }
+                    }]
+            };
+            var chartSemiDonutSemana = new ApexCharts(document.querySelector("#Semi-Donut-Semana"), optionsSemiDonutSemana);
+            chartSemiDonutSemana.render();
+            //Graficos de Gasto Mes
+            var ChartGastosMes = new Chart(ChartGastosMes, {
             type: 'line',
                     data: {
                     labels: [
@@ -423,7 +580,8 @@
 
                     '<%=a%>/<%=mes%>',
             <%
-                }a=0;
+                }
+                a = 0;
             %>
                                 ],
                                         datasets: [{
@@ -432,11 +590,13 @@
             <%
                 for (int i = 0; i <= DiasMes; i++) {
                     a++;
+                    GastoMes += Float.parseFloat(lCha.SumaDiaMesMovimiento("2", proyecto, mes, a));
             %>
 
             <%=lCha.SumaDiaMesMovimiento("2", proyecto, mes, a)%>,
             <%
-                }a=0;
+                }
+                a = 0;
             %>
                                                 ],
                                                 borderColor: [
@@ -448,6 +608,7 @@
             <%
                 for (int i = 0; i <= DiasMes; i++) {
                     a++;
+                    IngresoMes += Float.parseFloat(lCha.SumaDiaMesMovimiento("1", proyecto, mes, a));
             %>
 
             <%=lCha.SumaDiaMesMovimiento("1", proyecto, mes, a)%>,
@@ -480,6 +641,40 @@
                                         }
                                 }
                         });
+            var optionsSemiDonutMes = {
+                        series: [<%=GastoMes%>, <%=IngresoMes%>],
+                                chart: {
+                                type: 'donut',
+                                },
+                                labels: ['Gastos', 'Ingreso'],
+                                colors: ['#FF6384', '#3B83BD'],
+                                plotOptions: {
+                                pie: {
+                                startAngle: - 90,
+                                        endAngle: 90,
+                                        offsetY: 10
+                                }
+                                },
+                                grid: {
+                                padding: {
+                                bottom: - 80
+                                }
+                                },
+                                responsive: [{
+                                breakpoint: 480,
+                                        options: {
+                                        chart: {
+                                        width: 200
+                                        },
+                                                legend: {
+                                                position: 'bottom'
+                                                }
+                                        }
+                                }]
+                        };
+            var chartSemiDonutMes = new ApexCharts(document.querySelector("#Semi-Donut-Mes"), optionsSemiDonutMes);
+            chartSemiDonutMes.render();
+
         </script>
     </body>
 </html>

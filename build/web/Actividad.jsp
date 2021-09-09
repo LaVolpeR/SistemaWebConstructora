@@ -235,7 +235,7 @@
                     } else {
         %>
         <script type="text/javascript">
-            alert("Problema con la hora");
+            alert("Problema con la hora <%=hourF %> /<%=hourI %>" );
         </script>
         <%
             }

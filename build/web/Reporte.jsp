@@ -127,8 +127,8 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" name="ReporteAnnio" id="ReporteAnnio">
-                                        <label class="form-check-label" for="flexSwitchCheckDefault">Reporte año Actual</label>
+                                        <input class="form-check-input" type="checkbox" name="ReporteTotal" id="ReporteTotal">
+                                        <label class="form-check-label" for="flexSwitchCheckDefault">Reporte del todo el Proyecto</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -179,18 +179,18 @@
         <!-- Personal Script -->
         <script type="text/javascript">
             const ReporteMes = document.querySelector('input[id="ReporteMes"]')
-            const ReporteAnnio = document.querySelector('input[id="ReporteAnnio"]')
+            const ReporteTotal = document.querySelector('input[id="ReporteTotal"]')
             const ReporteDia = document.querySelector('input[id="ReporteDia"]')
             const ReporteSemana = document.querySelector('input[id="ReporteSemana"]')
             const DNITrabajador = document.getElementById("Trabajador")
             const button = document.querySelector('button[id="btnReporteActividad"]')
 
             console.log(document.querySelector('input[id="ReporteMes"]'));
-            console.log(ReporteAnnio);
+            console.log(ReporteTotal);
             console.log(ReporteDia);
             console.log(ReporteSemana);
             button.addEventListener('click', (e) => {
-                if (ReporteMes.checked || ReporteAnnio.checked || ReporteDia.checked || ReporteSemana.checked) {
+                if (ReporteMes.checked || ReporteTotal.checked || ReporteDia.checked || ReporteSemana.checked) {
                     const url = new URL(window.location.origin + '/SistemaWebConstructoraTesis1.1/ReporteActividad.jsp');
                     url.searchParams.append('action', 'btnReporteActividad')
                     if (ReporteMes.checked) {
@@ -199,8 +199,8 @@
                     if (DNITrabajador.value) {
                         url.searchParams.append('DNITrabajador', DNITrabajador.value)
                     }
-                    if (ReporteAnnio.checked) {
-                        url.searchParams.append('Annio', ReporteAnnio.value)
+                    if (ReporteTotal.checked) {
+                        url.searchParams.append('Total', ReporteTotal.value)
                     }
                     if (ReporteDia.checked) {
                         url.searchParams.append('Dia', ReporteDia.value)

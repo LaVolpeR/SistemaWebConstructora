@@ -17,7 +17,6 @@
         <meta http-equiv="Content-Type" content="text/html; charset=Windows-1252">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <link href="css/Planilla.css" rel="stylesheet" type="text/css"/>
-        <script src="js/html2pdf.bundle.min.js"></script>
         <title>PLANILLA</title>
     </head>
     <body>
@@ -220,10 +219,7 @@
                             </div>
                         </div>
                     </div>
-                    <br>
-                    <div class="row" >
-                        <button type="button" class="btn btn-outline-secondary" onclick="ConvertirPDF()">Generar PDF</button>
-                    </div>
+                    
                     <br>
                     <div class="row" >
 
@@ -239,32 +235,6 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
         <!-- Personal Script -->
-        <script type="text/javascript">
-                            function ConvertirPDF() {
-                                const $elementoParaConvertir = document.querySelector("#Exemplo"); // <-- Aquí puedes elegir cualquier elemento del DOM
-                                html2pdf()
-                                        .set({
-                                            margin: 1,
-                                            filename: 'Planilla.pdf',
-                                            image: {
-                                                type: 'jpeg',
-                                                quality: 0.98
-                                            },
-                                            html2canvas: {
-                                                scale: 3, // A mayor escala, mejores gráficos, pero más peso
-                                                letterRendering: true,
-                                            },
-                                            jsPDF: {
-                                                unit: "cm",
-                                                format: "a4",
-                                                orientation: 'landscape' // landscape o portrait
-                                            }
-                                        })
-                                        .from($elementoParaConvertir)
-                                        .save()
-                                        .catch(err => console.log(err));
-                            }
-                            ;
-        </script>
+       
     </body>
 </html>

@@ -13,6 +13,6 @@ and open the template in the editor.
     
 }
 .table-responsive{
-    height: 45vh;
+    height: 55vh;
     overflow: auto;
 }

@@ -63,14 +63,15 @@
                 opcion1 = request.getParameter("Dia");
                 opcion2 = request.getParameter("Semana");
                 opcion3 = request.getParameter("Mes");
-                opcion4 = request.getParameter("Annio");
+                opcion4 = request.getParameter("Total");
                 opcion5 = request.getParameter("DNITrabajador");
             } else {
                 response.sendRedirect("Reporte.jsp");
             }
+            int a = 0;
 
             //http://localhost:8080/SistemaWebConstructoraTesis1.1/ReporteActividad.jsp
-        %>
+%>
         <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -124,12 +125,183 @@
             <div class="ImpresionPDF" id="ImpresionPDF">
                 <h3 class="text-center">Reporte de Actividades del  <%=lPro.TituloProyecto(Integer.parseInt(proyecto))%></h3>
                 <br>
-
                 <div class="Actividades">
                     <%
                         if (opcion1 != null) {
                     %>
                     <div class="Dia">
+                        <br>
+                        <div class="card">
+                            <h4 class="card-header">Actividades del dia de Hoy - Estado </h4>
+                            <div class="card-body">
+                                <table class="table table-striped table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Titulo</th>
+                                            <th scope="col">Descripcion</th>
+                                            <th scope="col">Fecha Inicio</th>
+                                            <th scope="col">Fecha Fin</th>
+                                            <th scope="col">Responsable</th>
+                                            <th scope="col">Estado</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <%
+                                            lDatTem.ListarReporteActividadDia(proyecto);
+                                            a = 0;
+                                            if (lDatosTemporales.lDatTem.size() != 0) {
+                                                for (int i = 0; i < lDatosTemporales.lDatTem.size(); i++) {
+                                                    DatTem = (DatosTemporales) lDatosTemporales.lDatTem.get(i);
+                                                    a++;
+                                        %>
+                                        <tr>
+                                            <td><%=a%></td>
+                                            <td><%=DatTem.getDato()%></td>
+                                            <td><%=DatTem.getDato1()%></td>
+                                            <td><%=DatTem.getDato2()%></td>
+                                            <td><%=DatTem.getDato3()%></td>
+                                            <td><%=DatTem.getDato4()%></td>
+                                            <%
+                                                int IDEstado = Integer.parseInt(DatTem.getDato5());
+                                                switch (IDEstado) {
+                                                    case 1:
+                                            %> 
+                                            <td><span class="badge rounded-pill bg-primary">En Proceso</span></td>
+                                            <%
+                                                    break;
+                                                case 2:
+                                            %> 
+                                            <td><span class="badge rounded-pill bg-success">Completado</span></td>
+                                            <%
+                                                    break;
+                                                case 3:
+                                            %>
+                                            <td><span class="badge rounded-pill bg-warning text-dark">En Verificar</span></td>
+                                            <%
+                                                        break;
+                                                    default:
+                                                }
+
+
+                                            %>
+                                        </tr>
+                                        <%                                            }
+                                        } else {
+                                        %>
+                                        <tr>
+                                            <td colspan="6"><p class="text-center">No hay Actividades en Procesos</p></td>
+                                        </tr>
+                                        <%
+                                            }
+                                        %>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="html2pdf__page-break"></div>
+                        <div class="card">
+                            <h4 class="card-header">Actividades Completadas el dia de Hoy </h4>
+                            <div class="card-body">
+                                <table class="table table-striped table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Titulo</th>
+                                            <th scope="col">Descripcion</th>
+                                            <th scope="col">Fecha Inicio</th>
+                                            <th scope="col">Fecha Fin</th>
+                                            <th scope="col">Responsable</th>
+                                            <th scope="col">Fecha</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <%
+                                            lDatTem.sp_ListarReporteActividadDia(proyecto);
+                                            a = 0;
+                                            if (lDatosTemporales.lDatTem.size() != 0) {
+                                                for (int i = 0; i < lDatosTemporales.lDatTem.size(); i++) {
+                                                    DatTem = (DatosTemporales) lDatosTemporales.lDatTem.get(i);
+                                                    a++;
+                                        %>
+                                        <tr>
+                                            <td><%=a%></td>
+                                            <td><%=DatTem.getDato()%></td>
+                                            <td><%=DatTem.getDato1()%></td>
+                                            <td><%=DatTem.getDato2()%></td>
+                                            <td><%=DatTem.getDato3()%></td>
+                                            <td><%=DatTem.getDato4()%></td>
+                                            <td><%=DatTem.getDato5()%></td>
+                                        </tr>
+                                        <%
+                                            }
+                                        } else {
+                                        %>
+                                        <tr>
+                                            <td colspan="7"><p class="text-center">No se completo ninguna actividad Hoy dia</p></td>
+                                        </tr>
+                                        <%
+                                            }
+                                        %>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="html2pdf__page-break"></div>
+                        <div class="card">
+                            <h4 class="card-header">Actividades Creadas el dia de Hoy </h4>
+                            <div class="card-body">
+                                <table class="table table-striped table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Hora Creada</th>
+                                            <th scope="col">Titulo</th>
+                                            <th scope="col">Descripcion</th>
+                                            <th scope="col">Fecha Inicio</th>
+                                            <th scope="col">Fecha Fin</th>
+                                            <th scope="col">Responsable</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <%
+                                            lDatTem.ListarReporteActividadCreadaDia(proyecto);
+                                            a = 0;
+                                            if (lDatosTemporales.lDatTem.size() != 0) {
+                                                for (int i = 0; i < lDatosTemporales.lDatTem.size(); i++) {
+                                                    DatTem = (DatosTemporales) lDatosTemporales.lDatTem.get(i);
+                                                    a++;
+                                        %>
+                                        <tr>
+                                            <td><%=a%></td>
+                                            <td><%=DatTem.getDato5()%></td>
+                                            <td><%=DatTem.getDato()%></td>
+                                            <td><%=DatTem.getDato1()%></td>
+                                            <td><%=DatTem.getDato2()%></td>
+                                            <td><%=DatTem.getDato3()%></td>
+                                            <td><%=DatTem.getDato4()%></td>
+
+                                        </tr>
+                                        <%
+                                            }
+                                        } else {
+                                        %>
+                                        <tr>
+                                            <td colspan="6"><p class="text-center">No hay Actividades Completadas</p></td>
+                                        </tr>
+                                        <%
+                                            }
+                                        %>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="html2pdf__page-break"></div>
+                        <br>
                         <div class="card">
                             <h4 class="card-header">Actividades del dia de Hoy </h4>
                             <div class="card-body">
@@ -149,7 +321,7 @@
                                     <tbody>
                                         <%
                                             lDatTem.ListarReporteActividadDia(proyecto);
-                                            int a = 0;
+                                            a = 0;
                                             for (int i = 0; i < lDatosTemporales.lDatTem.size(); i++) {
                                                 DatTem = (DatosTemporales) lDatosTemporales.lDatTem.get(i);
                                                 a++;
@@ -169,166 +341,255 @@
                                 </table>
                             </div>
                         </div>
-                        <br>
-                        <div class="card">
-                            <h4 class="card-header">Actividades del dia de Hoy - En Proceso </h4>
-                            <div class="card-body">
-                                <table class="table table-striped table-sm">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">#</th>
-                                            <th scope="col">Titulo</th>
-                                            <th scope="col">Descripcion</th>
-                                            <th scope="col">Fecha Inicio</th>
-                                            <th scope="col">Fecha Fin</th>
-                                            <th scope="col">Responsable</th>
-
-                                        </tr>
-                                    </thead>
-
-                                    <tbody>
-                                        <%
-                                            lDatTem.sp_ListarReporteActividadDia(proyecto, "1");
-                                            a = 0;
-                                            if (lDatosTemporales.lDatTem.size() != 0) {
-                                                for (int i = 0; i < lDatosTemporales.lDatTem.size(); i++) {
-                                                    DatTem = (DatosTemporales) lDatosTemporales.lDatTem.get(i);
-                                                    a++;
-                                        %>
-                                        <tr>
-                                            <td><%=a%></td>
-                                            <td><%=DatTem.getDato()%></td>
-                                            <td><%=DatTem.getDato1()%></td>
-                                            <td><%=DatTem.getDato2()%></td>
-                                            <td><%=DatTem.getDato3()%></td>
-                                            <td><%=DatTem.getDato4()%></td>
-                                        </tr>
-                                        <%
-                                            }
-                                        } else {
-                                        %>
-                                        <tr>
-                                            <td colspan="6"><p class="text-center">No hay Actividades en Procesos</p></td>
-                                        </tr>
-                                        <%
-                                            }
-                                        %>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="card">
-                            <h4 class="card-header">Actividades del dia de Hoy - Por Verificar </h4>
-                            <div class="card-body">
-                                <table class="table table-striped table-sm">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">#</th>
-                                            <th scope="col">Titulo</th>
-                                            <th scope="col">Descripcion</th>
-                                            <th scope="col">Fecha Inicio</th>
-                                            <th scope="col">Fecha Fin</th>
-                                            <th scope="col">Responsable</th>
-
-                                        </tr>
-                                    </thead>
-
-                                    <tbody>
-                                        <%
-                                            lDatTem.sp_ListarReporteActividadDia(proyecto, "3");
-                                            a = 0;
-                                            if (lDatosTemporales.lDatTem.size() != 0) {
-                                                for (int i = 0; i < lDatosTemporales.lDatTem.size(); i++) {
-                                                    DatTem = (DatosTemporales) lDatosTemporales.lDatTem.get(i);
-                                                    a++;
-                                        %>
-                                        <tr>
-                                            <td><%=a%></td>
-                                            <td><%=DatTem.getDato()%></td>
-                                            <td><%=DatTem.getDato1()%></td>
-                                            <td><%=DatTem.getDato2()%></td>
-                                            <td><%=DatTem.getDato3()%></td>
-                                            <td><%=DatTem.getDato4()%></td>
-                                        </tr>
-                                        <%
-                                            }
-                                        } else {
-                                        %>
-                                        <tr>
-                                            <td colspan="6"><p class="text-center">No hay Actividades Pro Verificar</p></td>
-                                        </tr>
-                                        <%
-                                            }
-                                        %>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="card">
-                            <h4 class="card-header">Actividades del dia de Hoy - Completadas </h4>
-                            <div class="card-body">
-                                <table class="table table-striped table-sm">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">#</th>
-                                            <th scope="col">Titulo</th>
-                                            <th scope="col">Descripcion</th>
-                                            <th scope="col">Fecha Inicio</th>
-                                            <th scope="col">Fecha Fin</th>
-                                            <th scope="col">Responsable</th>
-
-                                        </tr>
-                                    </thead>
-
-                                    <tbody>
-                                        <%
-                                            lDatTem.sp_ListarReporteActividadDia(proyecto, "2");
-                                            a = 0;
-                                            if (lDatosTemporales.lDatTem.size() != 0) {
-                                                for (int i = 0; i < lDatosTemporales.lDatTem.size(); i++) {
-                                                    DatTem = (DatosTemporales) lDatosTemporales.lDatTem.get(i);
-                                                    a++;
-                                        %>
-                                        <tr>
-                                            <td><%=a%></td>
-                                            <td><%=DatTem.getDato()%></td>
-                                            <td><%=DatTem.getDato1()%></td>
-                                            <td><%=DatTem.getDato2()%></td>
-                                            <td><%=DatTem.getDato3()%></td>
-                                            <td><%=DatTem.getDato4()%></td>
-                                        </tr>
-                                        <%
-                                            }
-                                        } else {
-                                        %>
-                                        <tr>
-                                            <td colspan="6"><p class="text-center">No hay Actividades Completadas</p></td>
-                                        </tr>
-                                        <%
-                                            }
-                                        %>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+                        <div class="html2pdf__page-break"></div>
                     </div>
-                    <div class="html2pdf__page-break"></div>
                     <%
                         }
                         if (opcion2 != null) {
-                            Chart Cha = new Chart();
-                            lChart lCha = new lChart();
-                            Calendar c = Calendar.getInstance();
-                            int dia = Integer.parseInt(Integer.toString(c.get(Calendar.DATE)));
-                            int mes = Integer.parseInt(Integer.toString(c.get(Calendar.MONTH)));
-                            int annio = Integer.parseInt(Integer.toString(c.get(Calendar.YEAR)));
-                            mes++;
-                            lCha.ListarGastoSemana(annio, mes, dia);
-                            int b = lChart.lCha.size() - 1;
+
                     %>
+                    <br>
                     <div class="Semana">
+                        <br>
+                        <div class="card">
+                            <h4 class="card-header">Actividades de la Semana Estado</h4>
+                            <div class="card-body">
+                                <table class="table table-striped table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Titulo</th>
+                                            <th scope="col">Descripcion</th>
+                                            <th scope="col">Fecha Inicio</th>
+                                            <th scope="col">Fecha Fin</th>
+                                            <th scope="col">Responsable</th>
+                                            <th scope="col">Estado</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <%                                            for (int i = 0; i <= 6; i++) {
+                                                int b = 0;
+                                                String weekday = "null";
+                                                switch (i) {
+                                                    case 0:
+                                                        weekday = "Lunes";
+                                                        break;
+                                                    case 1:
+                                                        weekday = "Martes";
+                                                        break;
+                                                    case 2:
+                                                        weekday = "Miercoles";
+                                                        break;
+                                                    case 3:
+                                                        weekday = "Jueves";
+                                                        break;
+                                                    case 4:
+                                                        weekday = "Viernes";
+                                                        break;
+                                                    case 5:
+                                                        weekday = "Sabado";
+                                                        break;
+                                                    case 6:
+                                                        weekday = "Domingo";
+                                                        break;
+                                                }
+                                                lDatTem.sp_ListarReporteActividadSemanaXEstadoXSemana(proyecto, lDatTem.MostrarFechaSemana(i));
+                                        %>
+                                        <tr>
+                                            <th scope="col" colspan="8">
+                                                <%=weekday%>
+                                            </th>
+                                        </tr>
+                                        <%
+                                            for (int j = 0; j < lDatosTemporales.lDatTem.size(); j++) {
+                                                b++;
+                                                DatTem = (DatosTemporales) lDatosTemporales.lDatTem.get(j);
+                                        %>
+                                        <tr>
+                                            <td><%=b%></td>
+                                            <td><%=DatTem.getDato()%></td>
+                                            <td><%=DatTem.getDato1()%></td>
+                                            <td><%=DatTem.getDato2()%></td>
+                                            <td><%=DatTem.getDato3()%></td>
+                                            <td><%=DatTem.getDato4()%></td>
+                                            <%
+                                                int IDEstado = Integer.parseInt(DatTem.getDato6());
+                                                switch (IDEstado) {
+                                                    case 1:
+                                            %> 
+                                            <td><span class="badge rounded-pill bg-primary">En Proceso</span></td>
+                                            <%
+                                                    break;
+                                                case 2:
+                                            %> 
+                                            <td><span class="badge rounded-pill bg-success">Completado</span></td>
+                                            <%
+                                                    break;
+                                                case 3:
+                                            %>
+                                            <td><span class="badge rounded-pill bg-warning text-dark">En Verificar</span></td>
+                                            <%
+                                                        break;
+                                                    default:
+                                                }
+
+
+                                            %>
+
+                                        </tr>
+                                        <%                                                }
+                                            }
+                                        %>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="html2pdf__page-break"></div>
+                        <div class="card">
+                            <h4 class="card-header">Actividades Completadas Esta Semana</h4>
+                            <div class="card-body">
+                                <table class="table table-striped table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Titulo</th>
+                                            <th scope="col">Descripcion</th>
+                                            <th scope="col">Fecha Inicio</th>
+                                            <th scope="col">Fecha Fin</th>
+                                            <th scope="col">Responsable</th>
+                                            <th scope="col">Fecha de Completacion</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <%                                            for (int i = 0; i <= 6; i++) {
+                                                int b = 0;
+                                                String weekday = "null";
+                                                switch (i) {
+                                                    case 0:
+                                                        weekday = "Lunes";
+                                                        break;
+                                                    case 1:
+                                                        weekday = "Martes";
+                                                        break;
+                                                    case 2:
+                                                        weekday = "Miercoles";
+                                                        break;
+                                                    case 3:
+                                                        weekday = "Jueves";
+                                                        break;
+                                                    case 4:
+                                                        weekday = "Viernes";
+                                                        break;
+                                                    case 5:
+                                                        weekday = "Sabado";
+                                                        break;
+                                                    case 6:
+                                                        weekday = "Domingo";
+                                                        break;
+                                                }
+                                                lDatTem.sp_ListarReporteActividadSemanaXEstado("2", proyecto, lDatTem.MostrarFechaSemana(i));
+                                        %>
+                                        <tr>
+                                            <th scope="col" colspan="7">
+                                                <%=weekday%>
+                                            </th>
+                                        </tr>
+                                        <%
+                                            for (int j = 0; j < lDatosTemporales.lDatTem.size(); j++) {
+                                                b++;
+                                                DatTem = (DatosTemporales) lDatosTemporales.lDatTem.get(j);
+                                        %>
+                                        <tr>
+                                            <td><%=b%></td>
+                                            <td><%=DatTem.getDato()%></td>
+                                            <td><%=DatTem.getDato1()%></td>
+                                            <td><%=DatTem.getDato2()%></td>
+                                            <td><%=DatTem.getDato3()%></td>
+                                            <td><%=DatTem.getDato4()%></td>
+                                            <td><%=DatTem.getDato6()%></td>
+                                        </tr>
+                                        <%                                                }
+                                            }
+                                        %>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="html2pdf__page-break"></div>
+                        <div class="card">
+                            <h4 class="card-header">Actividades Creadas Esta Semana</h4>
+                            <div class="card-body">
+                                <table class="table table-striped table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Titulo</th>
+                                            <th scope="col">Descripcion</th>
+                                            <th scope="col">Fecha Inicio</th>
+                                            <th scope="col">Fecha Fin</th>
+                                            <th scope="col">Responsable</th>
+                                            <th scope="col">Fecha</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <%                                            for (int i = 0; i <= 6; i++) {
+                                                int b = 0;
+                                                String weekday = "null";
+                                                switch (i) {
+                                                    case 0:
+                                                        weekday = "Lunes";
+                                                        break;
+                                                    case 1:
+                                                        weekday = "Martes";
+                                                        break;
+                                                    case 2:
+                                                        weekday = "Miercoles";
+                                                        break;
+                                                    case 3:
+                                                        weekday = "Jueves";
+                                                        break;
+                                                    case 4:
+                                                        weekday = "Viernes";
+                                                        break;
+                                                    case 5:
+                                                        weekday = "Sabado";
+                                                        break;
+                                                    case 6:
+                                                        weekday = "Domingo";
+                                                        break;
+                                                }
+                                                lDatTem.sp_ListarReporteActividadSemanaXEstadoXSemanaCreada(proyecto, lDatTem.MostrarFechaSemana(i));
+                                        %>
+                                        <tr>
+                                            <th scope="col" colspan="7">
+                                                <%=weekday%>
+                                            </th>
+                                        </tr>
+                                        <%
+                                            for (int j = 0; j < lDatosTemporales.lDatTem.size(); j++) {
+                                                b++;
+                                                DatTem = (DatosTemporales) lDatosTemporales.lDatTem.get(j);
+                                        %>
+                                        <tr>
+                                            <td><%=b%></td>
+                                            <td><%=DatTem.getDato()%></td>
+                                            <td><%=DatTem.getDato1()%></td>
+                                            <td><%=DatTem.getDato2()%></td>
+                                            <td><%=DatTem.getDato3()%></td>
+                                            <td><%=DatTem.getDato4()%></td>
+                                            <td><%=DatTem.getDato5()%></td>
+                                        </tr>
+                                        <%                                                }
+                                            }
+                                        %>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="html2pdf__page-break"></div>
                         <div class="card">
                             <h4 class="card-header">Actividades de la Semana </h4>
                             <div class="card-body">
@@ -344,15 +605,182 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <%
-                                            for (int i = b; i >= 0; i--) {
-                                                Cha = (Chart) lChart.lCha.get(i);
-                                                lDatTem.ListarReporteActividadSemana(Cha.getAnnio(), Cha.getMes(), Cha.getDia(), proyecto);
-                                                for (int j = 0; j < lDatosTemporales.lDatTem.size(); j++) {
-                                                    DatTem = (DatosTemporales) lDatosTemporales.lDatTem.get(j);
+                                        <%                                            for (int i = 0; i <= 6; i++) {
+                                                int b = 0;
+                                                String weekday = "null";
+                                                switch (i) {
+                                                    case 0:
+                                                        weekday = "Lunes";
+                                                        break;
+                                                    case 1:
+                                                        weekday = "Martes";
+                                                        break;
+                                                    case 2:
+                                                        weekday = "Miercoles";
+                                                        break;
+                                                    case 3:
+                                                        weekday = "Jueves";
+                                                        break;
+                                                    case 4:
+                                                        weekday = "Viernes";
+                                                        break;
+                                                    case 5:
+                                                        weekday = "Sabado";
+                                                        break;
+                                                    case 6:
+                                                        weekday = "Domingo";
+                                                        break;
+                                                }
+                                                lDatTem.ListarReporteActividadSemana(lDatTem.MostrarFechaSemana(i), proyecto);
                                         %>
                                         <tr>
-                                            <td><%=i%></td>
+                                            <th scope="col" colspan="6">
+                                                <%=weekday%>
+                                            </th>
+                                        </tr>
+                                        <%
+                                            for (int j = 0; j < lDatosTemporales.lDatTem.size(); j++) {
+                                                b++;
+                                                DatTem = (DatosTemporales) lDatosTemporales.lDatTem.get(j);
+                                        %>
+                                        <tr>
+                                            <td><%=b%></td>
+                                            <td><%=DatTem.getDato()%></td>
+                                            <td><%=DatTem.getDato1()%></td>
+                                            <td><%=DatTem.getDato2()%></td>
+                                            <td><%=DatTem.getDato3()%></td>
+                                            <td><%=DatTem.getDato4()%></td>
+                                        </tr>
+                                        <%                                                }
+                                            }
+                                        %>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="html2pdf__page-break"></div>
+                    </div>
+                    <%
+                        }
+                        if (opcion3 != null) {
+                    %>
+                    <br>
+                    <div class="Mes">
+                        <br>
+                        <div class="card">
+                            <h4 class="card-header">Actividades de la Mes Estado</h4>
+                            <div class="card-body">
+                                <table class="table table-striped table-sm">
+                                    <thead>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Titulo</th>
+                                    <th scope="col">Descripcion</th>
+                                    <th scope="col">Fecha Inicio</th>
+                                    <th scope="col">Fecha Fin</th>
+                                    <th scope="col">Responsable</th>
+                                    <th scope="col">Estado</th>
+                                    </thead>
+                                    <tbody>
+                                        <%
+                                            Calendar c = Calendar.getInstance();
+                                            a = 0;
+                                            int mes = Integer.parseInt(Integer.toString(c.get(Calendar.MONTH)));
+                                            mes++;
+                                            int annio = Integer.parseInt(Integer.toString(c.get(Calendar.YEAR)));
+                                            String fecha = "00-00-00";
+                                            String fecha2 = "0-0-0";
+
+                                            for (int i = 1; i <= 31; i++) {
+                                                fecha = annio + "-" + mes + "-" + i;
+                                                fecha2 = i + "/" + mes + "/" + annio;
+                                                lDatTem.sp_ListarReporteActividadSemanaXEstadoXSemana(proyecto, fecha);
+                                                if (lDatosTemporales.lDatTem.size() != 0) {
+                                        %> 
+                                        <tr>
+                                            <th scope="col" colspan="7"><%=fecha2%></th>
+                                        </tr>
+                                        <% }
+                                            for (int j = 0; j < lDatosTemporales.lDatTem.size(); j++) {
+                                                DatTem = (DatosTemporales) lDatosTemporales.lDatTem.get(j);
+                                                a++;
+                                        %> 
+                                        <tr>
+                                            <td><%=a%></td>
+                                            <td><%=DatTem.getDato()%></td>
+                                            <td><%=DatTem.getDato1()%></td>
+                                            <td><%=DatTem.getDato2()%></td>
+                                            <td><%=DatTem.getDato3()%></td>
+                                            <td><%=DatTem.getDato4()%></td>
+                                            <%
+                                                int IDEstado = Integer.parseInt(DatTem.getDato6());
+                                                switch (IDEstado) {
+                                                    case 1:
+                                            %> 
+                                            <td><span class="badge rounded-pill bg-primary">En Proceso</span></td>
+                                            <%
+                                                    break;
+                                                case 2:
+                                            %> 
+                                            <td><span class="badge rounded-pill bg-success">Completado</span></td>
+                                            <%
+                                                    break;
+                                                case 3:
+                                            %>
+                                            <td><span class="badge rounded-pill bg-warning text-dark">En Verificar</span></td>
+                                            <%
+                                                        break;
+                                                    default:
+                                                }
+
+
+                                            %>
+
+                                        </tr>
+                                        <%                                                }
+                                            }
+                                        %>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="html2pdf__page-break"></div>       
+                        <div class="card">
+                            <h4 class="card-header">Actividades de la Mes Estado</h4>
+                            <div class="card-body">
+                                <table class="table table-striped table-sm">
+                                    <thead>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Titulo</th>
+                                    <th scope="col">Descripcion</th>
+                                    <th scope="col">Fecha Inicio</th>
+                                    <th scope="col">Fecha Fin</th>
+                                    <th scope="col">Responsable</th>
+                                    </thead>
+                                    <tbody>
+                                        <%
+                                            a = 0;
+                                            mes = Integer.parseInt(Integer.toString(c.get(Calendar.MONTH)));
+                                            mes++;
+                                            annio = Integer.parseInt(Integer.toString(c.get(Calendar.YEAR)));
+                                            fecha = "00-00-00";
+
+                                            for (int i = 1; i <= 31; i++) {
+                                                fecha = annio + "-" + mes + "-" + i;
+                                                fecha2 = i + "/" + mes + "/" + annio;
+                                                lDatTem.sp_ListarReporteActividadSemanaXEstadoXSemana(proyecto, fecha);
+                                                if (lDatosTemporales.lDatTem.size() != 0) {
+                                        %> 
+                                        <tr>
+                                            <th scope="col" colspan="7"><%=fecha2%></th>
+                                        </tr>
+                                        <% }
+                                            for (int j = 0; j < lDatosTemporales.lDatTem.size(); j++) {
+                                                DatTem = (DatosTemporales) lDatosTemporales.lDatTem.get(j);
+                                                a++;
+                                        %> 
+                                        <tr>
+                                            <td><%=a%></td>
                                             <td><%=DatTem.getDato()%></td>
                                             <td><%=DatTem.getDato1()%></td>
                                             <td><%=DatTem.getDato2()%></td>
@@ -367,33 +795,92 @@
                             </div>
                         </div>
                     </div>
-                    <div class="html2pdf__page-break"></div>
+                    <%
+                        }
+                        if (opcion4 != null) {
+                    %>
+                    <br>
+                    <div class="Total">
+                        <br>
+                        <div class="card">
+                            <h4 class="card-header">Actividades de la Obra</h4>
+                            <div class="card-body">
+                                <table class="table table-striped table-sm">
+                                    <thead>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Titulo</th>
+                                    <th scope="col">Descripcion</th>
+                                    <th scope="col">Fecha Inicio</th>
+                                    <th scope="col">Fecha Fin</th>
+                                    <th scope="col">Responsable</th>
+                                    <th scope="col">Estado</th>
+                                    </thead>
+                                    <tbody>
+                                        <%
+                                            a = 0;
+                                            lDatTem.ListarActividadTotal(proyecto);
+                                            for (int j = 0; j < lDatosTemporales.lDatTem.size(); j++) {
+                                                DatTem = (DatosTemporales) lDatosTemporales.lDatTem.get(j);
+                                                a++;
+                                        %> 
+                                        <tr>
+                                            <td><%=a%></td>
+                                            <td><%=DatTem.getDato()%></td>
+                                            <td><%=DatTem.getDato1()%></td>
+                                            <td><%=DatTem.getDato2()%></td>
+                                            <td><%=DatTem.getDato3()%></td>
+                                            <td><%=DatTem.getDato4()%></td>
+                                            <%
+                                                int IDEstado = Integer.parseInt(DatTem.getDato5());
+                                                switch (IDEstado) {
+                                                    case 1:
+                                            %> 
+                                            <td><span class="badge rounded-pill bg-primary">En Proceso</span></td>
+                                            <%
+                                                    break;
+                                                case 2:
+                                            %> 
+                                            <td><span class="badge rounded-pill bg-success">Completado</span></td>
+                                            <%
+                                                    break;
+                                                case 3:
+                                            %>
+                                            <td><span class="badge rounded-pill bg-warning text-dark">En Verificar</span></td>
+                                            <%
+                                                            break;
+                                                        default:
+                                                    }
+                                                }
+                                            %>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
                     <%
                         }
                     %>
 
-
                 </div>
             </div>
-            <%=opcion1%>
-            <%=opcion2%>
-            <%=opcion3%>
-            <%=opcion4%>
-            <%=opcion5%>
         </div>
-        <style type="text/css">
-            table { page-break-inside:auto }
-            tr    { page-break-inside:avoid; page-break-after:auto }
-        </style>
-        <!-- Bootstrap Bundle with Popper -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-        <!-- Personal Script -->
-        <script type="text/javascript">
+        <%=opcion1%>
+        <%=opcion2%>
+        <%=opcion3%>
+        <%=opcion4%>
+        <%=opcion5%>
+    </div>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <!-- Personal Script -->
+    <script type="text/javascript">
                         function ConvertirPDF() {
                             const $elementoParaConvertir = document.querySelector("#ImpresionPDF"); // <-- Aquí puedes elegir cualquier elemento del DOM
                             html2pdf()
                                     .set({
-                                        margin: 10,
+                                        margin: 1,
                                         filename: 'Reporte de Actividades.pdf',
                                         image: {
                                             type: 'jpeg',
@@ -404,9 +891,9 @@
                                             letterRendering: true,
                                         },
                                         jsPDF: {
-                                            unit: "mm",
+                                            unit: "cm",
                                             format: "a4",
-                                            orientation: 'portrait' // landscape o portrait
+                                            orientation: 'landscape' // landscape o portrait
                                         }
                                     })
                                     .from($elementoParaConvertir)
@@ -414,6 +901,6 @@
                                     .catch(err => console.log(err));
                         }
                         ;
-        </script>
-    </body>
+    </script>
+</body>
 </html>

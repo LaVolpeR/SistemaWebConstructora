@@ -170,8 +170,7 @@
                                     .from($elementoParaConvertir)
                                     .save()
                                     .catch(err => console.log(err));
-                        }
-                        ;
+                        };
         </script>
     </body>
 </html>
