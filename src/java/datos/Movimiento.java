@@ -12,20 +12,14 @@ package datos;
 public class Movimiento {
 
     private String ID,Titulo, Descripcion;
-    private float money;
-    private String RUC, RazonSocial , Fecha;
+    private String money;
+    private String RUC, RazonSocial , Fecha,PDf;
 
     public Movimiento() {
-        this.ID = "NN";
-        this.Titulo = "NN";
-        this.Descripcion = "NN";
-        this.money = 0;
-        this.RUC = "NN";
-        this.RazonSocial = "NN";
-        this.Fecha = "NN";
+        
     }
 
-    public Movimiento(String ID, String Titulo, String Descripcion, float money, String RUC, String RazonSocial, String Fecha) {
+    public Movimiento(String ID, String Titulo, String Descripcion, String money, String RUC, String RazonSocial, String Fecha, String PDf) {
         this.ID = ID;
         this.Titulo = Titulo;
         this.Descripcion = Descripcion;
@@ -33,6 +27,7 @@ public class Movimiento {
         this.RUC = RUC;
         this.RazonSocial = RazonSocial;
         this.Fecha = Fecha;
+        this.PDf = PDf;
     }
 
     public String getID() {
@@ -59,11 +54,11 @@ public class Movimiento {
         this.Descripcion = Descripcion;
     }
 
-    public float getMoney() {
+    public String getMoney() {
         return money;
     }
 
-    public void setMoney(float money) {
+    public void setMoney(String money) {
         this.money = money;
     }
 
@@ -91,10 +86,17 @@ public class Movimiento {
         this.Fecha = Fecha;
     }
 
-    @Override
-    public String toString() {
-        return "Gasto{" + "ID=" + ID + ", Titulo=" + Titulo + ", Descripcion=" + Descripcion + ", money=" + money + ", RUC=" + RUC + ", RazonSocial=" + RazonSocial + ", Fecha=" + Fecha + '}';
+    public String getPDf() {
+        return PDf;
     }
 
-    
+    public void setPDf(String PDf) {
+        this.PDf = PDf;
+    }
+
+    @Override
+    public String toString() {
+        return "Movimiento{" + "ID=" + ID + ", Titulo=" + Titulo + ", Descripcion=" + Descripcion + ", money=" + money + ", RUC=" + RUC + ", RazonSocial=" + RazonSocial + ", Fecha=" + Fecha + ", PDf=" + PDf + '}';
+    }
+
 }

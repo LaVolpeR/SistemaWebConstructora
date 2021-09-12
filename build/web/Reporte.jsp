@@ -113,11 +113,10 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Reporte de Actividades</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Seleccione las Opciones para generar su Reporte de Actividades</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <h4 class="text-center">Seleccione las Opciones para generar su Reporte </h4>
                             <div class="row mb-3">
                                 <div class="col-md-6">
                                     <div class="form-check form-switch">
@@ -160,15 +159,46 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Reporte de Movimientos</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Seleccione las Opciones para generar su Reporte de Movimientos</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            ...
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" name="ReporteMes" id="ReporteMovimientoMes">
+                                        <label class="form-check-label" for="flexSwitchCheckDefault">Reporte Mes Actual</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" name="ReporteMes" id="ReporteMovimientoSemana">
+                                        <label class="form-check-label" for="flexSwitchCheckDefault">Reporte Semana Actual</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" name="ReporteMes" id="ReporteMovimientoAnnio">
+                                        <label class="form-check-label" for="flexSwitchCheckDefault">Reporte Año Actual (todo)</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" name="ReporteMes" id="ReporteMovimientoAnnioFactura">
+                                        <label class="form-check-label" for="flexSwitchCheckDefault">Reporte Año Actual (Facturas)</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" name="ReporteMes" id="ReporteMovimientoTotal">
+                                        <label class="form-check-label" for="flexSwitchCheckDefault">Reporte Todo el proyecto</label>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <a type="button" class="btn btn-primary" name="btnReporteMovimiento" >Generar Reporte</a>
+                            <button type="button" class="btn btn-primary" id="btnReporteMovimiento">Generar Reporte</button>
                         </div>
                     </div>
                 </div>
@@ -178,17 +208,21 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
         <!-- Personal Script -->
         <script type="text/javascript">
+            //Actividades 
             const ReporteMes = document.querySelector('input[id="ReporteMes"]')
             const ReporteTotal = document.querySelector('input[id="ReporteTotal"]')
             const ReporteDia = document.querySelector('input[id="ReporteDia"]')
             const ReporteSemana = document.querySelector('input[id="ReporteSemana"]')
             const DNITrabajador = document.getElementById("Trabajador")
             const button = document.querySelector('button[id="btnReporteActividad"]')
-
-            console.log(document.querySelector('input[id="ReporteMes"]'));
-            console.log(ReporteTotal);
-            console.log(ReporteDia);
-            console.log(ReporteSemana);
+            //Movimientos 
+            const ReporteMovimientoMes = document.querySelector('input[id="ReporteMovimientoMes"]')
+            const ReporteMovimientoSemana = document.querySelector('input[id="ReporteMovimientoSemana"]')
+            const ReporteMovimientoAnnio = document.querySelector('input[id="ReporteMovimientoAnnio"]')
+            const ReporteMovimientoAnnioFactura = document.querySelector('input[id="ReporteMovimientoAnnioFactura"]')
+            const ReporteMovimientoTotal = document.querySelector('input[id="ReporteMovimientoTotal"]')
+            const buttonM = document.querySelector('button[id="btnReporteMovimiento"]')
+            //Funcion Actividad
             button.addEventListener('click', (e) => {
                 if (ReporteMes.checked || ReporteTotal.checked || ReporteDia.checked || ReporteSemana.checked) {
                     const url = new URL(window.location.origin + '/SistemaWebConstructoraTesis1.1/ReporteActividad.jsp');
@@ -207,6 +241,32 @@
                     }
                     if (ReporteSemana.checked) {
                         url.searchParams.append('Semana', ReporteSemana.value)
+                    }
+                    window.location.href = url.href;
+                    //window.location.href = "ReporteActividad.jsp?action=btnReporteActividad&Mes=" + ReporteMes.value + "&Annio=" + ReporteAnnio.value + "&Dia=" + ReporteDia.value + "&Semana=" + ReporteSemana.value;
+                } else {
+                    alert("Selecciona alguna opción");
+                }
+            })
+            //Fucion Movimiento
+            buttonM.addEventListener('click', (e) => {
+                if (ReporteMovimientoMes.checked || ReporteMovimientoSemana.checked || ReporteMovimientoAnnio.checked || ReporteMovimientoAnnioFactura.checked || ReporteMovimientoTotal.checked) {
+                    const url = new URL(window.location.origin + '/SistemaWebConstructoraTesis1.1/ReporteMovimientos.jsp');
+                    url.searchParams.append('action', 'btnReporteMovimiento')
+                    if (ReporteMovimientoMes.checked) {
+                        url.searchParams.append('Mes', ReporteMovimientoMes.value)
+                    }
+                    if (ReporteMovimientoSemana.value) {
+                        url.searchParams.append('Semana', ReporteMovimientoSemana.value)
+                    }
+                    if (ReporteMovimientoAnnio.checked) {
+                        url.searchParams.append('Annio', ReporteMovimientoAnnio.value)
+                    }
+                    if (ReporteMovimientoAnnioFactura.checked) {
+                        url.searchParams.append('AnnioFactura', ReporteMovimientoAnnioFactura.value)
+                    }
+                    if (ReporteMovimientoTotal.checked) {
+                        url.searchParams.append('Total', ReporteMovimientoTotal.value)
                     }
                     window.location.href = url.href;
                     //window.location.href = "ReporteActividad.jsp?action=btnReporteActividad&Mes=" + ReporteMes.value + "&Annio=" + ReporteAnnio.value + "&Dia=" + ReporteDia.value + "&Semana=" + ReporteSemana.value;

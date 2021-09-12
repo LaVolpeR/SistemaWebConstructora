@@ -29,7 +29,7 @@ public class lChart {
             }
             //System.out.print("try/SumaMesMovimiento :" + Tipo + "/" + Proyecto + "/" + Mes + "/" + moneyTotal);
         } catch (Exception e) {
-            System.out.print("catch/SumaMesMovimiento" + e);
+            //System.out.print("catch/SumaMesMovimiento" + e);
         }
         return moneyTotal;
     }
@@ -50,7 +50,7 @@ public class lChart {
             i = con.getRs().getInt(1);
             //System.out.print("try/DiasTotalMes " + annio + "/" + mes + "/" + mes2 + " : " + i);
         } catch (Exception e) {
-            System.out.print("catch/DiasTotalMes :" + e);
+            //System.out.print("catch/DiasTotalMes :" + e);
         }
         return i;
     }
@@ -63,7 +63,7 @@ public class lChart {
             if (con.getRs().getString(1) != null) {
                 Moneytotal = con.getRs().getString(1);
             }
-            System.out.print("try/SumDiaSemanaMovimiento"+"/"+Mes+"/"+Dia+" :"+ Moneytotal);
+            //System.out.print("try/SumDiaSemanaMovimiento"+"/"+Mes+"/"+Dia+" :"+ Moneytotal);
         } catch (Exception e) {
         }
         return Moneytotal;
@@ -208,7 +208,7 @@ public class lChart {
             }
             //System.out.print("try/SumDiaSemanaMovimiento"+Annio+"/"+Mes+"/"+Dia+" :"+ MoneyTotal);
         } catch (Exception e) {
-            System.out.print("catch/SumDiaSemanaMovimiento :"+ e);
+            //System.out.print("catch/SumDiaSemanaMovimiento :"+ e);
         }
         return MoneyTotal;
     }

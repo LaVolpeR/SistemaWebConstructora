@@ -79,6 +79,26 @@ public class lDatosTemporales {
         } catch (SQLException e) {
         }
     }
+    public void IngresoGastoTotalProyecto(String IDProyecto){
+        try {
+            con.consulta("IngresoGastoTotalProyecto " + IDProyecto);
+            lDatTem.clear();
+            while (con.getRs().next()) {
+                DatosTemporales DatTem = new DatosTemporales(con.getRs().getString(1),
+                        "0",
+                        "0",
+                        "0",
+                        "0",
+                        "0",
+                        "0",
+                        "0",
+                        "0",
+                        "0");
+                lDatTem.add(DatTem);
+            }
+        } catch (Exception e) {
+        }
+    }
     
 
     public void ListarReporteActividadSemana(String Fecha, String IDProyecto) {

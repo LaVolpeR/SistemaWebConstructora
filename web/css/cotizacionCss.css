@@ -13,3 +13,9 @@ and open the template in the editor.
 .btn{
     width: 100%
 }
+p{
+    font-size: 2rem;
+}
+.container{
+    margin-top: 90px;
+}

@@ -4,6 +4,11 @@
     Author     : ramir
 --%>
 
+<%@page import="logico.lMovimiento"%>
+<%@page import="datos.Movimiento"%>
+<%@page import="logico.lDatosTemporales"%>
+<%@page import="datos.DatosTemporales"%>
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="datos.Chart"%>
 <%@page import="java.util.Calendar"%>
 <%@page import="logico.lChart"%>
@@ -31,6 +36,8 @@
             String codigo;
             String proyecto = "0";
             String ID_Proyecto = "null";
+            DatosTemporales DatTem = new DatosTemporales();
+            lDatosTemporales lDatTem = new lDatosTemporales();
             if (sesion.getAttribute("user") != null && sesion.getAttribute("puesto") != null && sesion.getAttribute("puesto").equals("1") && !sesion.getAttribute("proyecto").equals("0")) {
                 user = sesion.getAttribute("user").toString();
                 puesto = sesion.getAttribute("puesto").toString();
@@ -52,8 +59,11 @@
             int mes = Integer.parseInt(Integer.toString(c.get(Calendar.MONTH)));
             int annio = Integer.parseInt(Integer.toString(c.get(Calendar.YEAR)));
             mes++;
+
             lCha.ListarGastoSemana(annio, mes, dia);
+
             int DiasMes = lCha.DiasTotalMes(mes, annio);
+
             Chart Cha = new Chart();
             lCha.ListarGastoSemana(annio, mes, dia);
             int b = lChart.lCha.size() - 1;
@@ -63,6 +73,13 @@
             float IngresoSemana = 0;
             float GastoMes = 0;
             float IngresoMes = 0;
+            int d = 0;
+            lDatTem.IngresoGastoTotalProyecto(proyecto);
+            DatTem = (DatosTemporales) lDatosTemporales.lDatTem.get(0);
+            float Ingresos = Float.parseFloat(DatTem.getDato());
+            DatTem = (DatosTemporales) lDatosTemporales.lDatTem.get(1);
+            float Gastos = Float.parseFloat(DatTem.getDato());
+            float Total = Ingresos - Gastos;
         %>
         <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
@@ -92,7 +109,6 @@
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="#">Informes</a>
                         </li>
-
                     </ul>
                     <form class="d-flex">
                         <a class="nav-link active" aria-current="page" href="index.jsp?cerrar=true">Cerrar sesion</a>
@@ -100,11 +116,39 @@
                 </div>
             </div>
         </nav>
-        <br><br>
+
         <div class="container">
-            
-            
             <div class="px-lg-4 px-xl-5 container-fluid">
+                <div class="row">
+                    <div class="col">
+                        <div class="card text-white bg-success">
+                            <div class="card-body">
+                                <p class="card-text">
+                                    Ingreso Obtenido: S/.<%=(double) Math.round(Ingresos * 100d) / 100%>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card text-white bg-danger ">
+                            <div class="card-body">
+                                <p class="card-text" >
+                                    Gasto Total: S/.<%=(double) Math.round(Gastos * 100d) / 100%>
+                                </p>
+                            </div>
+                        </div> 
+                    </div>
+                    <div class="col">
+                        <div class="card text-dark  bg-warning  ">
+                            <div class="card-body">
+                                <p class="card-text" >
+                                    Gasto Total: S/.<%=(double) Math.round(Total * 100d) / 100%>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
                 <div class="page-header">
                     <h1 class="page-heading">Graficos Del Proyecto</h1>
                 </div>
@@ -131,16 +175,27 @@
                         </div>
                         <div class="col-lg-4">
                             <div class="mb-4 card">
-
                                 <div class="card-body">
                                     <div id="Semi-Donut-Mes"></div>
                                 </div>
                             </div>
                             <div class="mb-4 card">
-
                                 <div class="card-body">
-
-                                    <div id=""></div>
+                                    <div class="card text-white bg-success">
+                                        <div class="card-body">
+                                            <p class="card-text" id="IngresoMes"></p>
+                                        </div>
+                                    </div>
+                                    <div class="card text-white bg-danger ">
+                                        <div class="card-body">
+                                            <p class="card-text" id="GastoMes"></p>
+                                        </div>
+                                    </div> 
+                                    <div class="card text-dark  bg-warning  ">
+                                        <div class="card-body">
+                                            <p class="card-text" id="TotalMes"></p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -169,16 +224,27 @@
                         </div>
                         <div class="col-lg-4">
                             <div class="mb-4 card">
-
                                 <div class="card-body">
                                     <div id="Semi-Donut-Annio"></div>
                                 </div>
                             </div>
                             <div class="mb-4 card">
-
                                 <div class="card-body">
-
-                                    <div id=""></div>
+                                    <div class="card text-white bg-success">
+                                        <div class="card-body">
+                                            <p class="card-text" id="IngresoAnnio"></p>
+                                        </div>
+                                    </div>
+                                    <div class="card text-white bg-danger ">
+                                        <div class="card-body">
+                                            <p class="card-text" id="GastoAnnio"></p>
+                                        </div>
+                                    </div> 
+                                    <div class="card text-dark  bg-warning  ">
+                                        <div class="card-body">
+                                            <p class="card-text" id="TotalAnnio"></p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -207,23 +273,34 @@
                         </div>
                         <div class="col-lg-4">
                             <div class="mb-4 card">
-
                                 <div class="card-body">
                                     <div id="Semi-Donut-Semana"></div>
                                 </div>
                             </div>
                             <div class="mb-4 card">
-
                                 <div class="card-body">
-
-                                    <canvas id=""></canvas>
+                                    <div class="card text-white bg-success">
+                                        <div class="card-body">
+                                            <p class="card-text" id="IngresoSemana"></p>
+                                        </div>
+                                    </div>
+                                    <div class="card text-white bg-danger ">
+                                        <div class="card-body">
+                                            <p class="card-text" id="GastoSemana"></p>
+                                        </div>
+                                    </div> 
+                                    <div class="card text-dark  bg-warning  ">
+                                        <div class="card-body">
+                                            <p class="card-text" id="TotalSemana"></p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </section>
             </div>
-                
+
         </div>
         <!-- Tabla de Gasto Mes -->
         <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom2" aria-labelledby="offcanvasBottomLabel">
@@ -236,34 +313,47 @@
                     <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Descripcion</th>
-                            <th scope="col">Gasto</th>
-                            <th scope="col">Responsable</th>
                             <th scope="col">Fecha</th>
+                            <th scope="col">Titulo</th>
+                            <th scope="col">Descripcion</th>
+                            <th scope="col">PDF</th>
+                            <th scope="col">RUC</th>
+                            <th scope="col">RazonSocial</th>
+                            <th scope="col">Dinero</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th>1</th>
-                            <td>Comida</td>
-                            <td>20.00</td>
-                            <td>Ramiro</td>
-                            <td>15/05/2021</td>
+
+                        <%
+                            Movimiento Mov = new Movimiento();
+                            lMovimiento lMov = new lMovimiento();
+                            lMov.MostrarMovimientoMes(proyecto, mes, annio);
+                            for (int i = 0; i < lMovimiento.lMov.size(); i++) {
+                                d++;
+                                String ClassTable = "table-light";
+                                Mov = (Movimiento) lMovimiento.lMov.get(i);
+                                if (Mov.getID().equalsIgnoreCase("1")) {
+                                    ClassTable = "table-success";
+                                }
+                                if (Mov.getID().equalsIgnoreCase("2")) {
+                                    ClassTable = "table-danger";
+                                }
+                                float Money = Float.parseFloat(Mov.getMoney());
+                        %>
+                        <tr class="<%=ClassTable%>">
+                            <th><%=d%></th>
+                            <td><%=Mov.getFecha()%></td>
+                            <td><%=Mov.getTitulo()%></td>
+                            <td><%=Mov.getDescripcion()%></td>
+                            <td><%=Mov.getPDf()%></td>
+                            <td><%=Mov.getRUC()%></td>
+                            <td><%=Mov.getRazonSocial()%></td>
+                            <td> <%=(double) Math.round(Money * 100d) / 100%></td>
                         </tr>
-                        <tr>
-                            <th>2</th>
-                            <td>Maquinaria</td>
-                            <td>50.00</td>
-                            <td>Ramiro</td>
-                            <td>17/05/2021</td>
-                        </tr>
-                        <tr>
-                            <th>3</th>
-                            <td>Reparacion</td>
-                            <td>25.00</td>
-                            <td>Orlando</td>
-                            <td>17/05/2021</td>
-                        </tr>
+
+                        <%
+                            }
+                        %>
                     </tbody>
                 </table>
             </div>
@@ -278,42 +368,76 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th scope="col">#</th>
                             <th scope="col">Mes</th>
+                            <th scope="col">Ingreso Total</th>
                             <th scope="col">Gasto Total</th>
+                            <th scope="col">Balance</th>
                         </tr>
                     </thead>
                     <tbody>
+                        <%
+                            for (int i = 1; i <= 12; i++) {
+                                String MesEscrito = "null";
+                                switch (i) {
+                                    case 1:
+                                        MesEscrito = "Enero";
+                                        break;
+                                    case 2:
+                                        MesEscrito = "Febrero";
+                                        break;
+                                    case 3:
+                                        MesEscrito = "Marzo";
+                                        break;
+
+                                    case 4:
+                                        MesEscrito = "Abril";
+                                        break;
+                                    case 5:
+                                        MesEscrito = "Mayo";
+                                        break;
+                                    case 6:
+                                        MesEscrito = "Junio";
+                                        break;
+                                    case 7:
+                                        MesEscrito = "Julio";
+                                        break;
+                                    case 8:
+                                        MesEscrito = "Agosto";
+                                        break;
+                                    case 9:
+                                        MesEscrito = "Septiembre";
+                                        break;
+                                    case 10:
+                                        MesEscrito = "Octubre";
+                                        break;
+                                    case 11:
+                                        MesEscrito = "Noviembre";
+                                        break;
+                                    case 12:
+                                        MesEscrito = "Diciembre";
+                                        break;
+                                    default:
+                                }
+                                float balance = 0;
+                                String ClassTable = "table-light";
+                                if (!lCha.SumaMesMovimiento("1", proyecto, i).equalsIgnoreCase("0") || !lCha.SumaMesMovimiento("2", proyecto, i).equalsIgnoreCase("0")) {
+                                    balance = Float.parseFloat(lCha.SumaMesMovimiento("1", proyecto, i)) - Float.parseFloat(lCha.SumaMesMovimiento("2", proyecto, i));
+                                    if (balance >= 0) {
+                                        ClassTable = "table-success";
+                                    } else {
+                                        ClassTable = "table-danger";
+                                    }
+                        %>
                         <tr>
-                            <th>1</th>
-                            <td>Enero</td>
-                            <td>12</td>
+                            <td> <%=MesEscrito%></td>
+                            <td>S/. <%=(double) Math.round(Float.parseFloat(lCha.SumaMesMovimiento("1", proyecto, i)) * 100d) / 100%></td>
+                            <td>S/. <%=(double) Math.round(Float.parseFloat(lCha.SumaMesMovimiento("2", proyecto, i)) * 100d) / 100%></td>
+                            <td class="<%=ClassTable%>">S/. <%=(double) Math.round(balance * 100d) / 100%></td>
                         </tr>
-                        <tr>
-                            <th>2</th>
-                            <td>Febrero</td>
-                            <td>19</td>
-                        </tr>
-                        <tr>
-                            <th>3</th>
-                            <td>Marzo</td>
-                            <td>13</td>
-                        </tr>
-                        <tr>
-                            <th>4</th>
-                            <td>Abril</td>
-                            <td>10</td>
-                        </tr>
-                        <tr>
-                            <th>5</th>
-                            <td>Mayo</td>
-                            <td>12</td>
-                        </tr>
-                        <tr>
-                            <th>6</th>
-                            <td>Junio</td>
-                            <td>13</td>
-                        </tr>
+                        <%
+                                }
+                            }
+                        %>
                     </tbody>
                 </table>
             </div>
@@ -329,41 +453,49 @@
                     <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Descripcion</th>
-                            <th scope="col">Gasto Total</th>
-                            <th scope="col">Responsable</th>
                             <th scope="col">Fecha</th>
+                            <th scope="col">Titulo</th>
+                            <th scope="col">Descripcion</th>
+                            <th scope="col">RUC</th>
+                            <th scope="col">Razon Social</th>
+                            <th scope="col">PDF</th>
+                            <th scope="col">Gasto Total</th>
+
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th>1</th>
-                            <td>Comida</td>
-                            <td>20.00</td>
-                            <td>Ramiro</td>
-                            <td>15/05/2021</td>
+                        <%
+                            d = 0;
+                            for (int i = 0; i <= 6; i++) {
+
+                                lMov.MostrarMovimientoSemana(lDatTem.MostrarFechaSemana(i));
+
+                                for (int j = 0; j < lMovimiento.lMov.size(); j++) {
+                                    d++;
+
+                                    Mov = (Movimiento) lMovimiento.lMov.get(j);
+                                    String ClassTable = "table-light";
+
+                                    if (Mov.getID().equalsIgnoreCase("1")) {
+                                        ClassTable = "table-success";
+                                    }
+                                    if (Mov.getID().equalsIgnoreCase("2")) {
+                                        ClassTable = "table-danger";
+                                    }
+                                    Float Money = Float.parseFloat(Mov.getMoney());
+                        %>
+                        <tr class="<%=ClassTable%>">
+                            <th><%=d%></th>
+                            <td><%=Mov.getFecha()%></td>
+                            <td><%=Mov.getTitulo()%></td>
+                            <td><%=Mov.getDescripcion()%></td>
+                            <td><%=Mov.getRUC()%></td>
+                            <td><%=Mov.getRazonSocial()%></td>
+                            <td><%=Mov.getPDf()%></td>
+                            <td> <%=(double) Math.round(Money * 100d) / 100%></td>
                         </tr>
-                        <tr>
-                            <th>2</th>
-                            <td>Maquinaria</td>
-                            <td>50.00</td>
-                            <td>Ramiro</td>
-                            <td>17/05/2021</td>
-                        </tr>
-                        <tr>
-                            <th>3</th>
-                            <td>Reparacion</td>
-                            <td>25.00</td>
-                            <td>Orlando</td>
-                            <td>17/05/2021</td>
-                        </tr>
-                        <tr>
-                            <th>3</th>
-                            <td>Reparacion</td>
-                            <td>25.00</td>
-                            <td>Orlando</td>
-                            <td>17/05/2021</td>
-                        </tr>
+                        <%}
+                            }%>
                     </tbody>
                 </table>
             </div>
@@ -384,8 +516,7 @@
                             datasets: [{
                             label: 'Gasto Mensual',
                                     data: [
-            <%
-                for (int i = 1; i <= 12; i++) {
+            <%                for (int i = 1; i <= 12; i++) {
                     GastoAnnio += Float.parseFloat(lCha.SumaMesMovimiento("2", proyecto, i));
             %>
             <%=lCha.SumaMesMovimiento("2", proyecto, i)%>,
@@ -641,7 +772,7 @@
                                         }
                                 }
                         });
-            var optionsSemiDonutMes = {
+                        var optionsSemiDonutMes = {
                         series: [<%=GastoMes%>, <%=IngresoMes%>],
                                 chart: {
                                 type: 'donut',
@@ -672,8 +803,26 @@
                                         }
                                 }]
                         };
-            var chartSemiDonutMes = new ApexCharts(document.querySelector("#Semi-Donut-Mes"), optionsSemiDonutMes);
-            chartSemiDonutMes.render();
+                        var chartSemiDonutMes = new ApexCharts(document.querySelector("#Semi-Donut-Mes"), optionsSemiDonutMes);
+                        chartSemiDonutMes.render();
+            <%
+                float TotalMes = IngresoMes - GastoMes;
+                float TotalAnnio = IngresoAnnio - GastoAnnio;
+                float TotalSemana = IngresoSemana - GastoSemana;
+            %>
+
+                        document.getElementById('IngresoMes').innerHTML = 'Ingresos S/. ' + <%=(double) Math.round(IngresoMes * 100d) / 100%>; ;
+                        document.getElementById('GastoMes').innerHTML = 'Gastos   S/. ' + <%=(double) Math.round(GastoMes * 100d) / 100%>; ;
+                        document.getElementById('TotalMes').innerHTML = 'Total   S/. ' + <%=(double) Math.round(TotalMes * 100d) / 100%>;
+                        document.getElementById('IngresoAnnio').innerHTML = 'Ingresos S/. ' + <%=(double) Math.round(IngresoAnnio * 100d) / 100%>; ;
+                        document.getElementById('GastoAnnio').innerHTML = 'Gastos   S/. ' + <%=(double) Math.round(GastoAnnio * 100d) / 100%>; ;
+                        document.getElementById('TotalAnnio').innerHTML = 'Total   S/. ' + <%=(double) Math.round(TotalAnnio * 100d) / 100%>;
+                        document.getElementById('IngresoSemana').innerHTML = 'Ingresos S/. ' + <%=(double) Math.round(IngresoSemana * 100d) / 100%>; ;
+                        document.getElementById('GastoSemana').innerHTML = 'Gastos   S/. ' + <%=(double) Math.round(GastoSemana * 100d) / 100%>; ;
+                        document.getElementById('TotalSemana').innerHTML = 'Total   S/. ' + <%=(double) Math.round(TotalSemana * 100d) / 100%>;
+
+
+
 
         </script>
     </body>

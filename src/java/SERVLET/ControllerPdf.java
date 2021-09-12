@@ -124,10 +124,10 @@ public class ControllerPdf extends HttpServlet {
                 Movimiento gas = new Movimiento("0",
                         request.getParameter("InputTitulo"),
                         request.getParameter("InputDescripcion"),
-                        Float.parseFloat(request.getParameter("InputMoney")),
+                        request.getParameter("InputMoney"),
                         request.getParameter("InputRuc"),
                         request.getParameter("InputRazonSocial"),
-                        "0/0/0");
+                        "0/0/0","0");
 
                 if (inputStream != null) {
                     Arc.setData(inputStream);
