@@ -15,6 +15,8 @@
 <!DOCTYPE html>
 <html>
     <head>
+                <meta name="viewport" content="width=device-width, initial-scale=2">
+
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <script src="js/mainCalendar.js" type="text/javascript"></script>
         <link href="css/mainCalendar.css" rel="stylesheet" type="text/css"/>
@@ -33,12 +35,13 @@
             String user;
             String Puesto;
             String codigo = null;
+            String activador = "disabled";
             String proyecto = "0";
             if (sesion.getAttribute("user") != null && sesion.getAttribute("puesto") != null && sesion.getAttribute("puesto").equals("2")) {
                 user = sesion.getAttribute("user").toString();
                 Puesto = sesion.getAttribute("puesto").toString();
                 codigo = sesion.getAttribute("codigo").toString();
-lPro.ListarProyectos(codigo);
+                lPro.ListarProyectos(codigo);
             } else {
                 if (sesion.getAttribute("user") != null && sesion.getAttribute("puesto") != null && sesion.getAttribute("puesto").equals("1")) {
                     response.sendRedirect("MenuPrincipalJefe.jsp");
@@ -48,6 +51,9 @@ lPro.ListarProyectos(codigo);
                     out.print("<script>location.replace('index.jsp');<script>");
                 }
 
+            }
+            if (lTra.UltimoProyecto(codigo) != 0) {
+                activador = "active";
             }
             Calendar c = Calendar.getInstance();
             int dia = Integer.parseInt(Integer.toString(c.get(Calendar.DATE)));
@@ -68,14 +74,17 @@ lPro.ListarProyectos(codigo);
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="CronogramaPersonal.jsp">Cronograma</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link <%=activador%>" aria-current="page" href="InformePersonal.jsp">Informe</a>
+                        </li>
                     </ul>
                     <form class="d-flex">
                         <a class="nav-link active" aria-current="page" href="index.jsp?cerrar=true">Cerrar sesion</a>
                     </form>
                 </div>
             </div>
-        </nav>
-<div class="container">
+                        </nav>
+        <div class="container">
             <div id='calendar'></div>
         </div>
 
@@ -93,7 +102,7 @@ lPro.ListarProyectos(codigo);
                             right: 'dayGridMonth,dayGridWeek,dayGridDay,listMonth'
                     },
                     initialDate: <%                        if (mes <= 9) {
-                                    if (dia <= 9) {
+                            if (dia <= 9) {
             %>
             '<%=annio%>-0<%=mes%>-0<%=dia%>'
             <%

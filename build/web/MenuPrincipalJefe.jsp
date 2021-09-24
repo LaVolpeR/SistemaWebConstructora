@@ -11,6 +11,8 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=Windows-1252">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <link href="css/CardCss.css" rel="stylesheet" type="text/css"/>
         <title>Menu Principal Jefe</title>
@@ -23,12 +25,12 @@
             String user;
             String puesto;
             String codigo;
-           
+
             if (sesion.getAttribute("user") != null && sesion.getAttribute("puesto") != null && sesion.getAttribute("puesto").equals("1")) {
                 user = sesion.getAttribute("user").toString();
                 puesto = sesion.getAttribute("puesto").toString();
                 codigo = sesion.getAttribute("codigo").toString();
-                sesion.setAttribute("proyecto","0");
+                sesion.setAttribute("proyecto", "0");
                 lPro.ListarProyectos(codigo);
             } else {
                 if (sesion.getAttribute("user") != null && sesion.getAttribute("puesto") != null && sesion.getAttribute("puesto").equals("2")) {
@@ -38,14 +40,15 @@
                     response.sendRedirect("index.jsp");
                     out.print("<script>location.replace('index.jsp');<script>");
                 }
-            }if(request.getParameter("IngresarProyecto")!=null){
-                sesion.setAttribute("proyecto",request.getParameter("InputProyecto"));
+            }
+            if (request.getParameter("IngresarProyecto") != null) {
+                sesion.setAttribute("proyecto", request.getParameter("InputProyecto"));
                 user = sesion.getAttribute("user").toString();
                 puesto = sesion.getAttribute("puesto").toString();
                 codigo = sesion.getAttribute("codigo").toString();
                 response.sendRedirect("MenuProyecto.jsp");
             }
-            
+
         %>
         <!-- Navbar -->
 

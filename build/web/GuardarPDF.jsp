@@ -14,6 +14,8 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
         <meta http-equiv="Content-Type" content="text/html; charset=Windows-1252">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
@@ -34,7 +36,7 @@
                 puesto = sesion.getAttribute("puesto").toString();
                 codigo = sesion.getAttribute("codigo").toString();
                 lPro.ListarProyectos(codigo);
-                sesion.setAttribute("proyecto","0");
+                sesion.setAttribute("proyecto", "0");
             } else {
                 if (sesion.getAttribute("user") != null && sesion.getAttribute("puesto") != null && sesion.getAttribute("puesto").equals("2")) {
                     response.sendRedirect("MenuPrincipalPersonal.jsp");
@@ -67,7 +69,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">MENU PRINCIPAL JEFE</a>
+                            <a class="nav-link active" href="MenuPrincipalJefe.jsp" tabindex="-1" aria-disabled="true">MENU PRINCIPAL JEFE</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="Planilla.jsp">Trabajadores</a>
@@ -125,8 +127,6 @@
             </diV>
         </form>
 
-        <%
-        %>
         <!-- Bootstrap Bundle with Popper -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
         <!-- Personal Script -->

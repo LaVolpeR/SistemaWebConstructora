@@ -16,6 +16,8 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=Windows-1252">
+                        <meta name="viewport" content="width=device-width, initial-scale=1">
+
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">        
         <script src="js/html2pdf.bundle.min.js" type="text/javascript"></script>
         <link href="css/cronograma.css" rel="stylesheet" type="text/css"/>
@@ -63,7 +65,7 @@
                             <a class="nav-link active" href="MenuProyecto.jsp" tabindex="-1" aria-disabled="true">MENU PROYECTO</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="Cotizacion.jsp">Cotizacion</a>
+                            <a class="nav-link active" aria-current="page" href="Movimientos.jsp">Movimientos</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="PlanillaProyecto.jsp">Planilla</a>
@@ -72,13 +74,13 @@
                             <a class="nav-link active" aria-current="page" href="Cronograma.jsp">Cronograma</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Reportes</a>
+                            <a class="nav-link active" aria-current="page" href="Reporte.jsp">Reportes</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Archivos</a>
+                            <a class="nav-link active" aria-current="page" href="ArchivosProyecto.jsp">Archivos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Informes</a>
+                            <a class="nav-link active" aria-current="page" href="InformeProyecto.jsp">Informes</a>
                         </li>
                     </ul>
                     <form class="d-flex">

@@ -7,6 +7,10 @@ package logico;
 
 import datos.Proyecto;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.Locale;
+import java.util.TimeZone;
 
 /**
  *
@@ -16,6 +20,15 @@ public class lProyecto {
 
     public static ArrayList lPro = new ArrayList();
     conexion con = new conexion();
+    Locale locale = new Locale("es", "PE");
+    TimeZone tz = TimeZone.getTimeZone("America/Lima");
+    Calendar c = Calendar.getInstance(tz, locale);
+    Calendar cal = GregorianCalendar.getInstance(tz, locale);
+    int dia = Integer.parseInt(Integer.toString(cal.get(Calendar.DATE)));
+    int mes = Integer.parseInt(Integer.toString(cal.get(Calendar.MONTH))) + 1;
+    int annio = Integer.parseInt(Integer.toString(cal.get(Calendar.YEAR)));
+    int hour = Integer.parseInt(Integer.toString(cal.get(Calendar.HOUR_OF_DAY)));
+    int min = Integer.parseInt(Integer.toString(cal.get(Calendar.MINUTE)));
 
     public void CrearProyecto(Proyecto pro, String DNI) {
         try {
@@ -46,12 +59,13 @@ public class lProyecto {
                         con.getRs().getString(6),
                         con.getRs().getString(7));
                 lPro.add(pro);
-                System.out.print("Se cargo los proyectos del trabajador"+DNI+" fue un exito");
+                System.out.print("Se cargo los proyectos del trabajador" + DNI + " fue un exito");
             }
         } catch (Exception e) {
             System.out.print(e);
         }
     }
+
     public String TituloProyecto(int ID) {
         String Titulo = "nn";
         try {
@@ -62,17 +76,17 @@ public class lProyecto {
             System.out.print("Se obtuvo el titulo");
         } catch (Exception e) {
 
-            System.out.print("TituloProyectoArchivo "+e);
+            System.out.print("TituloProyectoArchivo " + e);
         }
         return Titulo;
     }
-    
-    public void InsertarPlanilla(String DNI, String ID){
+
+    public void InsertarPlanilla(String DNI, String ID) {
         try {
-            con.getSt().executeUpdate("exec sp_InsertarPlanilla '"+DNI+"', "+ ID);
+            con.getSt().executeUpdate("exec sp_InsertarPlanilla '" + DNI + "', " + ID + ",'" + annio + "-" + mes + "-" + dia + " " + hour + ":" + min + ":00'");
         } catch (Exception e) {
             System.out.println(e + "InsertarPlanilla");
         }
     }
-    
+
 }

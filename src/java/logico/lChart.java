@@ -58,7 +58,7 @@ public class lChart {
     public String SumaDiaMesMovimiento(String Tipo, String Proyecto, int Mes, int Dia) {
         String Moneytotal = "0";
         try {
-            con.consulta("exec sp_SumDiaMesMovimiento '" + Tipo + "','" + Proyecto + "'," + Mes + "," + Dia);
+            con.consulta("exec sp_SumDiaMesMovimiento " + Tipo + "," + Proyecto + "," + Mes + "," + Dia);
             con.getRs().next();
             if (con.getRs().getString(1) != null) {
                 Moneytotal = con.getRs().getString(1);

@@ -16,7 +16,14 @@ public class Movimiento {
     private String RUC, RazonSocial , Fecha,PDf;
 
     public Movimiento() {
-        
+        this.ID = ID;
+        this.Titulo = Titulo;
+        this.Descripcion = Descripcion;
+        this.money = money;
+        this.RUC = RUC;
+        this.RazonSocial = RazonSocial;
+        this.Fecha = Fecha;
+        this.PDf = PDf;
     }
 
     public Movimiento(String ID, String Titulo, String Descripcion, String money, String RUC, String RazonSocial, String Fecha, String PDf) {

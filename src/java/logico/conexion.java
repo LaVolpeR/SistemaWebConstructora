@@ -19,8 +19,7 @@ public class conexion {
     private String url;
 
     public conexion() {
-        url = "jdbc:sqlserver://LAPTOP-RAMIRO:1433;databaseName=SistemaWebProyecto"
-                + ";user=sa;password=sa123456";
+        url = "jdbc:sqlserver://ramiro-chavez-contratista-generales.database.windows.net:1433;database=SistemaWebProyecto;user=Ramiro@ramiro-chavez-contratista-generales;password=hPWZhb8C4srmqsa;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             con = DriverManager.getConnection(url);

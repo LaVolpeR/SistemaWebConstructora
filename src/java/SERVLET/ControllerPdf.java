@@ -22,7 +22,8 @@ import logico.lMovimiento;
 public class ControllerPdf extends HttpServlet {
 
     public static final String lIST_STUDENT = "/Archivos.jsp";
-    public static final String INSERT_OR_EDIT = "/GuardarPDF.jsp";
+    public static final String INSERT_PDF = "/GuardarPDF.jsp";
+    public static final String INSERT_PDF_PROYECTO = "/GuardarPDFProyecto.jsp";
     public static final String INSERT_GASTO = "/RegistroMovimiento.jsp";
     String estado = null;
     String tipo = null;
@@ -50,7 +51,7 @@ public class ControllerPdf extends HttpServlet {
             lArc.EliminarPDF(studentId);
         }
         if (action.equalsIgnoreCase("edit")) {
-            forward = INSERT_OR_EDIT;
+            forward = INSERT_PDF;
             int studentIdM = Integer.parseInt(request.getParameter("id"));
             id_pdf = studentIdM;
             Archivo Arc = lArc.getArchivoID(id_pdf);
@@ -62,11 +63,14 @@ public class ControllerPdf extends HttpServlet {
             request.setAttribute("row2", boo);
             estado = "edit";
         } else if (action.equalsIgnoreCase("insert")) {
-            forward = INSERT_OR_EDIT;
+            forward = INSERT_PDF;
             estado = "insert";
         } else if (action.equalsIgnoreCase("insertMovimiento")) {
             forward = INSERT_GASTO;
             estado = "insertMovimiento";
+        } else if (action.equalsIgnoreCase("insertPDFProyecto")){
+            forward = INSERT_PDF_PROYECTO;
+            estado = "insertPDFProyecto";
         }
 
         RequestDispatcher view = request.getRequestDispatcher(forward);
@@ -114,7 +118,15 @@ public class ControllerPdf extends HttpServlet {
                     Arc.setData(inputStream);
                 }
                 lArc.InsertarArchivo(Arc, DNI, ID);
-            } else if (estado.equalsIgnoreCase("insertMovimiento")) {
+            } else if(estado.equalsIgnoreCase("insertPDFProyecto")){
+                Arc.setID(0);
+                if (inputStream != null) {
+                    Arc.setData(inputStream);
+                }
+                lArc.InsertarArchivo(Arc, DNI, ID);
+                RequestDispatcher view = request.getRequestDispatcher("/ArchivosProyecto.jsp");
+                view.forward(request, response);
+            }else if (estado.equalsIgnoreCase("insertMovimiento")) {
                 Arc.setID(0);
                 String IDArchivo = "null";
                 ID = Integer.parseInt(request.getParameter("InputID"));

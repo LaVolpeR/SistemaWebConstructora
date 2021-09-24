@@ -8,6 +8,9 @@ package logico;
 import datos.Cronograma;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.Locale;
+import java.util.TimeZone;
 
 /**
  *
@@ -17,6 +20,15 @@ public class lCronograma {
 
     public static ArrayList lCro = new ArrayList();
     conexion con = new conexion();
+    Locale locale = new Locale("es", "PE");
+    TimeZone tz = TimeZone.getTimeZone("America/Lima");
+    Calendar c = Calendar.getInstance(tz, locale);
+    Calendar cal = GregorianCalendar.getInstance(tz, locale);
+    int dia = Integer.parseInt(Integer.toString(cal.get(Calendar.DATE)));
+    int mes = Integer.parseInt(Integer.toString(cal.get(Calendar.MONTH))) + 1;
+    int annio = Integer.parseInt(Integer.toString(cal.get(Calendar.YEAR)));
+    int hour = Integer.parseInt(Integer.toString(cal.get(Calendar.HOUR_OF_DAY)));
+    int min = Integer.parseInt(Integer.toString(cal.get(Calendar.MINUTE)));
 
     public void InsertActividad(Cronograma cro) {
 
@@ -28,10 +40,21 @@ public class lCronograma {
                     + cro.getHoraIncio() + "','"
                     + cro.getFechaFin() + "','"
                     + cro.getHoraFin() + "',"
-                    + cro.getProyectoId());
+                    + cro.getProyectoId()+",'"
+                    + annio + "-" + mes + "-" + dia + " " + hour + ":" + min + ":00'");
             System.out.print("try InsertActividad: ");
         } catch (Exception e) {
             System.out.print("InsertActividad: " + e);
+        }
+    }
+
+    public void ModificarCronograma(String ID, String Descripcion, String Fecha, String Time) {
+
+        try {
+            con.getSt().executeUpdate("exec ModCronograma " + ID + ",'" + Descripcion + "','" + Fecha + "','" + Time + "','" + annio + "-" + mes + "-" + dia + " " + hour + ":" + min + ":00'");
+            System.out.print("try ModificarCronograma: ");
+        } catch (Exception e) {
+            System.out.print("ModificarCronograma: " + e);
         }
     }
 
@@ -52,7 +75,7 @@ public class lCronograma {
                         con.getRs().getString(9),
                         con.getRs().getString(10),
                         con.getRs().getString(11),
-                con.getRs().getString(12));
+                        con.getRs().getString(12));
                 lCro.add(Cro);
             }
         } catch (Exception e) {

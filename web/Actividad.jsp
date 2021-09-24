@@ -21,6 +21,8 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
         <meta http-equiv="Content-Type" content="text/html; charset=Windows-1252">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
@@ -74,7 +76,7 @@
                             <a class="nav-link active" href="MenuProyecto.jsp" tabindex="-1" aria-disabled="true">MENU PROYECTO</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="Cotizacion.jsp">Cotizacion</a>
+                            <a class="nav-link active" aria-current="page" href="Movimientos.jsp">Movimientos</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="PlanillaProyecto.jsp">Planilla</a>
@@ -83,13 +85,13 @@
                             <a class="nav-link active" aria-current="page" href="Cronograma.jsp">Cronograma</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Reportes</a>
+                            <a class="nav-link active" aria-current="page" href="Reporte.jsp">Reportes</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Archivos</a>
+                            <a class="nav-link active" aria-current="page" href="ArchivosProyecto.jsp">Archivos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Informes</a>
+                            <a class="nav-link active" aria-current="page" href="InformeProyecto.jsp">Informes</a>
                         </li>
                     </ul>
                     <form class="d-flex">
@@ -212,30 +214,30 @@
                 Date hourI = hf.parse(request.getParameter("InputHoraInicio"));
                 Date hourF = hf.parse(request.getParameter("InputHoraFin"));
                 if (dateF.after(dateI)) {
-                    Cro = new Cronograma("1",request.getParameter("InputTitulo"),
+                    Cro = new Cronograma("1", request.getParameter("InputTitulo"),
                             request.getParameter("InputFechaInicio"),
                             request.getParameter("InputFechaFIN"),
                             request.getParameter("InputHoraInicio"),
-                            request.getParameter("InputHoraFin"),"0","0",
-                            request.getParameter("InputDescripcion"),"1",request.getParameter("InputDniTrabajador"),proyecto);
+                            request.getParameter("InputHoraFin"), "0", "0",
+                            request.getParameter("InputDescripcion"), "1", request.getParameter("InputDniTrabajador"), proyecto);
                     String DNITrabajador = request.getParameter("InputDniTrabajador");
                     lCro.InsertActividad(Cro);
                     response.sendRedirect("Cronograma.jsp");
                 } else if (dateI.equals(dateF)) {
                     if (hourF.after(hourI)) {
-                        Cro = new Cronograma("1",request.getParameter("InputTitulo"),
+                        Cro = new Cronograma("1", request.getParameter("InputTitulo"),
                                 request.getParameter("InputFechaInicio"),
                                 request.getParameter("InputFechaFIN"),
                                 request.getParameter("InputHoraInicio"),
                                 request.getParameter("InputHoraFin"),
-                                "0","0",
-                                request.getParameter("InputDescripcion"),"1",request.getParameter("InputDniTrabajador"),proyecto);
+                                "0", "0",
+                                request.getParameter("InputDescripcion"), "1", request.getParameter("InputDniTrabajador"), proyecto);
                         lCro.InsertActividad(Cro);
                         response.sendRedirect("Cronograma.jsp");
                     } else {
         %>
         <script type="text/javascript">
-            alert("Problema con la hora <%=hourF %> /<%=hourI %>" );
+            alert("Problema con la hora <%=hourF%> /<%=hourI%>");
         </script>
         <%
             }

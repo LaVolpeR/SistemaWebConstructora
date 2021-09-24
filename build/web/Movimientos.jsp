@@ -4,6 +4,9 @@
     Author     : ramir
 --%>
 
+<%@page import="java.util.GregorianCalendar"%>
+<%@page import="java.util.TimeZone"%>
+<%@page import="java.util.Locale"%>
 <%@page import="logico.lMovimiento"%>
 <%@page import="datos.Movimiento"%>
 <%@page import="logico.lDatosTemporales"%>
@@ -24,7 +27,7 @@
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
         <link href="css/cotizacionCss.css" rel="stylesheet" type="text/css"/>
-        <title>Cotizacion</title>
+        <title>Movimientos</title>
     </head>
     <body>
         <%
@@ -54,12 +57,15 @@
                 }
             }
             lChart lCha = new lChart();
-            Calendar c = Calendar.getInstance();
-            int dia = Integer.parseInt(Integer.toString(c.get(Calendar.DATE)));
-            int mes = Integer.parseInt(Integer.toString(c.get(Calendar.MONTH)));
-            int annio = Integer.parseInt(Integer.toString(c.get(Calendar.YEAR)));
-            mes++;
-
+            Locale locale = new Locale("es", "PE");
+            TimeZone tz = TimeZone.getTimeZone("America/Lima");
+            Calendar c = Calendar.getInstance(tz, locale);
+            Calendar cal = GregorianCalendar.getInstance(tz, locale);
+            int dia = Integer.parseInt(Integer.toString(cal.get(Calendar.DATE)));
+            int mes = Integer.parseInt(Integer.toString(cal.get(Calendar.MONTH))) + 1;
+            int annio = Integer.parseInt(Integer.toString(cal.get(Calendar.YEAR)));
+            int hour = Integer.parseInt(Integer.toString(cal.get(Calendar.HOUR_OF_DAY)));
+            int min = Integer.parseInt(Integer.toString(cal.get(Calendar.MINUTE)));
             lCha.ListarGastoSemana(annio, mes, dia);
 
             int DiasMes = lCha.DiasTotalMes(mes, annio);
@@ -73,13 +79,31 @@
             float IngresoSemana = 0;
             float GastoMes = 0;
             float IngresoMes = 0;
+            float Ingresos = 0;
+            float Gastos = 0;
+            float Total = 0;
             int d = 0;
             lDatTem.IngresoGastoTotalProyecto(proyecto);
-            DatTem = (DatosTemporales) lDatosTemporales.lDatTem.get(0);
-            float Ingresos = Float.parseFloat(DatTem.getDato());
-            DatTem = (DatosTemporales) lDatosTemporales.lDatTem.get(1);
-            float Gastos = Float.parseFloat(DatTem.getDato());
-            float Total = Ingresos - Gastos;
+            if (lDatosTemporales.lDatTem.size() != 0) {
+                if (lDatosTemporales.lDatTem.size() == 1) {
+                    DatTem = (DatosTemporales) lDatosTemporales.lDatTem.get(0);
+                    if (DatTem.getDato1().equalsIgnoreCase("1")) {
+                        Ingresos = Float.parseFloat(DatTem.getDato());
+                    } else if (DatTem.getDato1().equalsIgnoreCase("2")) {
+                        Gastos = Float.parseFloat(DatTem.getDato());
+                    }
+                    Total = Ingresos - Gastos;
+                }
+                if (lDatosTemporales.lDatTem.size() == 2) {
+                    DatTem = (DatosTemporales) lDatosTemporales.lDatTem.get(0);
+                    Ingresos = Float.parseFloat(DatTem.getDato());
+                    DatTem = (DatosTemporales) lDatosTemporales.lDatTem.get(1);
+                    Gastos = Float.parseFloat(DatTem.getDato());
+                    Total = Ingresos - Gastos;
+                }
+
+            }
+
         %>
         <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
@@ -92,7 +116,7 @@
                             <a class="nav-link active" href="MenuProyecto.jsp" tabindex="-1" aria-disabled="true">MENU PROYECTO</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="Cotizacion.jsp">Cotizacion</a>
+                            <a class="nav-link active" aria-current="page" href="Movimientos.jsp">Movimientos</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="PlanillaProyecto.jsp">Planilla</a>
@@ -104,10 +128,10 @@
                             <a class="nav-link active" aria-current="page" href="Reporte.jsp">Reportes</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Archivos</a>
+                            <a class="nav-link active" aria-current="page" href="ArchivosProyecto.jsp">Archivos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Informes</a>
+                            <a class="nav-link active" aria-current="page" href="InformeProyecto.jsp">Informes</a>
                         </li>
                     </ul>
                     <form class="d-flex">
@@ -468,7 +492,7 @@
                             d = 0;
                             for (int i = 0; i <= 6; i++) {
 
-                                lMov.MostrarMovimientoSemana(lDatTem.MostrarFechaSemana(i));
+                                lMov.MostrarMovimientoSemana(lDatTem.MostrarFechaSemana(i), proyecto);
 
                                 for (int j = 0; j < lMovimiento.lMov.size(); j++) {
                                     d++;

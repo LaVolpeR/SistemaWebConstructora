@@ -13,9 +13,11 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=Windows-1252">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>JSP Page</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link href="css/ArchivosCss.css" rel="stylesheet" type="text/css"/>
+        <title>Archivos</title>
     </head>
     <body>
         <%
@@ -28,7 +30,7 @@
                 user = sesion.getAttribute("user").toString();
                 puesto = sesion.getAttribute("puesto").toString();
                 codigo = sesion.getAttribute("codigo").toString();
-                sesion.setAttribute("proyecto","0");
+                sesion.setAttribute("proyecto", "0");
             } else {
                 if (sesion.getAttribute("user") != null && sesion.getAttribute("puesto") != null && sesion.getAttribute("puesto").equals("2")) {
                     response.sendRedirect("MenuPrincipalPersonal.jsp");
@@ -65,15 +67,14 @@
                 </div>
             </div>
         </nav>
-        <br><br><br>
         <input name="InputDNI"  type="hidden" value="<%=codigo%>">
         <div class="container">
             <div class="d-grid gap-2">
                 <a id="mostrar" class="btn btn-outline-primary" href="ControllerPdf?action=insert&id=">Subir PDF</a>
             </div>
             <br>
-            <div>
-                <table class="table table-bordered">
+            <div class="table-responsive">
+                <table class="table  table-bordered">
                     <thead>
                         <tr>
                             <th>Id</th>
@@ -82,8 +83,8 @@
                             <th>Fecha</th>
                             <th>Descripcion</th>
                             <th>Propietario</th>
-                            <th>Proyecto</th>
-                            <th>PDF</th>
+
+                            <th colspan="2">PDF</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -134,31 +135,31 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
         <!-- Personal Script -->
         <script type="text/javascript">
-            function ConvertirPDF(){
+            function ConvertirPDF() {
                 const $elementoParaConvertir = document.body; // <-- Aquí puedes elegir cualquier elemento del DOM
-html2pdf()
-    .set({
-        margin: 1,
-        filename: 'documento.pdf',
-        image: {
-            type: 'jpeg',
-            quality: 0.98
-        },
-        html2canvas: {
-            scale: 3, // A mayor escala, mejores gráficos, pero más peso
-            letterRendering: true,
-        },
-        jsPDF: {
-            unit: "in",
-            format: "a3",
-            orientation: 'portrait' // landscape o portrait
-        }
-    })
-    .from($elementoParaConvertir)
-    .save()
-    .catch(err => console.log(err));
+                html2pdf()
+                        .set({
+                            margin: 1,
+                            filename: 'documento.pdf',
+                            image: {
+                                type: 'jpeg',
+                                quality: 0.98
+                            },
+                            html2canvas: {
+                                scale: 3, // A mayor escala, mejores gráficos, pero más peso
+                                letterRendering: true,
+                            },
+                            jsPDF: {
+                                unit: "in",
+                                format: "a3",
+                                orientation: 'portrait' // landscape o portrait
+                            }
+                        })
+                        .from($elementoParaConvertir)
+                        .save()
+                        .catch(err => console.log(err));
             }
-            
+
         </script>
     </body>
 </html>

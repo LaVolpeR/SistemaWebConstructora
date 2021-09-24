@@ -15,6 +15,8 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=Windows-1252">
+                        <meta name="viewport" content="width=device-width, initial-scale=1">
+
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
         <link href="css/Reportecss.css" rel="stylesheet" type="text/css"/>
         <title>Reporte</title>
@@ -61,7 +63,7 @@
                             <a class="nav-link active" href="MenuProyecto.jsp" tabindex="-1" aria-disabled="true">MENU PROYECTO</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="Cotizacion.jsp">Cotizacion</a>
+                            <a class="nav-link active" aria-current="page" href="Movimientos.jsp">Movimientos</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="PlanillaProyecto.jsp">Planilla</a>
@@ -73,12 +75,11 @@
                             <a class="nav-link active" aria-current="page" href="Reporte.jsp">Reportes</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Archivos</a>
+                            <a class="nav-link active" aria-current="page" href="ArchivosProyecto.jsp">Archivos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Informes</a>
+                            <a class="nav-link active" aria-current="page" href="InformeProyecto.jsp">Informes</a>
                         </li>
-
                     </ul>
                     <form class="d-flex">
                         <a class="nav-link active" aria-current="page" href="index.jsp?cerrar=true">Cerrar sesion</a>
@@ -108,7 +109,6 @@
         </div>
         <!-- Modal -->
         <form action="Reporte.jsp" method="POST">
-
             <div class="modal fade" id="ModalActividad" tabindex="-1" aria-labelledby="ModalActividad" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -166,31 +166,31 @@
                             <div class="row mb-3">
                                 <div class="col-md-6">
                                     <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" name="ReporteMes" id="ReporteMovimientoMes">
+                                        <input class="form-check-input" type="checkbox" name="ReporteMovimientoMes" id="ReporteMovimientoMes">
                                         <label class="form-check-label" for="flexSwitchCheckDefault">Reporte Mes Actual</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" name="ReporteMes" id="ReporteMovimientoSemana">
+                                        <input class="form-check-input" type="checkbox" name="ReporteMovimientoSemana" id="ReporteMovimientoSemana">
                                         <label class="form-check-label" for="flexSwitchCheckDefault">Reporte Semana Actual</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" name="ReporteMes" id="ReporteMovimientoAnnio">
+                                        <input class="form-check-input" type="checkbox" name="ReporteMovimientoAnnio" id="ReporteMovimientoAnnio">
                                         <label class="form-check-label" for="flexSwitchCheckDefault">Reporte Año Actual (todo)</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" name="ReporteMes" id="ReporteMovimientoAnnioFactura">
+                                        <input class="form-check-input" type="checkbox" name="ReporteMovimientoAnnioFactura" id="ReporteMovimientoAnnioFactura">
                                         <label class="form-check-label" for="flexSwitchCheckDefault">Reporte Año Actual (Facturas)</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" name="ReporteMes" id="ReporteMovimientoTotal">
+                                        <input class="form-check-input" type="checkbox" name="ReporteMovimientoTotal" id="ReporteMovimientoTotal">
                                         <label class="form-check-label" for="flexSwitchCheckDefault">Reporte Todo el proyecto</label>
                                     </div>
                                 </div>
@@ -225,7 +225,8 @@
             //Funcion Actividad
             button.addEventListener('click', (e) => {
                 if (ReporteMes.checked || ReporteTotal.checked || ReporteDia.checked || ReporteSemana.checked) {
-                    const url = new URL(window.location.origin + '/SistemaWebConstructoraTesis1.1/ReporteActividad.jsp');
+                    const url = new URL(window.location.origin + '/ReporteActividad.jsp');
+                    //const url = new URL(window.location.origin + '/SistemaWebConstructoraTesis1.1/ReporteActividad.jsp');
                     url.searchParams.append('action', 'btnReporteActividad')
                     if (ReporteMes.checked) {
                         url.searchParams.append('Mes', ReporteMes.value)
@@ -251,12 +252,13 @@
             //Fucion Movimiento
             buttonM.addEventListener('click', (e) => {
                 if (ReporteMovimientoMes.checked || ReporteMovimientoSemana.checked || ReporteMovimientoAnnio.checked || ReporteMovimientoAnnioFactura.checked || ReporteMovimientoTotal.checked) {
-                    const url = new URL(window.location.origin + '/SistemaWebConstructoraTesis1.1/ReporteMovimientos.jsp');
+                    //const url = new URL(window.location.origin + '/SistemaWebConstructoraTesis1.1/ReporteMovimientos.jsp');
+                    const url = new URL(window.location.origin + '/ReporteMovimientos.jsp');
                     url.searchParams.append('action', 'btnReporteMovimiento')
                     if (ReporteMovimientoMes.checked) {
                         url.searchParams.append('Mes', ReporteMovimientoMes.value)
                     }
-                    if (ReporteMovimientoSemana.value) {
+                    if (ReporteMovimientoSemana.checked) {
                         url.searchParams.append('Semana', ReporteMovimientoSemana.value)
                     }
                     if (ReporteMovimientoAnnio.checked) {

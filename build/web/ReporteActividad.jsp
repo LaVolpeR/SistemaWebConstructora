@@ -19,6 +19,8 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=Windows-1252">
+                        <meta name="viewport" content="width=device-width, initial-scale=1">
+
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
         <script src="js/html2pdf.bundle.min.js" type="text/javascript"></script>
         <link href="css/Reportecss.css" rel="stylesheet" type="text/css"/>
@@ -71,7 +73,7 @@
             int a = 0;
 
             //http://localhost:8080/SistemaWebConstructoraTesis1.1/ReporteActividad.jsp
-%>
+        %>
         <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -83,7 +85,7 @@
                             <a class="nav-link active" href="MenuProyecto.jsp" tabindex="-1" aria-disabled="true">MENU PROYECTO</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="Cotizacion.jsp">Cotizacion</a>
+                            <a class="nav-link active" aria-current="page" href="Movimientos.jsp">Movimientos</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="PlanillaProyecto.jsp">Planilla</a>
@@ -95,12 +97,11 @@
                             <a class="nav-link active" aria-current="page" href="Reporte.jsp">Reportes</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Archivos</a>
+                            <a class="nav-link active" aria-current="page" href="ArchivosProyecto.jsp">Archivos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Informes</a>
+                            <a class="nav-link active" aria-current="page" href="InformeProyecto.jsp">Informes</a>
                         </li>
-
                     </ul>
                     <form class="d-flex">
                         <a class="nav-link active" aria-current="page" href="index.jsp?cerrar=true">Cerrar sesion</a>
@@ -264,7 +265,6 @@
                                             <th scope="col">Fecha Inicio</th>
                                             <th scope="col">Fecha Fin</th>
                                             <th scope="col">Responsable</th>
-
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -284,14 +284,13 @@
                                             <td><%=DatTem.getDato2()%></td>
                                             <td><%=DatTem.getDato3()%></td>
                                             <td><%=DatTem.getDato4()%></td>
-
                                         </tr>
                                         <%
                                             }
                                         } else {
                                         %>
                                         <tr>
-                                            <td colspan="6"><p class="text-center">No hay Actividades Completadas</p></td>
+                                            <td colspan="7"><p class="text-center">No hay Actividades Completadas</p></td>
                                         </tr>
                                         <%
                                             }
@@ -865,17 +864,12 @@
                 </div>
             </div>
         </div>
-        <%=opcion1%>
-        <%=opcion2%>
-        <%=opcion3%>
-        <%=opcion4%>
-        <%=opcion5%>
     </div>
 
     <!-- Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <!-- Personal Script -->
-    <script type="text/javascript">
+    <script>
                         function ConvertirPDF() {
                             const $elementoParaConvertir = document.querySelector("#ImpresionPDF"); // <-- Aquí puedes elegir cualquier elemento del DOM
                             html2pdf()

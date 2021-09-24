@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 /**
  *
@@ -24,10 +25,34 @@ public class lArchivos {
     public void ListarArchivos() {
         lTrabajador lTra = new lTrabajador();
         String nombre = "nn";
-        String TituloProyecto = "nn";
-        
+
         try {
             con.consulta("select * from ARCHIVO");
+            lArc.clear();
+            while (con.getRs().next()) {
+                nombre = lTra.Nombre(con.getRs().getString(7));
+
+                Archivo arc = new Archivo(con.getRs().getInt(1),
+                        con.getRs().getString(2),
+                        con.getRs().getString(3),
+                        con.getRs().getBytes(4),
+                        con.getRs().getString(5),
+                        con.getRs().getString(6),
+                        nombre);
+                lArc.add(arc);
+                System.out.print("Se obtuvo los archivos");
+            }
+        } catch (Exception e) {
+            System.out.print(e + "ListarArchivos ");
+        }
+    }
+
+    public void ListarArchivosProyecto(String IDProyecto) {
+        lTrabajador lTra = new lTrabajador();
+        String nombre = "nn";
+
+        try {
+            con.consulta("select * from ARCHIVO where PROYECTO_id = " + IDProyecto);
             lArc.clear();
             while (con.getRs().next()) {
                 nombre = lTra.Nombre(con.getRs().getString(7));
@@ -62,15 +87,16 @@ public class lArchivos {
             System.out.print(e);
         }
     }
-    public String UltimoArchivo(){
+
+    public String UltimoArchivo() {
         String ID = "null";
         try {
             con.consulta("select * from ARCHIVO order by ARCHIVO_id DESC");
             con.getRs().next();
             ID = con.getRs().getString(1);
-            System.out.print("ultimo archivo "+ ID);
+            System.out.print("ultimo archivo " + ID);
         } catch (Exception e) {
-            System.out.print("ultimo archivo "+e);
+            System.out.print("ultimo archivo " + e);
         }
         return ID;
     }
@@ -132,5 +158,4 @@ public class lArchivos {
         return arc;
     }
 
-    
 }

@@ -3,6 +3,8 @@
     Created on : 11-ago-2021, 19:41:35
     Author     : ramir
 --%>
+<%@page import="logico.lTrabajador"%>
+<%@page import="logico.lPlanilla"%>
 <%@page import="logico.lProyecto"%>
 <%@page import="datos.Cronograma"%>
 <%@page import="logico.lCronograma"%>
@@ -12,6 +14,8 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=Windows-1252">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <link href="css/MenuPrincipalPersonalcss.css" rel="stylesheet" type="text/css"/>
         <title>JSP Page</title>
@@ -22,9 +26,11 @@
             lCronograma lCro = new lCronograma();
             Cronograma Cro = new Cronograma();
             lProyecto lPro = new lProyecto();
+            lTrabajador lTra = new lTrabajador();
             String user;
             String Puesto;
             String codigo = null;
+            String activador = "disabled";
             if (sesion.getAttribute("user") != null && sesion.getAttribute("puesto") != null && sesion.getAttribute("puesto").equals("2")) {
                 user = sesion.getAttribute("user").toString();
                 Puesto = sesion.getAttribute("puesto").toString();
@@ -48,6 +54,9 @@
             }
 
             lCro.ListarCronogramaPersonalXFecha(codigo);
+            if (lTra.UltimoProyecto(codigo) != 0) {
+                activador = "active";
+            }
         %>
         <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
@@ -62,6 +71,9 @@
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="CronogramaPersonal.jsp">Cronograma</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link <%=activador %>" aria-current="page" href="InformePersonal.jsp">Informe</a>
+                        </li>
                     </ul>
                     <form class="d-flex">
                         <a class="nav-link active" aria-current="page" href="index.jsp?cerrar=true">Cerrar sesion</a>
@@ -70,7 +82,6 @@
             </div>
         </nav>
 
-        <br><br><br>
         <div class="container">
             <%if (lCronograma.lCro.size() != 0) {%>
             <h3 class="text-center">Actividades por realizar hoy  (<%=lCronograma.lCro.size()%>)</h3>
@@ -110,8 +121,6 @@
                                         <div class="d-grid gap-2">
                                             <input name="InputIDActividad"  type="hidden" value="<%=Cro.getID()%>">  
                                             <%if (Cro.getEstadoId().equals("1")) {
-
-
                                             %>
                                             <input type="submit" class="btn btn-primary" value="Acabado" name="btnAcabado" />
                                             <% }%>
@@ -144,7 +153,7 @@
                 %>
                 <br>
                 <div class="accordion  " id="accordionExample">
-                    <div class="accordion-item">
+                    <div class="accordion-item ">
                         <h2 class="accordion-header" id="headingOne">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                 Actividades Por Realizar
@@ -247,42 +256,42 @@
                         </h2>
                         <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                             <div class="accordion-body">
-<div class="accordion-body">
-                                <%                                for (int i = 0; i < lCronograma.lCro.size(); i++) {
-                                        Cro = (Cronograma) lCronograma.lCro.get(i);
+                                <div class="accordion-body">
+                                    <%                                for (int i = 0; i < lCronograma.lCro.size(); i++) {
+                                            Cro = (Cronograma) lCronograma.lCro.get(i);
 
-                                        if (Cro.getEstadoId().equals("2")) {
-                                %>
-                                
-                                <form action="MenuPrincipalPersonal.jsp" method="POST">
-
-                                    <%
-                                        String HoraInicio = Cro.getHoraIncio();
-                                        String[] HoraI = HoraInicio.split(".0000000");
-                                        String part1 = HoraI[0];
-                                        String HoraFin = Cro.getHoraFin();
-                                        String[] HoraF = HoraFin.split(".0000000");
-                                        String part2 = HoraF[0];
-                                        int IDProyecto = Integer.parseInt(Cro.getProyectoId());
+                                            if (Cro.getEstadoId().equals("2")) {
                                     %>
-                                    <div class="card">
-                                        <div class="card-header">
-                                            Actividad #<%=Cro.getID()%> - <%=Cro.getTitulo()%>
+
+                                    <form action="MenuPrincipalPersonal.jsp" method="POST">
+
+                                        <%
+                                            String HoraInicio = Cro.getHoraIncio();
+                                            String[] HoraI = HoraInicio.split(".0000000");
+                                            String part1 = HoraI[0];
+                                            String HoraFin = Cro.getHoraFin();
+                                            String[] HoraF = HoraFin.split(".0000000");
+                                            String part2 = HoraF[0];
+                                            int IDProyecto = Integer.parseInt(Cro.getProyectoId());
+                                        %>
+                                        <div class="card">
+                                            <div class="card-header">
+                                                Actividad #<%=Cro.getID()%> - <%=Cro.getTitulo()%>
+                                            </div>
+                                            <div class="card-body">
+                                                <p><b>Descripcion de la actividad:</b> <%=Cro.getDescripcion()%></p> 
+                                                <p><b>Proyecto:</b> <%=lPro.TituloProyecto(IDProyecto)%></p>
+                                                <p><b>Fecha de inicio de la actividad:</b> <%=Cro.getFechaInico()%> Hora: <%=part1%></p> 
+                                                <p><b>Fecha de culminacion de la actividad:</b><%=Cro.getFechaFin()%> Hora: <%=part2%></p> 
+                                            </div>
                                         </div>
-                                        <div class="card-body">
-                                            <p><b>Descripcion de la actividad:</b> <%=Cro.getDescripcion()%></p> 
-                                            <p><b>Proyecto:</b> <%=lPro.TituloProyecto(IDProyecto)%></p>
-                                            <p><b>Fecha de inicio de la actividad:</b> <%=Cro.getFechaInico()%> Hora: <%=part1%></p> 
-                                            <p><b>Fecha de culminacion de la actividad:</b><%=Cro.getFechaFin()%> Hora: <%=part2%></p> 
-                                        </div>
-                                    </div>
-                                    <br>
-                                </form>
-                                <%
+                                        <br>
+                                    </form>
+                                    <%
+                                            }
                                         }
-                                    }
-                                %>
-                            </div>                            </div>
+                                    %>
+                                </div>                            </div>
                         </div>
                     </div>
                 </div>
