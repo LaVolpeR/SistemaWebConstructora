@@ -11,7 +11,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Calendar;
-
+import java.util.Locale;
+import java.util.TimeZone;
+import java.util.GregorianCalendar;
 /**
  *
  * @author ramir
@@ -21,7 +23,13 @@ public class lArchivos {
     public static ArrayList lArc = new ArrayList();
     conexion con = new conexion();
     Connection conn;
-
+    Locale locale = new Locale("es", "PE");
+    TimeZone tz = TimeZone.getTimeZone("America/Lima");
+    Calendar c = Calendar.getInstance(tz, locale);
+    Calendar cal = GregorianCalendar.getInstance(tz, locale);
+    int dia = Integer.parseInt(Integer.toString(cal.get(Calendar.DATE)));
+    int mes = Integer.parseInt(Integer.toString(cal.get(Calendar.MONTH))) + 1;
+    int annio = Integer.parseInt(Integer.toString(cal.get(Calendar.YEAR)));
     public void ListarArchivos() {
         lTrabajador lTra = new lTrabajador();
         String nombre = "nn";
@@ -73,7 +81,7 @@ public class lArchivos {
     }
 
     public void InsertarArchivo(Archivo arc, String DNI, int ID) {
-        String sql = "exec sp_GuardarArchivo ? , ?,?,?,?";
+        String sql = "exec sp_GuardarArchivo ? , ?,?,?,?,?";
         PreparedStatement ps = null;
         try {
             ps = con.getCon().prepareStatement(sql);
@@ -82,6 +90,7 @@ public class lArchivos {
             ps.setString(3, arc.getDescripcion());
             ps.setInt(4, ID);
             ps.setString(5, DNI);
+            ps.setString(6, annio + "-" + mes + "-" + dia);
             ps.executeUpdate();
         } catch (Exception e) {
             System.out.print(e);

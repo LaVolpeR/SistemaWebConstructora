@@ -12,30 +12,18 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/NetBeans/SistemaWebConstructoraTesis1.1/src/java/SERVLET/ControllerPdf.java</file>
-            <file>file:/D:/NetBeans/SistemaWebConstructoraTesis1.1/web/PlanillaProyecto.jsp</file>
-            <file>file:/D:/NetBeans/SistemaWebConstructoraTesis1.1/src/java/logico/lMovimiento.java</file>
-            <file>file:/D:/NetBeans/SistemaWebConstructoraTesis1.1/web/Cronograma.jsp</file>
-            <file>file:/D:/NetBeans/SistemaWebConstructoraTesis1.1/web/Registrar.jsp</file>
+            <file>file:/D:/NetBeans/SistemaWebConstructoraTesis1.1/src/java/logico/lCronograma.java</file>
+            <file>file:/D:/NetBeans/SistemaWebConstructoraTesis1.1/src/java/logico/conexion.java</file>
+            <file>file:/D:/NetBeans/SistemaWebConstructoraTesis1.1/src/java/logico/lTrabajador.java</file>
             <file>file:/D:/NetBeans/SistemaWebConstructoraTesis1.1/web/RegistroMovimiento.jsp</file>
+            <file>file:/D:/NetBeans/SistemaWebConstructoraTesis1.1/web/Registrar.jsp</file>
+            <file>file:/D:/NetBeans/SistemaWebConstructoraTesis1.1/src/java/logico/lPlanilla.java</file>
+            <file>file:/D:/NetBeans/SistemaWebConstructoraTesis1.1/src/java/logico/lProyecto.java</file>
+            <file>file:/D:/NetBeans/SistemaWebConstructoraTesis1.1/src/java/logico/lDatosTemporales.java</file>
             <file>file:/D:/NetBeans/SistemaWebConstructoraTesis1.1/web/Archivos.jsp</file>
-            <file>file:/D:/NetBeans/SistemaWebConstructoraTesis1.1/web/MenuProyecto.jsp</file>
-            <file>file:/D:/NetBeans/SistemaWebConstructoraTesis1.1/web/CronogramaPersonal.jsp</file>
-            <file>file:/D:/NetBeans/SistemaWebConstructoraTesis1.1/web/MenuPrincipalPersonal.jsp</file>
-            <file>file:/D:/NetBeans/SistemaWebConstructoraTesis1.1/web/Actividad.jsp</file>
-            <file>file:/D:/NetBeans/SistemaWebConstructoraTesis1.1/web/InformeProyecto.jsp</file>
-            <file>file:/D:/NetBeans/SistemaWebConstructoraTesis1.1/web/Reporte.jsp</file>
-            <file>file:/D:/NetBeans/SistemaWebConstructoraTesis1.1/web/Movimientos.jsp</file>
-            <file>file:/D:/NetBeans/SistemaWebConstructoraTesis1.1/web/ReporteMovimientos.jsp</file>
-            <file>file:/D:/NetBeans/SistemaWebConstructoraTesis1.1/web/GuardarPDFProyecto.jsp</file>
-            <file>file:/D:/NetBeans/SistemaWebConstructoraTesis1.1/web/GuardarPDF.jsp</file>
-            <file>file:/D:/NetBeans/SistemaWebConstructoraTesis1.1/web/ReporteActividad.jsp</file>
-            <file>file:/D:/NetBeans/SistemaWebConstructoraTesis1.1/web/CreacionInforme.jsp</file>
-            <file>file:/D:/NetBeans/SistemaWebConstructoraTesis1.1/web/InformePersonal.jsp</file>
-            <file>file:/D:/NetBeans/SistemaWebConstructoraTesis1.1/web/MenuPrincipalJefe.jsp</file>
-            <file>file:/D:/NetBeans/SistemaWebConstructoraTesis1.1/web/ArchivosProyecto.jsp</file>
+            <file>file:/D:/NetBeans/SistemaWebConstructoraTesis1.1/src/java/logico/lPuesto.java</file>
             <file>file:/D:/NetBeans/SistemaWebConstructoraTesis1.1/web/Planilla.jsp</file>
-            <file>file:/D:/NetBeans/SistemaWebConstructoraTesis1.1/web/RegistroProyecto.jsp</file>
+            <file>file:/D:/NetBeans/SistemaWebConstructoraTesis1.1/src/java/logico/lChart.java</file>
         </group>
     </open-files>
 </project-private>

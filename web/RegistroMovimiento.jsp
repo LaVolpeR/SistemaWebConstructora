@@ -109,7 +109,7 @@
                 </div>
                 <br>
                 <div class="form-floating mb-3">
-                    <input type="number"step="0.01" class="form-control" name="InputMoney" placeholder="s/0.0">
+                    <input type="number"step="0.01" min="0" class="form-control" name="InputMoney" placeholder="s/0.0">
                     <label for="floatingInput" >Ingresar monto gastado</label>
                 </div>
                 <div class="form-floating mb-3">
